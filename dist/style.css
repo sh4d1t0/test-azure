@@ -9,21 +9,24 @@
     height: 70px;
     width: 100%;
     text-align: center;
+    position: fixed;
+}
+
+.mn-img-drawer-items{
+    margin-top: 80px;
+    height: auto;
 }
 
 .mn-img-drawer-footer{
-    position: absolute;
-    height: 70px;
-    top: 100%;
-    left: 50%;
-    margin-top: -80px;
-    margin-left: -50px;
+    position: relative;
+    text-align: center;
 }
 
 .mn-img-drawer-header img,
 .mn-img-drawer-footer img{
     text-align: center;
 }
+/** FIN ESTILOS DRAWER **/
 
 /*****  MAPER - MATERIAL UI - PERSONALIZADO *****/
 .nm-paper-body{
