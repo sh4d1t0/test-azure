@@ -1,40 +1,42 @@
-import React, {PropTypes} from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import Drawer from "material-ui/Drawer";
 import Divider from "material-ui/Divider";
+import Subheader from "material-ui/Subheader";
 import {ListItem} from "material-ui/List";
 
-/**
- * @description Componente que nos ayudará a pintar el menú, vertical-izquierdo
- * @param {boolean} open : Bandera útil para mostrar u ocultar el Drawer
- * @param {func} onRequestChange : Función que se
- * ejecuta cuando hay click en la parte oscura
- * @param {func} onTouchTap: Función que se ejecuta
- * cuando hay click en cada elemento del menú
- * @param {string} logoHeader : ruta de la imagen que
- * se pintará en el header del drawer
- * @param {string} logoFooter : ruta de la imagen que
- * se pintará en el footer del drawer
- * @param {[]} listItems : Array de opciones a pintar
- * en el menú/drawer
- * @return {XML} : Componente Drawer sin estado
- */
 const drawer = ({
-    open, onRequestChange, onTouchTap,
-    logoHeader, logoFooter, listItems
-}) => {
+                    open,
+                    onRequestChange,
+                    onTouchTap,
+                    logoHeader,
+                    logoFooter,
+                    listItems
+                }) => {
 
-    let items = [];
+    let items;
 
     const buildItems = (list) => {
 
         return list && list.length && list.map((item, i) => {
 
-                return <ListItem key={`drawer-li-${i}`}
+                if (item.subheader) {
+
+                    return <div key={`div-drawer-li-${i}`}>
+                        <Divider />
+                        <Subheader>
+                            {item.subheader}
+                        </Subheader>
+                    </div>;
+
+                }
+
+                return <ListItem key={`item-drawer-li-${i}`}
                                  primaryText={item.primaryText}
                                  leftIcon={item.leftIcon}
                                  onTouchTap={() => {
 
-                                     onTouchTap(item.link);
+                                     onTouchTap(item);
 
                                  }}
                                  nestedItems={buildItems(item.nestedItems)}/>;
@@ -49,6 +51,7 @@ const drawer = ({
         <Drawer
             docked={false}
             open={open}
+            width={380}
             onRequestChange={onRequestChange}>
 
             {
@@ -57,7 +60,9 @@ const drawer = ({
                 </div>
             }
 
-            {items}
+            <div className="mn-img-drawer-items">
+                {items}
+            </div>
 
             <Divider />
 

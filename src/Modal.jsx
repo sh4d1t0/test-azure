@@ -1,4 +1,5 @@
-import React, {PropTypes} from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import Spinner from "./Spinner";
@@ -11,24 +12,30 @@ import Spinner from "./Spinner";
 const Modal = (props) => {
 
     const {
-        title,
-        open,
-        showSpinner = false,
-        labelOk = "Cancelar",
-        labelCancel = "Aceptar",
-        handleOnTouchTapOk,
-        handleOnTouchTapCancel,
+            title,
+            open,
+            showSpinner = false,
+            disabledOk = false,
+            labelOk = "Aceptar",
+            labelCancel = "Cancelar",
+            handleOnTouchTapOk,
+            handleOnTouchTapCancel,
+            contentStyle = {
+                "width": "95%",
+                "maxWidth": "none",
+            }
+        } = props,
         actions = [
-            <FlatButton
-                label={labelOk}
-                primary={true}
-                onTouchTap={handleOnTouchTapOk}/>,
             <FlatButton
                 label={labelCancel}
                 primary={true}
-                onTouchTap={handleOnTouchTapCancel}/>
-        ]
-    } = props;
+                onTouchTap={handleOnTouchTapCancel}/>,
+            <FlatButton
+                label={labelOk}
+                disabled={disabledOk}
+                primary={true}
+                onTouchTap={handleOnTouchTapOk}/>
+        ];
 
     return (
         <Dialog
@@ -36,10 +43,9 @@ const Modal = (props) => {
             actions={actions}
             modal={true}
             autoScrollBodyContent={true}
+            contentStyle={ contentStyle}
             open={open}>
-
             {props.children}
-
             {
                 showSpinner && <Spinner visible={showSpinner}/>
             }
@@ -52,11 +58,12 @@ Modal.propTypes = {
     "title": PropTypes.string.isRequired,
     "labelOk": PropTypes.string,
     "labelCancel": PropTypes.string,
-    "actions": PropTypes.array,
     "open": PropTypes.bool.isRequired,
     "handleOnTouchTapOk": PropTypes.func.isRequired,
     "handleOnTouchTapCancel": PropTypes.func.isRequired,
     "showSpinner": PropTypes.bool,
+    "disabledOk": PropTypes.bool,
+    "contentStyle": PropTypes.object,
     "children": PropTypes.node
 };
 

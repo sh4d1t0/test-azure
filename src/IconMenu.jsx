@@ -1,5 +1,6 @@
-import React, {PropTypes} from "react";
-import IconMenu from "material-ui/IconMenu";
+import React from "react";
+import PropTypes from "prop-types";
+import ContainerIcons from "material-ui/IconMenu";
 import MenuItem from "material-ui/MenuItem";
 import IconButton from "material-ui/IconButton";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
@@ -9,7 +10,7 @@ import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
  * @param {{}} props : opciones para configuración
  * @return {{jsx}} : componente icon menu
  */
-const IconMenuExampleNested = (props) => {
+const IconMenu = (props) => {
 
     const {
         anchorOrigin = {"horizontal": "left", "vertical": "top"},
@@ -45,7 +46,7 @@ const IconMenuExampleNested = (props) => {
 
 
     return (
-        <IconMenu
+        <ContainerIcons
             iconButtonElement={<IconButton>
                 <MoreVertIcon />
             </IconButton>}
@@ -54,13 +55,13 @@ const IconMenuExampleNested = (props) => {
 
             {items}
 
-        </IconMenu>
+        </ContainerIcons>
     );
 
 };
 
 
-IconMenuExampleNested.propTypes = {
+IconMenu.propTypes = {
     "listOptions": PropTypes.array.isRequired,
     "rowId": PropTypes.any.isRequired,
     "anchorOrigin": PropTypes.object,
@@ -68,4 +69,4 @@ IconMenuExampleNested.propTypes = {
 };
 
 
-export default IconMenuExampleNested;
+export default IconMenu;
