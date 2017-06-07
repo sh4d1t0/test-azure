@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Dialog = require("material-ui/Dialog");
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
@@ -32,20 +36,27 @@ var Modal = function Modal(props) {
         open = props.open,
         _props$showSpinner = props.showSpinner,
         showSpinner = _props$showSpinner === undefined ? false : _props$showSpinner,
+        _props$disabledOk = props.disabledOk,
+        disabledOk = _props$disabledOk === undefined ? false : _props$disabledOk,
         _props$labelOk = props.labelOk,
-        labelOk = _props$labelOk === undefined ? "Cancelar" : _props$labelOk,
+        labelOk = _props$labelOk === undefined ? "Aceptar" : _props$labelOk,
         _props$labelCancel = props.labelCancel,
-        labelCancel = _props$labelCancel === undefined ? "Aceptar" : _props$labelCancel,
+        labelCancel = _props$labelCancel === undefined ? "Cancelar" : _props$labelCancel,
         handleOnTouchTapOk = props.handleOnTouchTapOk,
         handleOnTouchTapCancel = props.handleOnTouchTapCancel,
-        _props$actions = props.actions,
-        actions = _props$actions === undefined ? [_react2.default.createElement(_FlatButton2.default, {
-        label: labelOk,
-        primary: true,
-        onTouchTap: handleOnTouchTapOk }), _react2.default.createElement(_FlatButton2.default, {
+        _props$contentStyle = props.contentStyle,
+        contentStyle = _props$contentStyle === undefined ? {
+        "width": "95%",
+        "maxWidth": "none"
+    } : _props$contentStyle,
+        actions = [_react2.default.createElement(_FlatButton2.default, {
         label: labelCancel,
         primary: true,
-        onTouchTap: handleOnTouchTapCancel })] : _props$actions;
+        onTouchTap: handleOnTouchTapCancel }), _react2.default.createElement(_FlatButton2.default, {
+        label: labelOk,
+        disabled: disabledOk,
+        primary: true,
+        onTouchTap: handleOnTouchTapOk })];
 
 
     return _react2.default.createElement(
@@ -55,6 +66,7 @@ var Modal = function Modal(props) {
             actions: actions,
             modal: true,
             autoScrollBodyContent: true,
+            contentStyle: contentStyle,
             open: open },
         props.children,
         showSpinner && _react2.default.createElement(_Spinner2.default, { visible: showSpinner })
@@ -62,15 +74,16 @@ var Modal = function Modal(props) {
 };
 
 Modal.propTypes = {
-    "title": _react.PropTypes.string.isRequired,
-    "labelOk": _react.PropTypes.string,
-    "labelCancel": _react.PropTypes.string,
-    "actions": _react.PropTypes.array,
-    "open": _react.PropTypes.bool.isRequired,
-    "handleOnTouchTapOk": _react.PropTypes.func.isRequired,
-    "handleOnTouchTapCancel": _react.PropTypes.func.isRequired,
-    "showSpinner": _react.PropTypes.bool,
-    "children": _react.PropTypes.node
+    "title": _propTypes2.default.string.isRequired,
+    "labelOk": _propTypes2.default.string,
+    "labelCancel": _propTypes2.default.string,
+    "open": _propTypes2.default.bool.isRequired,
+    "handleOnTouchTapOk": _propTypes2.default.func.isRequired,
+    "handleOnTouchTapCancel": _propTypes2.default.func.isRequired,
+    "showSpinner": _propTypes2.default.bool,
+    "disabledOk": _propTypes2.default.bool,
+    "contentStyle": _propTypes2.default.object,
+    "children": _propTypes2.default.node
 };
 
 exports.default = Modal;

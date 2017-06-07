@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _IconMenu = require("material-ui/IconMenu");
 
 var _IconMenu2 = _interopRequireDefault(_IconMenu);
@@ -31,7 +35,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {{}} props : opciones para configuración
  * @return {{jsx}} : componente icon menu
  */
-var IconMenuExampleNested = function IconMenuExampleNested(props) {
+var IconMenu = function IconMenu(props) {
     var _props$anchorOrigin = props.anchorOrigin,
         anchorOrigin = _props$anchorOrigin === undefined ? { "horizontal": "left", "vertical": "top" } : _props$anchorOrigin,
         _props$targetOrigin = props.targetOrigin,
@@ -76,11 +80,11 @@ var IconMenuExampleNested = function IconMenuExampleNested(props) {
     );
 };
 
-IconMenuExampleNested.propTypes = {
-    "listOptions": _react.PropTypes.array.isRequired,
-    "rowId": _react.PropTypes.any.isRequired,
-    "anchorOrigin": _react.PropTypes.object,
-    "targetOrigin": _react.PropTypes.object
+IconMenu.propTypes = {
+    "listOptions": _propTypes2.default.array.isRequired,
+    "rowId": _propTypes2.default.any.isRequired,
+    "anchorOrigin": _propTypes2.default.object,
+    "targetOrigin": _propTypes2.default.object
 };
 
-exports.default = IconMenuExampleNested;
+exports.default = IconMenu;

@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _FloatingActionButton = require("material-ui/FloatingActionButton");
 
 var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
@@ -33,7 +37,7 @@ var FloatingButton = function FloatingButton(props) {
 };
 
 FloatingButton.propTypes = {
-    "onTouchTap": _react.PropTypes.func.isRequired
+    "onTouchTap": _propTypes2.default.func.isRequired
 };
 
 exports.default = FloatingButton;

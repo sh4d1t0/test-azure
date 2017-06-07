@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _MuiThemeProvider = require("material-ui/styles/MuiThemeProvider");
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
@@ -45,9 +49,9 @@ var ThemeFinanciera = function ThemeFinanciera(props) {
 };
 
 ThemeFinanciera.propTypes = {
-    "children": _react.PropTypes.node,
-    "primary1Color": _react.PropTypes.string,
-    "accent1Color": _react.PropTypes.string
+    "children": _propTypes2.default.node,
+    "primary1Color": _propTypes2.default.string,
+    "accent1Color": _propTypes2.default.string
 };
 
 exports.default = ThemeFinanciera;

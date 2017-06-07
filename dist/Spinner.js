@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _CircularProgress = require("material-ui/CircularProgress");
 
 var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
@@ -37,7 +41,7 @@ var spinner = function spinner(props) {
 };
 
 spinner.propTypes = {
-    "visible": _react.PropTypes.bool
+    "visible": _propTypes2.default.bool
 };
 
 exports.default = spinner;

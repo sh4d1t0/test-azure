@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _AppBar = require("material-ui/AppBar");
 
 var _AppBar2 = _interopRequireDefault(_AppBar);
@@ -29,10 +33,10 @@ var Header = function Header(props) {
 };
 
 Header.propTypes = {
-    "onLeftIconButtonTouchTap": _react.PropTypes.func.isRequired,
-    "title": _react.PropTypes.string.isRequired,
-    "iconElementRight": _react.PropTypes.element.isRequired,
-    "zDepth": _react.PropTypes.number
+    "onLeftIconButtonTouchTap": _propTypes2.default.func.isRequired,
+    "title": _propTypes2.default.string.isRequired,
+    "iconElementRight": _propTypes2.default.element,
+    "zDepth": _propTypes2.default.number
 };
 
 exports.default = Header;

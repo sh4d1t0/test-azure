@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Paper = require("material-ui/Paper");
 
 var _Paper2 = _interopRequireDefault(_Paper);
@@ -29,8 +33,7 @@ var Body = function Body(props) {
 
     return _react2.default.createElement(
         _Paper2.default,
-        { className: "nm-paper-body mn-pd-30",
-            zDepth: 1 },
+        { zDepth: 1, style: { "margin": 12 } },
         title && _react2.default.createElement(
             "div",
             null,
@@ -51,9 +54,9 @@ var Body = function Body(props) {
 };
 
 Body.propTypes = {
-    "title": _react.PropTypes.string,
-    "showSpinner": _react.PropTypes.bool,
-    "children": _react.PropTypes.node
+    "title": _propTypes2.default.string,
+    "showSpinner": _propTypes2.default.bool,
+    "children": _propTypes2.default.node
 };
 
 exports.default = Body;

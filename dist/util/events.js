@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    "palette": {
-        "primary1Color": "#1a51ae",
-        "accent1Color": "#FF5722"
-    }
+    "MAIN_ATTRS": "main-attrs",
+    "FORM_CHANGE_VALUE": "form-change-value"
 };

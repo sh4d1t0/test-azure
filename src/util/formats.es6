@@ -38,6 +38,12 @@ export const getDateFormat = (data) => {
 
     }
 
+    if (value === "Invalid date"){
+
+        value = "Fecha no válida";
+
+    }
+
     return value;
 
 };
@@ -45,7 +51,7 @@ export const getDateFormat = (data) => {
 export const getDateDiff = (data) => {
 
     const {isUnix = true, time} = data;
-    let diff, {value} = data, date, now;
+    let date, diff, {value} = data, now;
 
     if (!value) {
 
@@ -71,7 +77,17 @@ export const getDateDiff = (data) => {
                 now = moment();
                 diff = moment.duration(now.diff(date));
 
-                value = `${diff.years()} años, ${diff.months()} meses y ${diff.days()} días`;
+                if (isNaN(diff.years()) ||
+                    isNaN(diff.months()) ||
+                    isNaN(diff.days())) {
+
+                    value = "Fecha no válida";
+
+                } else {
+
+                    value = `${diff.years()} años, ${diff.months()} meses y ${diff.days()} días`;
+
+                }
 
             }
             break;
@@ -121,6 +137,12 @@ export const getCurrencyFormat = (value) => {
         "minimumFractionDigits": 2
     });
 
+    if (isNaN(value)) {
+
+        value = 0;
+
+    }
+
     return formatter.format(value);
 
 };
@@ -140,7 +162,7 @@ export const getPercentageFormat = (value) => {
 
 };
 
-export const getRenderBoolean = (flag = false,colorTrue=green500,colorFalse=red500) => {
+export const getRenderBoolean = (flag = false, colorTrue = green500, colorFalse = red500) => {
 
     if (flag) {
 
