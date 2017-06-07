@@ -15,3 +15,5 @@ export Tabs from "./Tabs";
 export BarChart from "./charts/BarChart";
 export List from "./List";
 export LabelValue from "./LabelValue";
+export util from "./util/index"
+export chart from "./charts/index"
