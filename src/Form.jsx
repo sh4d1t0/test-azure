@@ -10,17 +10,8 @@ import AutoComplete from "material-ui/AutoComplete";
 import DatePicker from "material-ui/DatePicker";
 import areIntlLocalesSupported from "intl-locales-supported";
 import {getDateObject} from "./util/formats";
-import {EE} from "../util/emitter";
-import event from "../constants/events";
 
-let DateTimeFormat,
-    onChangeValueEvent = (data) => {
-
-        const {value, name, form, epic, module} = data;
-
-        EE.emit(event.FORM_CHANGE_VALUE, {value, name, form, epic, module});
-
-    };
+let DateTimeFormat;
 
 if (areIntlLocalesSupported(["es", "es-MX"])) {
 
@@ -40,21 +31,9 @@ const Form = (props) => {
         } = props,
         onChange = (id, event, value) => {
 
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": value,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
-
                 onChangeInputs(value, id);
 
-            }
+
 
         },
         onChangeFile = (id, e) => {
@@ -62,59 +41,21 @@ const Form = (props) => {
             const formData = new FormData();
             formData.append("upfile", e.target.files[0]);
 
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": formData,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
 
                 onChangeInputs(e.target.files, id);
 
-            }
+
 
         },
         onChangeRadio = (id, event, value) => {
 
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": value,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
-
                 onChangeInputs(value, id);
 
-            }
 
         },
         onChangeSelect = (id, value) => {
 
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": value,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
-
                 onChangeInputs(value, id);
-
-            }
 
         },
         onUpdateInput = (id, searchText, dataSource, params) => {
@@ -125,40 +66,14 @@ const Form = (props) => {
 
             }
 
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": {},
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
 
                 onChangeInputs({}, id);
-
-            }
 
         },
         onCheck = (id, event, isInputChecked) => {
 
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": isInputChecked,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
 
                 onChangeInputs(isInputChecked, id);
-
-            }
 
         },
         getTextError = (property) => {
