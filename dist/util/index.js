@@ -3,78 +3,54 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.event = exports.EE = exports.selectorLabelsForm = exports.selectorFormObject = exports.getValueFromInput = exports.getUnixDate = exports.getCSV = exports.getRenderBoolean = exports.getDateObject = exports.getPercentageFormat = exports.getCurrencyFormat = exports.getDateFormat = undefined;
+exports.event = exports.EE = undefined;
 
 var _formats = require("./formats");
 
-Object.defineProperty(exports, "getDateFormat", {
-  enumerable: true,
-  get: function get() {
-    return _formats.getDateFormat;
-  }
-});
-Object.defineProperty(exports, "getCurrencyFormat", {
-  enumerable: true,
-  get: function get() {
-    return _formats.getCurrencyFormat;
-  }
-});
-Object.defineProperty(exports, "getPercentageFormat", {
-  enumerable: true,
-  get: function get() {
-    return _formats.getPercentageFormat;
-  }
-});
-Object.defineProperty(exports, "getDateObject", {
-  enumerable: true,
-  get: function get() {
-    return _formats.getDateObject;
-  }
-});
-Object.defineProperty(exports, "getRenderBoolean", {
-  enumerable: true,
-  get: function get() {
-    return _formats.getRenderBoolean;
-  }
+Object.keys(_formats).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _formats[key];
+    }
+  });
 });
 
 var _files = require("./files");
 
-Object.defineProperty(exports, "getCSV", {
-  enumerable: true,
-  get: function get() {
-    return _files.getCSV;
-  }
+Object.keys(_files).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _files[key];
+    }
+  });
 });
 
 var _getValues = require("./getValues");
 
-Object.defineProperty(exports, "getUnixDate", {
-  enumerable: true,
-  get: function get() {
-    return _getValues.getUnixDate;
-  }
-});
-Object.defineProperty(exports, "getValueFromInput", {
-  enumerable: true,
-  get: function get() {
-    return _getValues.getValueFromInput;
-  }
+Object.keys(_getValues).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _getValues[key];
+    }
+  });
 });
 
 var _selectors = require("./selectors");
 
-Object.defineProperty(exports, "selectorFormObject", {
-  enumerable: true,
-  get: function get() {
-    return _selectors.selectorFormObject;
-  }
-});
-Object.defineProperty(exports, "selectorLabelsForm", {
-  enumerable: true,
-  get: function get() {
-    return _selectors.selectorLabelsForm;
-  }
+Object.keys(_selectors).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _selectors[key];
+    }
+  });
 });
 
 var _emitter = require("./emitter");
