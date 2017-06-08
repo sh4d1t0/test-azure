@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
-import config from "./config";
+import config from "../config";
 
 const ThemeFinanciera = (props) => {
 

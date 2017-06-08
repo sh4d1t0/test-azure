@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getFormat} from "./util/formats";
+import {getFormat} from "../util/formats";
 
 const LabelValue = (props) => {
 

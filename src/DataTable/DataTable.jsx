@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import update from "react-addons-update";
 import DataTables from "material-ui-datatables";
 import {Card} from "material-ui/Card";
-import {getCurrencyFormat, getDateFormat, getLinkFormat, getRenderBoolean} from "./util/formats";
+import {getCurrencyFormat, getDateFormat, getLinkFormat, getRenderBoolean} from "../util/formats";
 
 export default class DataTable extends Component {
 

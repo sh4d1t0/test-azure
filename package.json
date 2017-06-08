@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "prebuild": "rm -rf dist/ && mkdir dist/",
-        "build": "babel src/ --out-dir dist/"
+        "build": "babel src/ --out-dir ./",
+        "postbuild": "copy src/styles ./"
     },
     "author": "Sngular - Más Nómina - Financiera",
     "license": "ISC",

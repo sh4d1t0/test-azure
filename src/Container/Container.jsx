@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Paper from "material-ui/Paper";
 import Divider from "material-ui/Divider";
-import Spinner from "./Spinner";
+import Spinner from "../Spinner/Spinner";
 
 const Body = (props) => {
 
