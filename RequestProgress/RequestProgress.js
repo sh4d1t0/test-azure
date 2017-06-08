@@ -12,7 +12,7 @@ var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _config = require("./config");
+var _config = require("../config");
 
 var _config2 = _interopRequireDefault(_config);
 

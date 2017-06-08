@@ -44,11 +44,11 @@ var _intlLocalesSupported = require("intl-locales-supported");
 
 var _intlLocalesSupported2 = _interopRequireDefault(_intlLocalesSupported);
 
-var _formats = require("./util/formats");
+var _formats = require("../util/formats");
 
-var _emitter = require("./util/emitter");
+var _emitter = require("../util/emitter");
 
-var _events = require("./util/events");
+var _events = require("../util/events");
 
 var _events2 = _interopRequireDefault(_events);
 

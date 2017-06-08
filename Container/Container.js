@@ -20,7 +20,7 @@ var _Divider = require("material-ui/Divider");
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Spinner = require("./Spinner");
+var _Spinner = require("../Spinner/Spinner");
 
 var _Spinner2 = _interopRequireDefault(_Spinner);
 

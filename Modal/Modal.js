@@ -20,7 +20,7 @@ var _FlatButton = require("material-ui/FlatButton");
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _Spinner = require("./Spinner");
+var _Spinner = require("../Spinner/Spinner");
 
 var _Spinner2 = _interopRequireDefault(_Spinner);
 

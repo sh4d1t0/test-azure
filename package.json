@@ -1,13 +1,13 @@
 {
     "name": "financiera-ui",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "",
-    "main": "./dist/index.js",
+    "main": "./index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "prebuild": "rm -rf dist/ && mkdir dist/",
+        "prebuild": "rm -rf ./styles && mkdir ./styles",
         "build": "babel src/ --out-dir ./",
-        "postbuild": "copy src/styles ./"
+        "postbuild": "cp ./src/styles/style.css ./styles"
     },
     "author": "Sngular - Más Nómina - Financiera",
     "license": "ISC",

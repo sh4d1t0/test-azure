@@ -22,7 +22,7 @@ var _materialUiDatatables2 = _interopRequireDefault(_materialUiDatatables);
 
 var _Card = require("material-ui/Card");
 
-var _formats = require("./util/formats");
+var _formats = require("../util/formats");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

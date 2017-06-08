@@ -20,7 +20,7 @@ var _getMuiTheme = require("material-ui/styles/getMuiTheme");
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _config = require("./config");
+var _config = require("../config");
 
 var _config2 = _interopRequireDefault(_config);
 
