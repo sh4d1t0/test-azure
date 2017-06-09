@@ -11,11 +11,6 @@ var selectorFormObject = exports.selectorFormObject = function selectorFormObjec
         var value = i.value;
 
 
-        if (i.type === "select") {
-
-            value = value && value.text;
-        }
-
         data[i.name] = value;
     });
 
