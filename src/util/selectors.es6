@@ -6,12 +6,6 @@ export const selectorFormObject = (inputs) => {
 
             let {value} = i;
 
-            if (i.type === "select") {
-
-                value = value && value.text;
-
-            }
-
             data[i.name] = value;
 
         });
