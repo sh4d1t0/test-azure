@@ -259,9 +259,11 @@ const Form = (props) => {
                                 fullWidth={true}
                                 errorText={errorText}
                                 openOnFocus={true}
+                                popoverProps={{"style": {
+                                    "overflowY": "auto"
+                                }}}
                                 onUpdateInput={onUpdateInput.bind(this, inputId)}
-                                onNewRequest={onChangeSelect.bind(this, inputId)}
-                                maxSearchResults={5}/>;
+                                onNewRequest={onChangeSelect.bind(this, inputId)}/>;
 
                         case "date":
                             value = getDateObject(value, unix);

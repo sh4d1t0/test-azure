@@ -276,9 +276,11 @@ var Form = function Form(props) {
                         fullWidth: true,
                         errorText: errorText,
                         openOnFocus: true,
+                        popoverProps: { "style": {
+                                "overflowY": "auto"
+                            } },
                         onUpdateInput: onUpdateInput.bind(undefined, inputId),
-                        onNewRequest: onChangeSelect.bind(undefined, inputId),
-                        maxSearchResults: 5 });
+                        onNewRequest: onChangeSelect.bind(undefined, inputId) });
 
                 case "date":
                     value = (0, _formats.getDateObject)(value, unix);
