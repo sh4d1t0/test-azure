@@ -34,7 +34,7 @@ var Header = function Header(props) {
 
 Header.propTypes = {
     "onLeftIconButtonTouchTap": _propTypes2.default.func.isRequired,
-    "title": _propTypes2.default.string.isRequired,
+    "title": _propTypes2.default.node.isRequired,
     "iconElementRight": _propTypes2.default.element,
     "zDepth": _propTypes2.default.number
 };

@@ -17,3 +17,4 @@ export List from "./List/List";
 export LabelValue from "./LabelValue/LabelValue";
 export util from "./util/index"
 export chart from "./charts/index"
+export BreadCrumbs from "./BreadCrumbs/BreadCrumbs"

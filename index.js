@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.chart = exports.util = exports.LabelValue = exports.List = exports.BarChart = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
+exports.BreadCrumbs = exports.chart = exports.util = exports.LabelValue = exports.List = exports.BarChart = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
 
 var _Container2 = require("./Container/Container");
 
@@ -73,6 +73,10 @@ var _index3 = require("./charts/index");
 
 var _index4 = _interopRequireDefault(_index3);
 
+var _BreadCrumbs2 = require("./BreadCrumbs/BreadCrumbs");
+
+var _BreadCrumbs3 = _interopRequireDefault(_BreadCrumbs2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Container = _Container3.default; /* eslint object-curly-spacing: 0 */
@@ -93,3 +97,4 @@ exports.List = _List3.default;
 exports.LabelValue = _LabelValue3.default;
 exports.util = _index2.default;
 exports.chart = _index4.default;
+exports.BreadCrumbs = _BreadCrumbs3.default;

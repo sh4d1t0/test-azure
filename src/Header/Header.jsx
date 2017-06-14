@@ -16,7 +16,7 @@ const Header = (props) => {
 
 Header.propTypes = {
     "onLeftIconButtonTouchTap": PropTypes.func.isRequired,
-    "title": PropTypes.string.isRequired,
+    "title": PropTypes.node.isRequired,
     "iconElementRight": PropTypes.element,
     "zDepth": PropTypes.number
 };
