@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 import {List} from "material-ui/List";
 import TextField from "material-ui/TextField";
 import FileIcon from "material-ui/svg-icons/file/file-upload";
@@ -206,6 +207,8 @@ const Form = (props) => {
                             disabled = false,
                             multiple = false,
                             accept = [],
+                            min,
+                            max,
                             name
                         } = property,
                         errorText = getTextError(property),
@@ -259,19 +262,37 @@ const Form = (props) => {
                                 fullWidth={true}
                                 errorText={errorText}
                                 openOnFocus={true}
-                                popoverProps={{"style": {
-                                    "overflowY": "auto"
-                                }}}
+                                popoverProps={{
+                                    "style": {
+                                        "overflowY": "auto"
+                                    }
+                                }}
                                 onUpdateInput={onUpdateInput.bind(this, inputId)}
                                 onNewRequest={onChangeSelect.bind(this, inputId)}/>;
 
                         case "date":
                             value = getDateObject(value, unix);
 
+                            let maxDate = null, minDate = null;
+
+                            if (min) {
+
+                                minDate = moment(min, "DD/MM/YYYY").toDate();
+
+                            }
+
+                            if (max) {
+
+                                maxDate = moment(max, "DD/MM/YYYY").toDate();
+
+                            }
+
                             return <DatePicker
                                 key={`form-date-picker-${i}`}
                                 hintText={label}
                                 value={value}
+                                minDate={minDate}
+                                maxDate={maxDate}
                                 floatingLabelText={label}
                                 fullWidth={true}
                                 locale="es-MX"

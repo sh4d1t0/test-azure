@@ -15,6 +15,6 @@ export Tabs from "./Tabs/Tabs";
 export BarChart from "./charts/BarChart";
 export List from "./List/List";
 export LabelValue from "./LabelValue/LabelValue";
-export util from "./util/index"
-export chart from "./charts/index"
-export BreadCrumbs from "./BreadCrumbs/BreadCrumbs"
+export BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
+export util from "./util/index";
+export chart from "./charts/index";

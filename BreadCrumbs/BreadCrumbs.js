@@ -28,6 +28,11 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
         "nav",
         null,
         items.map(function (item, index) {
+
+            if (item === null) {
+                return;
+            }
+
             var label = item.label,
                 link = item.link;
 
@@ -45,6 +50,7 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
 
                     _onTouchTap(item);
                 },
+                disabled: typeof link === "undefined",
                 style: styleItem });
         })
     );

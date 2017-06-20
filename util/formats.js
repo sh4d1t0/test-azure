@@ -33,11 +33,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//asdasddsadsa
 var getDateFormat = exports.getDateFormat = function getDateFormat(data) {
     var _data$isUnix = data.isUnix,
         isUnix = _data$isUnix === undefined ? true : _data$isUnix,
         _data$format = data.format,
-        format = _data$format === undefined ? "DD/MM/YYYY" : _data$format;
+        format = _data$format === undefined ? "DD/MM/YYYY" : _data$format; /// 15/15/15 //Date()
+
     var value = data.value;
 
 
@@ -54,13 +56,17 @@ var getDateFormat = exports.getDateFormat = function getDateFormat(data) {
 
         default:
 
-            if (value.toString().length >= 12) {
-
-                value /= 1000;
-            }
             if (isUnix) {
 
+                if (value.toString().length >= 12) {
+
+                    value /= 1000;
+                }
+
                 value = _moment2.default.unix(value).format(format);
+            } else {
+
+                value = (0, _moment2.default)("15/15/15").format("DD/MM/YYYY");
             }
             break;
 

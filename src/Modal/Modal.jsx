@@ -22,7 +22,7 @@ const Modal = (props) => {
             handleOnTouchTapCancel,
             contentStyle = {
                 "width": "95%",
-                "maxWidth": "none",
+                "maxWidth": "none"
             }
         } = props,
         actions = [

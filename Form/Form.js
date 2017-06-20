@@ -12,6 +12,10 @@ var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _moment = require("moment");
+
+var _moment2 = _interopRequireDefault(_moment);
+
 var _List = require("material-ui/List");
 
 var _TextField = require("material-ui/TextField");
@@ -226,6 +230,8 @@ var Form = function Form(props) {
                 multiple = _property$multiple === undefined ? false : _property$multiple,
                 _property$accept = property.accept,
                 accept = _property$accept === undefined ? [] : _property$accept,
+                min = property.min,
+                max = property.max,
                 name = property.name,
                 errorText = getTextError(property),
                 inputId = i;
@@ -276,19 +282,36 @@ var Form = function Form(props) {
                         fullWidth: true,
                         errorText: errorText,
                         openOnFocus: true,
-                        popoverProps: { "style": {
+                        popoverProps: {
+                            "style": {
                                 "overflowY": "auto"
-                            } },
+                            }
+                        },
                         onUpdateInput: onUpdateInput.bind(undefined, inputId),
                         onNewRequest: onChangeSelect.bind(undefined, inputId) });
 
                 case "date":
                     value = (0, _formats.getDateObject)(value, unix);
 
+                    var maxDate = null,
+                        minDate = null;
+
+                    if (min) {
+
+                        minDate = (0, _moment2.default)(min, "DD/MM/YYYY").toDate();
+                    }
+
+                    if (max) {
+
+                        maxDate = (0, _moment2.default)(max, "DD/MM/YYYY").toDate();
+                    }
+
                     return _react2.default.createElement(_DatePicker2.default, {
                         key: "form-date-picker-" + i,
                         hintText: label,
                         value: value,
+                        minDate: minDate,
+                        maxDate: maxDate,
                         floatingLabelText: label,
                         fullWidth: true,
                         locale: "es-MX",

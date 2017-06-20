@@ -1,51 +1,50 @@
-
 /***** ESTILOS GENERALES *****/
-.mn-pd-30{
+.mn-pd-30 {
     padding: 30px;
 }
 
 /***** ESTILOS DRAWER *****/
-.mn-img-drawer-header{
+.mn-img-drawer-header {
     height: 70px;
     width: 100%;
     text-align: center;
     position: fixed;
 }
 
-.mn-img-drawer-items{
+.mn-img-drawer-items {
     margin-top: 80px;
     height: auto;
 }
 
-.mn-img-drawer-footer{
+.mn-img-drawer-footer {
     position: relative;
     text-align: center;
 }
 
 .mn-img-drawer-header img,
-.mn-img-drawer-footer img{
+.mn-img-drawer-footer img {
     text-align: center;
 }
+
 /** FIN ESTILOS DRAWER **/
 
 /*****  MAPER - MATERIAL UI - PERSONALIZADO *****/
-.nm-paper-body{
+.nm-paper-body {
     margin: 30px;
     height: auto;
     min-height: 400px;
 
 }
 
-
 /*****  PORLET BODY *****/
-.static-info{
+.static-info {
 
     margin-bottom: 10px;
     font-size: 14px;
 
 }
 
-.static-info .value{
+.static-info .value {
 
     font-weight: 600;
 

@@ -4,10 +4,10 @@ import FlatButton from "material-ui/FlatButton";
 import {green500, red500} from "material-ui/styles/colors";
 import Checkbox from "material-ui/svg-icons/toggle/check-box";
 import Indeterminate from "material-ui/svg-icons/toggle/indeterminate-check-box";
-
+//asdasddsadsa
 export const getDateFormat = (data) => {
 
-    const {isUnix = true, format = "DD/MM/YYYY"} = data;
+    const {isUnix = true, format = "DD/MM/YYYY"} = data; /// 15/15/15 //Date()
     let {value} = data;
 
     if (!value) {
@@ -24,21 +24,27 @@ export const getDateFormat = (data) => {
 
         default:
 
-            if (value.toString().length >= 12) {
-
-                value /= 1000;
-
-            }
             if (isUnix) {
 
+                if (value.toString().length >= 12) {
+
+                    value /= 1000;
+
+                }
+
                 value = moment.unix(value).format(format);
+
+
+            } else {
+
+                value = moment("15/15/15").format("DD/MM/YYYY");
 
             }
             break;
 
     }
 
-    if (value === "Invalid date"){
+    if (value === "Invalid date") {
 
         value = "Fecha no válida";
 

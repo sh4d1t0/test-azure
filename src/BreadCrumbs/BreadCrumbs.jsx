@@ -8,6 +8,10 @@ const BreadCrumbs = ({items = [], onTouchTap}) => {
         {
             items.map((item, index) => {
 
+                if (item === null){
+                    return;
+                }
+
                 const {label, link} = item;
                 let styleItem = {"color": "rgba(255,255,255,0.7)"};
 
@@ -25,6 +29,7 @@ const BreadCrumbs = ({items = [], onTouchTap}) => {
                         onTouchTap(item);
 
                     }}
+                    disabled={typeof link === "undefined"}
                     style={styleItem}/>;
 
             })
