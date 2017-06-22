@@ -12,9 +12,9 @@ var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactAddonsUpdate = require("react-addons-update");
+var _immutabilityHelper = require("immutability-helper");
 
-var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+var _immutabilityHelper2 = _interopRequireDefault(_immutabilityHelper);
 
 var _materialUiDatatables = require("material-ui-datatables");
 
@@ -44,39 +44,22 @@ var DataTable = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (DataTable.__proto__ || Object.getPrototypeOf(DataTable)).call(this, props, context));
 
-        _this.state = {
-            "currentPage": 1,
-            "rowSize": 5,
-            "rowSizeList": [5, 10, 15, 20],
-            "filterText": "",
-            "realSelections": [],
-            "limitPage": 0
-        };
+        _this.state = {};
 
         _this.componentDidMount = function () {
-            var data = _this.props.data,
-                rowSize = _this.state.rowSize;
 
-
-            _this.setState({ "limitPage": parseInt(data.length / rowSize, 10) });
+            _this.setState({ "limitPage": _this.getInitialPage() });
         };
 
         _this.componentWillUpdate = function (nextProps) {
             var data = nextProps.data,
-                rowSize = _this.state.rowSize,
                 lengthCurrentData = _this.props.data.length,
                 lengthNextData = data.length;
 
 
             if (lengthNextData !== lengthCurrentData) {
 
-                var limitPage = parseInt(lengthNextData / rowSize, 10),
-                    page = void 0;
-
-                if (lengthNextData % 10 !== 0) {
-
-                    limitPage += 1;
-                }
+                var page = void 0;
 
                 switch (lengthNextData - lengthCurrentData) {
 
@@ -98,12 +81,44 @@ var DataTable = function (_Component) {
                 }
 
                 _this.setState({
-                    "limitPage": limitPage,
+                    "limitPage": _this.getInitialPage(),
                     "currentPage": page,
                     "filterText": "",
-                    "realSelections": []
+                    "realSelections": _this.getInitialSelected()
                 });
             }
+        };
+
+        _this.getInitialPage = function () {
+            var data = _this.props.data,
+                rowSize = _this.state.rowSize,
+                lengthNextData = data.length;
+
+
+            var limitPage = parseInt(lengthNextData / rowSize, 10);
+
+            if (lengthNextData % 10 !== 0) {
+
+                limitPage += 1;
+            }
+
+            return limitPage;
+        };
+
+        _this.getInitialSelected = function () {
+            var _this$props = _this.props,
+                selectableManually = _this$props.selectableManually,
+                data = _this$props.data;
+
+
+            var selections = [];
+
+            if (selectableManually) {
+
+                selections = _this.getSelectedByAttr(data);
+            }
+
+            return selections;
         };
 
         _this.handleNextPage = function () {
@@ -153,9 +168,10 @@ var DataTable = function (_Component) {
         _this.handleSortOrderChange = function (column, order) {};
 
         _this.handleRowSelect = function (selection) {
-            var _this$props = _this.props,
-                handleRowSelection = _this$props.handleRowSelection,
-                data = _this$props.data;
+            var _this$props2 = _this.props,
+                handleRowSelection = _this$props2.handleRowSelection,
+                data = _this$props2.data,
+                selectableManually = _this$props2.selectableManually;
             var realSelections = _this.state.realSelections,
                 responseArray = false;
 
@@ -174,7 +190,6 @@ var DataTable = function (_Component) {
                     break;
 
                 default:
-
                     responseArray = true;
                     selection.map(function (item) {
 
@@ -201,7 +216,10 @@ var DataTable = function (_Component) {
                 handleRowSelection(realSelections);
             }
 
-            _this.setState({ realSelections: realSelections });
+            if (!selectableManually) {
+
+                _this.setState({ realSelections: realSelections });
+            }
         };
 
         _this.removeNotExist = function (realSelections, selectionOnPage) {
@@ -265,7 +283,7 @@ var DataTable = function (_Component) {
 
                     if (type === "date" && row[key]) {
 
-                        row = (0, _reactAddonsUpdate2.default)(row, _defineProperty({}, key, {
+                        row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
                             "$set": (0, _formats.getDateFormat)({
                                 "format": format,
                                 "isUnix": unix,
@@ -276,21 +294,21 @@ var DataTable = function (_Component) {
 
                     if (type === "boolean") {
 
-                        row = (0, _reactAddonsUpdate2.default)(row, _defineProperty({}, key, {
+                        row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
                             "$set": row[key] ? renderTrueAs : renderFalseAs
                         }));
                     }
 
                     if (type === "currency") {
 
-                        row = (0, _reactAddonsUpdate2.default)(row, _defineProperty({}, key, {
+                        row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
                             "$set": (0, _formats.getCurrencyFormat)(row[key])
                         }));
                     }
 
                     if (type === "link") {
 
-                        row = (0, _reactAddonsUpdate2.default)(row, _defineProperty({}, key, {
+                        row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
                             "$set": (0, _formats.getLinkFormat)(row[key], labelBtn)
                         }));
                     }
@@ -373,6 +391,23 @@ var DataTable = function (_Component) {
             return selected;
         };
 
+        _this.getSelectedByAttr = function (rows) {
+            var attrSelectable = _this.props.attrSelectable;
+
+
+            var selected = [];
+
+            rows.map(function (row, index) {
+
+                if (row[attrSelectable]) {
+
+                    selected.push(index);
+                }
+            });
+
+            return selected;
+        };
+
         _this.pushElement = function (rows) {
             var data = _this.props.data;
 
@@ -389,16 +424,17 @@ var DataTable = function (_Component) {
         };
 
         _this.getTable = function () {
-            var _this$props2 = _this.props,
-                title = _this$props2.title,
-                selectable = _this$props2.selectable,
-                headers = _this$props2.headers,
-                data = _this$props2.data,
-                showCheckboxes = _this$props2.showCheckboxes,
-                enableSelectAll = _this$props2.enableSelectAll,
-                multiSelectable = _this$props2.multiSelectable,
-                showFooterToolbar = _this$props2.showFooterToolbar,
-                showHeaderToolbar = _this$props2.showHeaderToolbar,
+            var _this$props3 = _this.props,
+                title = _this$props3.title,
+                selectable = _this$props3.selectable,
+                headers = _this$props3.headers,
+                data = _this$props3.data,
+                showCheckboxes = _this$props3.showCheckboxes,
+                selectableManually = _this$props3.selectableManually,
+                enableSelectAll = _this$props3.enableSelectAll,
+                multiSelectable = _this$props3.multiSelectable,
+                showFooterToolbar = _this$props3.showFooterToolbar,
+                showHeaderToolbar = _this$props3.showHeaderToolbar,
                 _this$state3 = _this.state,
                 currentPage = _this$state3.currentPage,
                 rowSize = _this$state3.rowSize,
@@ -434,7 +470,13 @@ var DataTable = function (_Component) {
 
             if (selectable) {
 
-                selectedRows = _this.getSelectedRowsOnDT(_this.rows);
+                if (selectableManually) {
+
+                    selectedRows = _this.getSelectedByAttr(_this.rows);
+                } else {
+
+                    selectedRows = _this.getSelectedRowsOnDT(_this.rows);
+                }
             }
 
             return _react2.default.createElement(_materialUiDatatables2.default, {
@@ -487,8 +529,16 @@ var DataTable = function (_Component) {
         _this.handleSortOrderChange = _this.handleSortOrderChange.bind(_this);
         _this.handleChangeRowSize = _this.handleChangeRowSize.bind(_this);
         _this.oneElementAdded = false;
-
         _this.rows = [];
+
+        _this.state = {
+            "currentPage": 1,
+            "rowSize": 5,
+            "rowSizeList": [5, 10, 15, 20],
+            "filterText": "",
+            "limitPage": 0,
+            "realSelections": _this.getInitialSelected()
+        };
 
         return _this;
     }
@@ -502,6 +552,8 @@ exports.default = DataTable;
 DataTable.propTypes = {
     "handleRowSelection": _propTypes2.default.func,
     "selectable": _propTypes2.default.bool,
+    "selectableManually": _propTypes2.default.bool,
+    "attrSelectable": _propTypes2.default.string,
     "card": _propTypes2.default.bool,
     "showHeaderToolbar": _propTypes2.default.bool,
     "enableSelectAll": _propTypes2.default.bool,
@@ -518,6 +570,7 @@ DataTable.defaultProps = {
     "selectable": false,
     "card": true,
     "showCheckboxes": false,
+    "selectableManually": false,
     "showHeaderToolbar": true,
     "showFooterToolbar": true,
     "enableSelectAll": false,

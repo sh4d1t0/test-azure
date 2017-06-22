@@ -1,20 +1,13 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import update from "react-addons-update";
+import update from "immutability-helper";
 import DataTables from "material-ui-datatables";
 import {Card} from "material-ui/Card";
 import {getCurrencyFormat, getDateFormat, getLinkFormat, getRenderBoolean} from "../util/formats";
 
 export default class DataTable extends Component {
 
-    state = {
-        "currentPage": 1,
-        "rowSize": 5,
-        "rowSizeList": [5, 10, 15, 20],
-        "filterText": "",
-        "realSelections": [],
-        "limitPage": 0
-    };
+    state = {};
 
     constructor(props, context) {
 
@@ -26,37 +19,34 @@ export default class DataTable extends Component {
         this.handleSortOrderChange = this.handleSortOrderChange.bind(this);
         this.handleChangeRowSize = this.handleChangeRowSize.bind(this);
         this.oneElementAdded = false;
-
         this.rows = [];
+
+        this.state = {
+            "currentPage": 1,
+            "rowSize": 5,
+            "rowSizeList": [5, 10, 15, 20],
+            "filterText": "",
+            "limitPage": 0,
+            "realSelections": this.getInitialSelected()
+        };
 
     }
 
     componentDidMount = () => {
 
-        const {data} = this.props,
-            {rowSize} = this.state;
-
-        this.setState({"limitPage": parseInt(data.length / rowSize, 10)});
+        this.setState({"limitPage": this.getInitialPage()});
 
     };
 
     componentWillUpdate = (nextProps) => {
 
         const {data} = nextProps,
-            {rowSize} = this.state,
             lengthCurrentData = this.props.data.length,
             lengthNextData = data.length;
 
         if (lengthNextData !== lengthCurrentData) {
 
-            let limitPage = parseInt(lengthNextData / rowSize, 10),
-                page;
-
-            if (lengthNextData % 10 !== 0) {
-
-                limitPage += 1;
-
-            }
+            let page;
 
             switch (lengthNextData - lengthCurrentData) {
 
@@ -78,13 +68,47 @@ export default class DataTable extends Component {
             }
 
             this.setState({
-                "limitPage": limitPage,
+                "limitPage": this.getInitialPage(),
                 "currentPage": page,
                 "filterText": "",
-                "realSelections": []
+                "realSelections": this.getInitialSelected()
             });
 
         }
+
+    };
+
+    getInitialPage = () => {
+
+        const {data} = this.props,
+            {rowSize} = this.state,
+            lengthNextData = data.length;
+
+        let limitPage = parseInt(lengthNextData / rowSize, 10);
+
+        if (lengthNextData % 10 !== 0) {
+
+            limitPage += 1;
+
+        }
+
+        return limitPage;
+
+    };
+
+    getInitialSelected = () => {
+
+        const {selectableManually, data} = this.props;
+
+        let selections = [];
+
+        if (selectableManually) {
+
+            selections = this.getSelectedByAttr(data);
+
+        }
+
+        return selections;
 
     };
 
@@ -99,7 +123,6 @@ export default class DataTable extends Component {
         }
         this.oneElementAdded = false;
         this.setState({"currentPage": currentPage + 1});
-
 
     };
 
@@ -144,7 +167,7 @@ export default class DataTable extends Component {
 
     handleRowSelect = (selection) => {
 
-        const {handleRowSelection, data} = this.props;
+        const {handleRowSelection, data, selectableManually} = this.props;
 
         let {realSelections} = this.state,
             responseArray = false;
@@ -164,7 +187,6 @@ export default class DataTable extends Component {
                 break;
 
             default:
-
                 responseArray = true;
                 selection.map(item => {
 
@@ -196,7 +218,11 @@ export default class DataTable extends Component {
 
         }
 
-        this.setState({realSelections});
+        if (!selectableManually) {
+
+            this.setState({realSelections});
+
+        }
 
     };
 
@@ -393,6 +419,26 @@ export default class DataTable extends Component {
 
     };
 
+    getSelectedByAttr = (rows) => {
+
+        const {attrSelectable} = this.props;
+
+        let selected = [];
+
+        rows.map((row, index) => {
+
+            if (row[attrSelectable]) {
+
+                selected.push(index);
+
+            }
+
+        });
+
+        return selected;
+
+    };
+
     pushElement = (rows) => {
 
         const {data} = this.props;
@@ -417,6 +463,7 @@ export default class DataTable extends Component {
                 headers,
                 data,
                 showCheckboxes,
+                selectableManually,
                 enableSelectAll,
                 multiSelectable,
                 showFooterToolbar,
@@ -454,7 +501,15 @@ export default class DataTable extends Component {
 
         if (selectable) {
 
-            selectedRows = this.getSelectedRowsOnDT(this.rows);
+            if (selectableManually) {
+
+                selectedRows = this.getSelectedByAttr(this.rows);
+
+            } else {
+
+                selectedRows = this.getSelectedRowsOnDT(this.rows);
+
+            }
 
         }
 
@@ -512,6 +567,8 @@ export default class DataTable extends Component {
 DataTable.propTypes = {
     "handleRowSelection": PropTypes.func,
     "selectable": PropTypes.bool,
+    "selectableManually": PropTypes.bool,
+    "attrSelectable": PropTypes.string,
     "card": PropTypes.bool,
     "showHeaderToolbar": PropTypes.bool,
     "enableSelectAll": PropTypes.bool,
@@ -528,6 +585,7 @@ DataTable.defaultProps = {
     "selectable": false,
     "card": true,
     "showCheckboxes": false,
+    "selectableManually": false,
     "showHeaderToolbar": true,
     "showFooterToolbar": true,
     "enableSelectAll": false,
