@@ -18,8 +18,8 @@ const Modal = (props) => {
             disabledOk = false,
             labelOk = "Aceptar",
             labelCancel = "Cancelar",
-            handleOnTouchTapOk,
-            handleOnTouchTapCancel,
+            onTouchTapOk,
+            onTouchTapCancel,
             contentStyle = {
                 "width": "95%",
                 "maxWidth": "none"
@@ -29,12 +29,12 @@ const Modal = (props) => {
             <FlatButton
                 label={labelCancel}
                 primary={true}
-                onTouchTap={handleOnTouchTapCancel}/>,
+                onTouchTap={onTouchTapCancel}/>,
             <FlatButton
                 label={labelOk}
                 disabled={disabledOk}
                 primary={true}
-                onTouchTap={handleOnTouchTapOk}/>
+                onTouchTap={onTouchTapOk}/>
         ];
 
     return (
@@ -59,8 +59,8 @@ Modal.propTypes = {
     "labelOk": PropTypes.string,
     "labelCancel": PropTypes.string,
     "open": PropTypes.bool.isRequired,
-    "handleOnTouchTapOk": PropTypes.func.isRequired,
-    "handleOnTouchTapCancel": PropTypes.func.isRequired,
+    "onTouchTapOk": PropTypes.func.isRequired,
+    "onTouchTapCancel": PropTypes.func.isRequired,
     "showSpinner": PropTypes.bool,
     "disabledOk": PropTypes.bool,
     "contentStyle": PropTypes.object,

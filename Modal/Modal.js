@@ -42,8 +42,8 @@ var Modal = function Modal(props) {
         labelOk = _props$labelOk === undefined ? "Aceptar" : _props$labelOk,
         _props$labelCancel = props.labelCancel,
         labelCancel = _props$labelCancel === undefined ? "Cancelar" : _props$labelCancel,
-        handleOnTouchTapOk = props.handleOnTouchTapOk,
-        handleOnTouchTapCancel = props.handleOnTouchTapCancel,
+        onTouchTapOk = props.onTouchTapOk,
+        onTouchTapCancel = props.onTouchTapCancel,
         _props$contentStyle = props.contentStyle,
         contentStyle = _props$contentStyle === undefined ? {
         "width": "95%",
@@ -52,11 +52,11 @@ var Modal = function Modal(props) {
         actions = [_react2.default.createElement(_FlatButton2.default, {
         label: labelCancel,
         primary: true,
-        onTouchTap: handleOnTouchTapCancel }), _react2.default.createElement(_FlatButton2.default, {
+        onTouchTap: onTouchTapCancel }), _react2.default.createElement(_FlatButton2.default, {
         label: labelOk,
         disabled: disabledOk,
         primary: true,
-        onTouchTap: handleOnTouchTapOk })];
+        onTouchTap: onTouchTapOk })];
 
 
     return _react2.default.createElement(
@@ -78,8 +78,8 @@ Modal.propTypes = {
     "labelOk": _propTypes2.default.string,
     "labelCancel": _propTypes2.default.string,
     "open": _propTypes2.default.bool.isRequired,
-    "handleOnTouchTapOk": _propTypes2.default.func.isRequired,
-    "handleOnTouchTapCancel": _propTypes2.default.func.isRequired,
+    "onTouchTapOk": _propTypes2.default.func.isRequired,
+    "onTouchTapCancel": _propTypes2.default.func.isRequired,
     "showSpinner": _propTypes2.default.bool,
     "disabledOk": _propTypes2.default.bool,
     "contentStyle": _propTypes2.default.object,
