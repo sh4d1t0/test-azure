@@ -295,6 +295,7 @@ const Form = (props) => {
                                 maxDate={maxDate}
                                 floatingLabelText={label}
                                 fullWidth={true}
+                                disabled={disabled}
                                 locale="es-MX"
                                 errorText={errorText}
                                 DateTimeFormat={DateTimeFormat}

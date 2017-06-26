@@ -8,7 +8,7 @@ const BreadCrumbs = ({items = [], onTouchTap}) => {
         {
             items.map((item, index) => {
 
-                if (item === null){
+                if (item === null) {
                     return;
                 }
 
