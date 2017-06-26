@@ -169,7 +169,7 @@ var DataTable = function (_Component) {
 
         _this.handleRowSelect = function (selection) {
             var _this$props2 = _this.props,
-                handleRowSelection = _this$props2.handleRowSelection,
+                onRowSelection = _this$props2.onRowSelection,
                 data = _this$props2.data,
                 selectableManually = _this$props2.selectableManually;
             var realSelections = _this.state.realSelections,
@@ -209,11 +209,11 @@ var DataTable = function (_Component) {
 
             if (!responseArray) {
 
-                handleRowSelection(selection);
+                onRowSelection(selection);
             } else {
 
                 realSelections = _this.removeNotExist(realSelections, selection);
-                handleRowSelection(realSelections);
+                onRowSelection(realSelections);
             }
 
             if (!selectableManually) {
@@ -550,7 +550,7 @@ exports.default = DataTable;
 
 
 DataTable.propTypes = {
-    "handleRowSelection": _propTypes2.default.func,
+    "onRowSelection": _propTypes2.default.func,
     "selectable": _propTypes2.default.bool,
     "selectableManually": _propTypes2.default.bool,
     "attrSelectable": _propTypes2.default.string,

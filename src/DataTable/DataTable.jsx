@@ -167,7 +167,7 @@ export default class DataTable extends Component {
 
     handleRowSelect = (selection) => {
 
-        const {handleRowSelection, data, selectableManually} = this.props;
+        const {onRowSelection, data, selectableManually} = this.props;
 
         let {realSelections} = this.state,
             responseArray = false;
@@ -209,12 +209,12 @@ export default class DataTable extends Component {
 
         if (!responseArray) {
 
-            handleRowSelection(selection);
+            onRowSelection(selection);
 
         } else {
 
             realSelections = this.removeNotExist(realSelections, selection);
-            handleRowSelection(realSelections);
+            onRowSelection(realSelections);
 
         }
 
@@ -565,7 +565,7 @@ export default class DataTable extends Component {
 }
 
 DataTable.propTypes = {
-    "handleRowSelection": PropTypes.func,
+    "onRowSelection": PropTypes.func,
     "selectable": PropTypes.bool,
     "selectableManually": PropTypes.bool,
     "attrSelectable": PropTypes.string,
