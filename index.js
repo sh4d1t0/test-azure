@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.chart = exports.util = exports.BreadCrumbs = exports.LabelValue = exports.List = exports.BarChart = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
+exports.util = exports.BreadCrumbs = exports.LabelValue = exports.List = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
 
 var _Container2 = require("./Container/Container");
 
@@ -53,10 +53,6 @@ var _Tabs2 = require("./Tabs/Tabs");
 
 var _Tabs3 = _interopRequireDefault(_Tabs2);
 
-var _BarChart2 = require("./charts/BarChart");
-
-var _BarChart3 = _interopRequireDefault(_BarChart2);
-
 var _List2 = require("./List/List");
 
 var _List3 = _interopRequireDefault(_List2);
@@ -73,10 +69,6 @@ var _index = require("./util/index");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _index3 = require("./charts/index");
-
-var _index4 = _interopRequireDefault(_index3);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Container = _Container3.default; /* eslint object-curly-spacing: 0 */
@@ -92,9 +84,7 @@ exports.ProgressBackground = _RequestProgress2.default;
 exports.Spinner = _Spinner3.default;
 exports.ThemeFinanciera = _ThemeFinanciera3.default;
 exports.Tabs = _Tabs3.default;
-exports.BarChart = _BarChart3.default;
 exports.List = _List3.default;
 exports.LabelValue = _LabelValue3.default;
 exports.BreadCrumbs = _BreadCrumbs3.default;
 exports.util = _index2.default;
-exports.chart = _index4.default;

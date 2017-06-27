@@ -3,12 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.PieChart = exports.BarChart = undefined;
 
-var _BarChart = require("./BarChart");
+var _BarChart2 = require("./BarChart");
 
-var _BarChart2 = _interopRequireDefault(_BarChart);
+var _BarChart3 = _interopRequireDefault(_BarChart2);
+
+var _PieChart2 = require("./PieChart");
+
+var _PieChart3 = _interopRequireDefault(_PieChart2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _BarChart2.default;
+exports.BarChart = _BarChart3.default;
+exports.PieChart = _PieChart3.default;
