@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Card,CardHeader} from "material-ui";
 import {Bar, BarChart, CartesianGrid, Cell, Legend, Tooltip, XAxis, YAxis} from "recharts";
 
 const Chart = (props) => {
 
-    const {bars, data} = props;
+    const {bars = [], data = [], title = ""} = props;
 
     let getBars = () => {
 
@@ -28,25 +29,39 @@ const Chart = (props) => {
 
     };
 
-    return <div style={{"overflowX": "auto", "overflowY": "hidden"}}>
-        <BarChart width={580} height={350} data={data}
-                  margin={{"left": 0}}>
-            <XAxis dataKey="name"/>
-            <YAxis/>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <Tooltip/>
-            <Legend />
+    return <Card>
 
-            {getBars()}
+        <CardHeader title={title}/>
 
-        </BarChart>
-    </div>;
+        <div style={{"overflowX": "auto", "overflowY": "hidden"}}>
+
+            <BarChart width={580} height={350} data={data}
+                      margin={{"left": 0}}>
+
+                <XAxis dataKey="name"/>
+
+                <YAxis/>
+
+                <CartesianGrid strokeDasharray="3 3"/>
+
+                <Tooltip/>
+
+                <Legend />
+
+                {getBars()}
+
+            </BarChart>
+
+        </div>
+
+    </Card>;
 
 };
 
 Chart.propTypes = {
-    "bars": PropTypes.array,
-    "data": PropTypes.array
+    "title": PropTypes.string.isRequired,
+    "bars": PropTypes.array.isRequired,
+    "data": PropTypes.array.isRequired
 };
 
 export default Chart;
