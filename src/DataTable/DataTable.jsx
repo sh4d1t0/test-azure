@@ -68,7 +68,7 @@ export default class DataTable extends Component {
             }
 
             this.setState({
-                "limitPage": this.getInitialPage(),
+                "limitPage": this.getInitialPage(data),
                 "currentPage": page,
                 "filterText": "",
                 "realSelections": this.getInitialSelected()
@@ -78,10 +78,9 @@ export default class DataTable extends Component {
 
     };
 
-    getInitialPage = () => {
+    getInitialPage = (data = []) => {
 
-        const {data} = this.props,
-            {rowSize} = this.state,
+        const {rowSize} = this.state,
             lengthNextData = data.length;
 
         let limitPage = parseInt(lengthNextData / rowSize, 10);

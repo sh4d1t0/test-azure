@@ -81,7 +81,7 @@ var DataTable = function (_Component) {
                 }
 
                 _this.setState({
-                    "limitPage": _this.getInitialPage(),
+                    "limitPage": _this.getInitialPage(data),
                     "currentPage": page,
                     "filterText": "",
                     "realSelections": _this.getInitialSelected()
@@ -90,8 +90,8 @@ var DataTable = function (_Component) {
         };
 
         _this.getInitialPage = function () {
-            var data = _this.props.data,
-                rowSize = _this.state.rowSize,
+            var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+            var rowSize = _this.state.rowSize,
                 lengthNextData = data.length;
 
 
