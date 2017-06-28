@@ -5,7 +5,7 @@ import {Cell, Legend, Pie, PieChart, Tooltip} from "recharts";
 
 const Chart = ({data, title = ""}) => {
 
-    const colors = ["#F0FF00", "#FF8042", "#FF0000", "#64FF00", "#0088FE"];
+    const colors = ["#FFBB33", "#F44336", "#99CC00", "#49CEFF", "#AA66CC"];
 
     return <Card>
 
