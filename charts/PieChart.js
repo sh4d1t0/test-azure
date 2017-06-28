@@ -24,7 +24,7 @@ var Chart = function Chart(_ref) {
         title = _ref$title === undefined ? "" : _ref$title;
 
 
-    var colors = ["#F0FF00", "#FF8042", "#FF0000", "#64FF00", "#0088FE"];
+    var colors = ["#FFBB33", "#F44336", "#99CC00", "#49CEFF", "#AA66CC"];
 
     return _react2.default.createElement(
         _materialUi.Card,
