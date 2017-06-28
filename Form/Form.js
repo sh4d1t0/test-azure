@@ -335,6 +335,9 @@ var Form = function Form(props) {
                             accept: accept.join(),
                             type: "file",
                             style: { "display": "none" },
+                            onClick: function onClick(event) {
+                                event.target.value = null;
+                            },
                             onChange: onChangeFile.bind(undefined, inputId) })
                     );
 

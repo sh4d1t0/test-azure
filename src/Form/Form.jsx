@@ -316,6 +316,9 @@ const Form = (props) => {
                                        accept={accept.join()}
                                        type="file"
                                        style={{"display": "none"}}
+                                       onClick={(event)=> {
+                                           event.target.value = null
+                                       }}
                                        onChange={onChangeFile.bind(this, inputId)}/>
 
                             </FloatingActionButton>;
