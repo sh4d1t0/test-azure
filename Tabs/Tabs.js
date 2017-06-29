@@ -75,12 +75,19 @@ var Tabs = function (_Component) {
                 _react2.default.createElement(
                     _Tabs.Tabs,
                     { onChange: _this.handleOnChangeTab,
-                        value: indexCurrentTab },
+                        value: indexCurrentTab,
+                        style: {
+                            "position": "fixed",
+                            "left": "0",
+                            "zIndex": "3",
+                            "top": "64px",
+                            "width": "100%"
+                        } },
                     tabs
                 ),
                 _react2.default.createElement(
                     "div",
-                    { style: { "position": "relative" } },
+                    { style: { "position": "relative", "margin-top": "64px" } },
                     body
                 )
             );

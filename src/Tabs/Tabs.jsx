@@ -59,11 +59,18 @@ export default class Tabs extends Component {
         return <div>
 
             <Container onChange={this.handleOnChangeTab}
-                       value={indexCurrentTab}>
+                       value={indexCurrentTab}
+                       style={{
+                           "position": "fixed",
+                           "left": "0",
+                           "zIndex": "3",
+                           "top": "64px",
+                           "width": "100%"
+                       }}>
                 {tabs}
             </Container>
 
-            <div style={{"position": "relative"}}>
+            <div style={{"position": "relative", "margin-top": "64px"}}>
                 {body}
             </div>
 
