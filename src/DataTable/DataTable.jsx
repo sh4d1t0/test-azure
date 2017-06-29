@@ -40,9 +40,17 @@ export default class DataTable extends Component {
 
     componentWillUpdate = (nextProps) => {
 
-        const {data} = nextProps,
+        const {data, resetSelected} = nextProps,
             lengthCurrentData = this.props.data.length,
             lengthNextData = data.length;
+
+        if (resetSelected !== this.props.resetSelected) {
+
+            this.setState({
+                "realSelections": []
+            });
+
+        }
 
         if (lengthNextData !== lengthCurrentData) {
 
@@ -466,6 +474,7 @@ export default class DataTable extends Component {
                 enableSelectAll,
                 multiSelectable,
                 showFooterToolbar,
+                resetSelected,
                 showHeaderToolbar
             } = this.props,
             {currentPage, rowSize, filterText, rowSizeList} = this.state;
@@ -567,6 +576,7 @@ DataTable.propTypes = {
     "onRowSelection": PropTypes.func,
     "selectable": PropTypes.bool,
     "selectableManually": PropTypes.bool,
+    "resetSelected": PropTypes.bool,
     "attrSelectable": PropTypes.string,
     "card": PropTypes.bool,
     "showHeaderToolbar": PropTypes.bool,
@@ -584,6 +594,7 @@ DataTable.defaultProps = {
     "selectable": false,
     "card": true,
     "showCheckboxes": false,
+    "resetSelected": false,
     "selectableManually": false,
     "showHeaderToolbar": true,
     "showFooterToolbar": true,

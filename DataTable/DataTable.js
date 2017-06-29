@@ -53,9 +53,17 @@ var DataTable = function (_Component) {
 
         _this.componentWillUpdate = function (nextProps) {
             var data = nextProps.data,
+                resetSelected = nextProps.resetSelected,
                 lengthCurrentData = _this.props.data.length,
                 lengthNextData = data.length;
 
+
+            if (resetSelected !== _this.props.resetSelected) {
+
+                _this.setState({
+                    "realSelections": []
+                });
+            }
 
             if (lengthNextData !== lengthCurrentData) {
 
@@ -434,6 +442,7 @@ var DataTable = function (_Component) {
                 enableSelectAll = _this$props3.enableSelectAll,
                 multiSelectable = _this$props3.multiSelectable,
                 showFooterToolbar = _this$props3.showFooterToolbar,
+                resetSelected = _this$props3.resetSelected,
                 showHeaderToolbar = _this$props3.showHeaderToolbar,
                 _this$state3 = _this.state,
                 currentPage = _this$state3.currentPage,
@@ -553,6 +562,7 @@ DataTable.propTypes = {
     "onRowSelection": _propTypes2.default.func,
     "selectable": _propTypes2.default.bool,
     "selectableManually": _propTypes2.default.bool,
+    "resetSelected": _propTypes2.default.bool,
     "attrSelectable": _propTypes2.default.string,
     "card": _propTypes2.default.bool,
     "showHeaderToolbar": _propTypes2.default.bool,
@@ -570,6 +580,7 @@ DataTable.defaultProps = {
     "selectable": false,
     "card": true,
     "showCheckboxes": false,
+    "resetSelected": false,
     "selectableManually": false,
     "showHeaderToolbar": true,
     "showFooterToolbar": true,
