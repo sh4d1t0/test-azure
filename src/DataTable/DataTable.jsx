@@ -21,28 +21,25 @@ export default class DataTable extends Component {
         this.oneElementAdded = false;
         this.rows = [];
 
+        let rowSizeList = [5, 10, 15, 20];
+
         this.state = {
             "currentPage": 1,
-            "rowSize": 5,
-            "rowSizeList": [5, 10, 15, 20],
+            "rowSize": rowSizeList[0],
+            "rowSizeList": rowSizeList,
             "filterText": "",
-            "limitPage": 0,
+            "limitPage": this.getLimitPage(this.props.data.length, rowSizeList[0]),
             "realSelections": this.getInitialSelected()
         };
 
     }
 
-    componentDidMount = () => {
-
-        this.setState({"limitPage": this.getInitialPage()});
-
-    };
-
     componentWillUpdate = (nextProps) => {
 
         const {data, resetSelected} = nextProps,
             lengthCurrentData = this.props.data.length,
-            lengthNextData = data.length;
+            lengthNextData = data.length,
+            {rowSize} = this.state;
 
         if (resetSelected !== this.props.resetSelected) {
 
@@ -76,7 +73,7 @@ export default class DataTable extends Component {
             }
 
             this.setState({
-                "limitPage": this.getInitialPage(data),
+                "limitPage": this.getLimitPage(data.length, rowSize),
                 "currentPage": page,
                 "filterText": "",
                 "realSelections": this.getInitialSelected()
@@ -86,10 +83,7 @@ export default class DataTable extends Component {
 
     };
 
-    getInitialPage = (data = []) => {
-
-        const {rowSize} = this.state,
-            lengthNextData = data.length;
+    getLimitPage = (lengthNextData, rowSize) => {
 
         let limitPage = parseInt(lengthNextData / rowSize, 10);
 
@@ -98,7 +92,6 @@ export default class DataTable extends Component {
             limitPage += 1;
 
         }
-
         return limitPage;
 
     };
@@ -159,11 +152,22 @@ export default class DataTable extends Component {
 
     handleChangeRowSize = (index) => {
 
-        const {rowSizeList} = this.state;
+        const {rowSizeList, currentPage} = this.state,
+            {data} = this.props;
 
-        this.setState({
-            "rowSize": rowSizeList[index]
-        });
+        let limit = this.getLimitPage(data.length, rowSizeList[index]),
+            obj = {
+                "rowSize": rowSizeList[index],
+                "limitPage": limit
+            };
+
+        if (currentPage > limit) {
+
+            obj.currentPage = limit;
+
+        }
+
+        this.setState(obj);
 
     };
 
@@ -474,7 +478,6 @@ export default class DataTable extends Component {
                 enableSelectAll,
                 multiSelectable,
                 showFooterToolbar,
-                resetSelected,
                 showHeaderToolbar
             } = this.props,
             {currentPage, rowSize, filterText, rowSizeList} = this.state;
