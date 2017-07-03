@@ -160,7 +160,7 @@ var Form = function Form(props) {
         if (typeof onChangeInputs === "undefined") {
 
             onChangeValueEvent({
-                "value": {},
+                "value": undefined,
                 "name": id,
                 "form": formName,
                 epic: epic,
@@ -168,7 +168,7 @@ var Form = function Form(props) {
             });
         } else {
 
-            onChangeInputs({}, id);
+            onChangeInputs(undefined, id);
         }
     },
         onCheck = function onCheck(id, event, isInputChecked) {

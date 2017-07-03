@@ -79,7 +79,7 @@ var Tabs = function (_Component) {
                         style: {
                             "position": "fixed",
                             "left": "0",
-                            "zIndex": "3",
+                            "zIndex": "1100",
                             "top": "64px",
                             "width": "100%"
                         } },
@@ -87,7 +87,7 @@ var Tabs = function (_Component) {
                 ),
                 _react2.default.createElement(
                     "div",
-                    { style: { "position": "relative", "margin-top": "64px" } },
+                    { style: { "position": "relative", "marginTop": "64px" } },
                     body
                 )
             );

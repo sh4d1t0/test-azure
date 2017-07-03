@@ -129,7 +129,7 @@ const Form = (props) => {
             if (typeof onChangeInputs === "undefined") {
 
                 onChangeValueEvent({
-                    "value": {},
+                    "value": undefined,
                     "name": id,
                     "form": formName,
                     epic,
@@ -138,7 +138,7 @@ const Form = (props) => {
 
             } else {
 
-                onChangeInputs({}, id);
+                onChangeInputs(undefined, id);
 
             }
 

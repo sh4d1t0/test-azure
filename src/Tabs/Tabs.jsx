@@ -63,14 +63,14 @@ export default class Tabs extends Component {
                        style={{
                            "position": "fixed",
                            "left": "0",
-                           "zIndex": "3",
+                           "zIndex": "1100",
                            "top": "64px",
                            "width": "100%"
                        }}>
                 {tabs}
             </Container>
 
-            <div style={{"position": "relative", "margin-top": "64px"}}>
+            <div style={{"position": "relative", "marginTop": "64px"}}>
                 {body}
             </div>
 
