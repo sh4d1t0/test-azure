@@ -32,6 +32,7 @@ if (areIntlLocalesSupported(["es", "es-MX"])) {
 const Form = (props) => {
 
     let {
+            styleContainer,
             inputs,
             onChangeInputs,
             formName,
@@ -369,7 +370,7 @@ const Form = (props) => {
 
         };
 
-    return <div>{getForm()}</div>;
+    return <div style={styleContainer}>{getForm()}</div>;
 
 };
 
@@ -379,6 +380,7 @@ Form.propTypes = {
     "epic": PropTypes.string,
     "module": PropTypes.string,
     "useIndex": PropTypes.bool,
+    "styleContainer": PropTypes.object,
     "inputs": PropTypes.array.isRequired
 };
 

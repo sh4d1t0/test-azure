@@ -21,7 +21,8 @@ var LabelValue = function LabelValue(props) {
         type = props.type,
         renderFalseAs = props.renderFalseAs,
         renderTrueAs = props.renderTrueAs,
-        defaultValue = props.defaultValue;
+        defaultValue = props.defaultValue,
+        styleContainer = props.styleContainer;
     var value = props.value;
 
 
@@ -37,7 +38,7 @@ var LabelValue = function LabelValue(props) {
 
     return _react2.default.createElement(
         "div",
-        { className: "row static-info" },
+        { className: "row static-info", style: styleContainer },
         _react2.default.createElement(
             "div",
             { className: "col-xs-12 col-md-5 mn-clave-valor-l" },
@@ -63,6 +64,7 @@ LabelValue.propTypes = {
     "type": _propTypes2.default.oneOf(["currency", "date", "dateDiff", "percentage", "boolean", "none"]),
     "label": _propTypes2.default.string,
     "defaultValue": _propTypes2.default.any,
+    "styleContainer": _propTypes2.default.object,
     "renderFalseAs": _propTypes2.default.string,
     "renderTrueAs": _propTypes2.default.string,
     "value": _propTypes2.default.any

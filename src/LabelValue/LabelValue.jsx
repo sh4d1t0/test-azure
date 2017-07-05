@@ -4,7 +4,7 @@ import {getFormat} from "../util/formats";
 
 const LabelValue = (props) => {
 
-    const {label, type, renderFalseAs, renderTrueAs, defaultValue} = props;
+    const {label, type, renderFalseAs, renderTrueAs, defaultValue, styleContainer} = props;
 
     let {value} = props;
 
@@ -22,7 +22,7 @@ const LabelValue = (props) => {
     }
 
 
-    return <div className="row static-info">
+    return <div className="row static-info" style={styleContainer}>
 
         <div className="col-xs-12 col-md-5 mn-clave-valor-l">
 
@@ -44,6 +44,7 @@ LabelValue.propTypes = {
     "type": PropTypes.oneOf(["currency", "date", "dateDiff", "percentage", "boolean", "none"]),
     "label": PropTypes.string,
     "defaultValue": PropTypes.any,
+    "styleContainer": PropTypes.object,
     "renderFalseAs": PropTypes.string,
     "renderTrueAs": PropTypes.string,
     "value": PropTypes.any

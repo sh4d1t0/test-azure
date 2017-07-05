@@ -76,7 +76,8 @@ if ((0, _intlLocalesSupported2.default)(["es", "es-MX"])) {
 }
 
 var Form = function Form(props) {
-    var inputs = props.inputs,
+    var styleContainer = props.styleContainer,
+        inputs = props.inputs,
         onChangeInputs = props.onChangeInputs,
         formName = props.formName,
         _props$useIndex = props.useIndex,
@@ -386,7 +387,7 @@ var Form = function Form(props) {
 
     return _react2.default.createElement(
         "div",
-        null,
+        { style: styleContainer },
         getForm()
     );
 };
@@ -397,6 +398,7 @@ Form.propTypes = {
     "epic": _propTypes2.default.string,
     "module": _propTypes2.default.string,
     "useIndex": _propTypes2.default.bool,
+    "styleContainer": _propTypes2.default.object,
     "inputs": _propTypes2.default.array.isRequired
 };
 
