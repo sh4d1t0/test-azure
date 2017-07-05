@@ -385,7 +385,7 @@ var Form = function Form(props) {
     };
 
     return _react2.default.createElement(
-        _List.List,
+        "div",
         null,
         getForm()
     );

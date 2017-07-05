@@ -149,7 +149,9 @@ var getDateObject = exports.getDateObject = function getDateObject(value, unix) 
     return date;
 };
 
-var getCurrencyFormat = exports.getCurrencyFormat = function getCurrencyFormat(value) {
+var getCurrencyFormat = exports.getCurrencyFormat = function getCurrencyFormat() {
+    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
 
     var formatter = new Intl.NumberFormat("es-MX", {
         "style": "currency",
@@ -197,11 +199,11 @@ var getRenderBoolean = exports.getRenderBoolean = function getRenderBoolean() {
 
 var getFormat = exports.getFormat = function getFormat(data) {
     var type = data.type,
-        value = data.value,
         _data$renderFalseAs = data.renderFalseAs,
         renderFalseAs = _data$renderFalseAs === undefined ? "No" : _data$renderFalseAs,
         _data$renderTrueAs = data.renderTrueAs,
         renderTrueAs = _data$renderTrueAs === undefined ? "Sí" : _data$renderTrueAs;
+    var value = data.value;
 
 
     switch (type) {
@@ -212,6 +214,12 @@ var getFormat = exports.getFormat = function getFormat(data) {
         case "dateDiff":
             return getDateDiff({ value: value });
         case "percentage":
+
+            if (typeof value === "undefined") {
+
+                value = 0;
+            }
+
             return value + " %";
         case "boolean":
 

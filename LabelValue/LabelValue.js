@@ -20,9 +20,15 @@ var LabelValue = function LabelValue(props) {
     var label = props.label,
         type = props.type,
         renderFalseAs = props.renderFalseAs,
-        renderTrueAs = props.renderTrueAs;
+        renderTrueAs = props.renderTrueAs,
+        defaultValue = props.defaultValue;
     var value = props.value;
 
+
+    if (typeof defaultValue !== "undefined" && typeof value !== "undefined") {
+
+        value = defaultValue;
+    }
 
     if (typeof type !== "undefined") {
 
@@ -56,6 +62,7 @@ var LabelValue = function LabelValue(props) {
 LabelValue.propTypes = {
     "type": _propTypes2.default.oneOf(["currency", "date", "dateDiff", "percentage", "boolean", "none"]),
     "label": _propTypes2.default.string,
+    "defaultValue": _propTypes2.default.any,
     "renderFalseAs": _propTypes2.default.string,
     "renderTrueAs": _propTypes2.default.string,
     "value": _propTypes2.default.any

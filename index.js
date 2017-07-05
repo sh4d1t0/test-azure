@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.util = exports.BreadCrumbs = exports.LabelValue = exports.List = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
+exports.util = exports.HeaderInfo = exports.BreadCrumbs = exports.LabelValue = exports.List = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
 
 var _Container2 = require("./Container/Container");
 
@@ -65,6 +65,10 @@ var _BreadCrumbs2 = require("./BreadCrumbs/BreadCrumbs");
 
 var _BreadCrumbs3 = _interopRequireDefault(_BreadCrumbs2);
 
+var _HeaderInfo2 = require("./HeaderInfo/HeaderInfo");
+
+var _HeaderInfo3 = _interopRequireDefault(_HeaderInfo2);
+
 var _index = require("./util/index");
 
 var _index2 = _interopRequireDefault(_index);
@@ -87,4 +91,5 @@ exports.Tabs = _Tabs3.default;
 exports.List = _List3.default;
 exports.LabelValue = _LabelValue3.default;
 exports.BreadCrumbs = _BreadCrumbs3.default;
+exports.HeaderInfo = _HeaderInfo3.default;
 exports.util = _index2.default;
