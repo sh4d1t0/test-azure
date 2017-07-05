@@ -135,7 +135,7 @@ export const getDateObject = (value, unix) => {
 
 };
 
-export const getCurrencyFormat = (value) => {
+export const getCurrencyFormat = (value = 0) => {
 
     const formatter = new Intl.NumberFormat("es-MX", {
         "style": "currency",
@@ -183,7 +183,8 @@ export const getRenderBoolean = (flag = false, colorTrue = green500, colorFalse 
 
 export const getFormat = (data) => {
 
-    const {type, value, renderFalseAs = "No", renderTrueAs = "Sí"} = data;
+    const {type, renderFalseAs = "No", renderTrueAs = "Sí"} = data;
+    let {value} = data;
 
     switch (type) {
         case "currency":
@@ -193,6 +194,13 @@ export const getFormat = (data) => {
         case "dateDiff":
             return getDateDiff({value});
         case "percentage":
+
+            if (typeof value === "undefined") {
+
+                value = 0;
+
+            }
+
             return `${value} %`;
         case "boolean":
 

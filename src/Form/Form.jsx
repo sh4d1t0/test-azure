@@ -369,7 +369,7 @@ const Form = (props) => {
 
         };
 
-    return <List>{getForm()}</List>;
+    return <div>{getForm()}</div>;
 
 };
 

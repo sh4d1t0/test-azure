@@ -15,4 +15,5 @@ export Tabs from "./Tabs/Tabs";
 export List from "./List/List";
 export LabelValue from "./LabelValue/LabelValue";
 export BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
+export HeaderInfo from "./HeaderInfo/HeaderInfo";
 export util from "./util/index";
