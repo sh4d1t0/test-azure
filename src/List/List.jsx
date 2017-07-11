@@ -6,7 +6,7 @@ import {List, ListItem} from "material-ui/List";
 
 class ListCard extends Component {
 
-    constructor(props, context) {
+    constructor(props: {}, context: {}) {
 
         super(props, context);
         this.handleOnChangeSelected = this.handleOnChangeSelected.bind(this);

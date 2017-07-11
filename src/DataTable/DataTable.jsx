@@ -9,7 +9,7 @@ export default class DataTable extends Component {
 
     state = {};
 
-    constructor(props, context) {
+    constructor(props: {}, context: {}) {
 
         super(props, context);
         this.handleChangeValueFilter = this.handleChangeValueFilter.bind(this);

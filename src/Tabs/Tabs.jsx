@@ -7,7 +7,7 @@ export default class Tabs extends Component {
 
     state = {"indexCurrentTab": 0};
 
-    constructor(props, context) {
+    constructor(props: {}, context: {}) {
 
         super(props, context);
         this.handleOnChangeTab = this.handleOnChangeTab.bind(this);

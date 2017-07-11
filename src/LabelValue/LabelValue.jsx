@@ -21,7 +21,6 @@ const LabelValue = (props) => {
 
     }
 
-
     return <div className="row static-info" style={styleContainer}>
 
         <div className="col-xs-12 col-md-5 mn-clave-valor-l">
@@ -42,7 +41,7 @@ const LabelValue = (props) => {
 
 LabelValue.propTypes = {
     "type": PropTypes.oneOf(["currency", "date", "dateDiff", "percentage", "boolean", "none"]),
-    "label": PropTypes.string,
+    "label": PropTypes.node,
     "defaultValue": PropTypes.any,
     "styleContainer": PropTypes.object,
     "renderFalseAs": PropTypes.string,

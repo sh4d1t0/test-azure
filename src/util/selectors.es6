@@ -1,4 +1,4 @@
-export const selectorFormObject = (inputs) => {
+export const selectorFormObject = (inputs: []) => {
 
         let data = {};
 
@@ -13,7 +13,7 @@ export const selectorFormObject = (inputs) => {
         return data;
 
     },
-    selectorLabelsForm = (inputs) => {
+    selectorLabelsForm = (inputs: []) => {
 
         let data = {};
 

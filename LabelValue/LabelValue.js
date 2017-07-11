@@ -62,7 +62,7 @@ var LabelValue = function LabelValue(props) {
 
 LabelValue.propTypes = {
     "type": _propTypes2.default.oneOf(["currency", "date", "dateDiff", "percentage", "boolean", "none"]),
-    "label": _propTypes2.default.string,
+    "label": _propTypes2.default.node,
     "defaultValue": _propTypes2.default.any,
     "styleContainer": _propTypes2.default.object,
     "renderFalseAs": _propTypes2.default.string,
