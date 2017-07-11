@@ -527,7 +527,7 @@ var _initialiseProps = function _initialiseProps() {
             showRowHover: true,
             columns: headers,
             data: _this2.rows,
-            tableBodyStyle: { "overflowX": "auto" },
+            tableBodyStyle: { "overflowX": "auto", "height": "350px", "overflowY": "auto" },
             showCheckboxes: showCheckboxes,
             enableSelectAll: enableSelectAll,
             multiSelectable: multiSelectable,

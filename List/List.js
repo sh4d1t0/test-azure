@@ -68,6 +68,11 @@ var _initialiseProps = function _initialiseProps() {
             collection = _props.collection,
             title = _props.title,
             selectable = _props.selectable,
+            _props$styleContainer = _props.styleContainer,
+            styleContainer = _props$styleContainer === undefined ? {
+            "overflowY": "auto",
+            "height": "400px"
+        } : _props$styleContainer,
             itemSelected = _this2.state.itemSelected;
 
 
@@ -108,7 +113,7 @@ var _initialiseProps = function _initialiseProps() {
             { style: { "margin": "12px" } },
             _react2.default.createElement(
                 _List.List,
-                null,
+                { style: styleContainer },
                 _react2.default.createElement(
                     _Subheader2.default,
                     null,
@@ -123,6 +128,7 @@ var _initialiseProps = function _initialiseProps() {
 ListCard.propTypes = {
     "collection": _propTypes2.default.array.isRequired,
     "onTouchTap": _propTypes2.default.func.isRequired,
+    "styleContainer": _propTypes2.default.object,
     "selectable": _propTypes2.default.bool,
     "defaultSelected": _propTypes2.default.number,
     "title": _propTypes2.default.string.isRequired

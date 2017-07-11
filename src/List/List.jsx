@@ -27,7 +27,15 @@ class ListCard extends Component {
 
     render = () => {
 
-        let {collection, title, selectable} = this.props,
+        let {
+                collection,
+                title,
+                selectable,
+                styleContainer = {
+                    "overflowY": "auto",
+                    "height": "400px"
+                }
+            } = this.props,
             {itemSelected} = this.state;
 
         if (!(collection instanceof Array)) {
@@ -70,7 +78,7 @@ class ListCard extends Component {
 
         return <Card style={{"margin": "12px"}}>
 
-            <List>
+            <List style={styleContainer}>
 
                 <Subheader>{title}</Subheader>
 
@@ -87,6 +95,7 @@ class ListCard extends Component {
 ListCard.propTypes = {
     "collection": PropTypes.array.isRequired,
     "onTouchTap": PropTypes.func.isRequired,
+    "styleContainer": PropTypes.object,
     "selectable": PropTypes.bool,
     "defaultSelected": PropTypes.number,
     "title": PropTypes.string.isRequired

@@ -34,7 +34,7 @@ export default class DataTable extends Component {
 
     }
 
-    componentWillUpdate = (nextProps) => {
+    componentWillUpdate = (nextProps: {}) => {
 
         const {data, resetSelected} = nextProps,
             lengthCurrentData = this.props.data.length,
@@ -530,7 +530,7 @@ export default class DataTable extends Component {
             showRowHover={true}
             columns={headers}
             data={this.rows}
-            tableBodyStyle={{"overflowX": "auto"}}
+            tableBodyStyle={{"overflowX": "auto", "height": "350px", "overflowY": "auto"}}
             showCheckboxes={showCheckboxes}
             enableSelectAll={enableSelectAll}
             multiSelectable={multiSelectable}
