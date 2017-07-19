@@ -1,11 +1,15 @@
+// @flow
 import React from "react";
 import PropTypes from "prop-types";
 import config from "../config";
 import {CircularProgress} from "material-ui";
 
-const ProgressBackground = (props) => {
+const ProgressBackground = (props: {
+    open: boolean,
+    message: string
+}) => {
 
-    const {open = false} = props,
+    const {open, message} = props,
         style = {"display": "none"};
 
     if (open) {
@@ -24,7 +28,7 @@ const ProgressBackground = (props) => {
             </div>
             <div className="mn-loding-message">
 
-                <h1>Procesando solicitud. Espere un momento</h1>
+                <h1>{message}</h1>
 
             </div>
         </div>;
@@ -32,7 +36,13 @@ const ProgressBackground = (props) => {
 };
 
 ProgressBackground.propTypes = {
-    "open": PropTypes.bool
+    "open": PropTypes.bool,
+    "message": PropTypes.string
+};
+
+ProgressBackground.defaultProps = {
+    "message": "Procesando solicitud. Espere un momento",
+    "open": false
 };
 
 export default ProgressBackground;

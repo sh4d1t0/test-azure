@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import {List} from "material-ui/List";
 import TextField from "material-ui/TextField";
 import FileIcon from "material-ui/svg-icons/file/file-upload";
 import FloatingActionButton from "material-ui/FloatingActionButton";
@@ -317,7 +316,7 @@ const Form = (props) => {
                                        accept={accept.join()}
                                        type="file"
                                        style={{"display": "none"}}
-                                       onClick={(event)=> {
+                                       onClick={(event) => {
                                            event.target.value = null
                                        }}
                                        onChange={onChangeFile.bind(this, inputId)}/>

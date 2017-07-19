@@ -164,7 +164,7 @@ export const getLinkFormat = (value, labelBtn = "Descargar", target = "_blank") 
 
 export const getPercentageFormat = (value) => {
 
-    return `${value} %`;
+    return `${value.toFixed(2)} %`;
 
 };
 
@@ -201,7 +201,7 @@ export const getFormat = (data) => {
 
             }
 
-            return `${value} %`;
+            return getPercentageFormat(value);
         case "boolean":
 
             if (value) {

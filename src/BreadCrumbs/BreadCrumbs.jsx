@@ -1,15 +1,18 @@
+// @flow
 import React from "react";
 import PropTypes from "prop-types";
 import FlatButton from "material-ui/FlatButton";
 
 const BreadCrumbs = ({items = [], onTouchTap}) => {
 
-    return <nav>
+    return <div className="row">
         {
             items.map((item, index) => {
 
                 if (item === null) {
+
                     return;
+
                 }
 
                 const {label, link} = item;
@@ -21,20 +24,24 @@ const BreadCrumbs = ({items = [], onTouchTap}) => {
 
                 }
 
-                return <FlatButton
-                    key={`bread-crumb-${index}`}
-                    label={label}
-                    onTouchTap={() => {
+                return <div> >
 
-                        onTouchTap(item);
+                    <FlatButton
+                        key={`bread-crumb-${index}`}
+                        label={label}
+                        onTouchTap={() => {
 
-                    }}
-                    disabled={typeof link === "undefined"}
-                    style={styleItem}/>;
+                            onTouchTap(item);
+
+                        }}
+                        disabled={typeof link === "undefined"}
+                        style={styleItem}/>
+
+                </div>;
 
             })
         }
-    </nav>;
+    </div>;
 
 };
 

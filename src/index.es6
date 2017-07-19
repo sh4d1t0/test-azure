@@ -17,3 +17,4 @@ export LabelValue from "./LabelValue/LabelValue";
 export BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 export HeaderInfo from "./HeaderInfo/HeaderInfo";
 export util from "./util/index";
+export Authorization from "./Authorization/Authorizacion";
