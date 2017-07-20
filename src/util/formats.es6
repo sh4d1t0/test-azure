@@ -156,9 +156,9 @@ export const getCurrencyFormat = (value = 0) => {
 export const getLinkFormat = (value, labelBtn = "Descargar", target = "_blank") => {
 
     return <FlatButton label={labelBtn}
-                       secondary={true}
-                       target={target}
-                       href={value}/>;
+    secondary={true}
+    target={target}
+    href={value}/>;
 
 };
 
@@ -167,6 +167,12 @@ export const getPercentageFormat = (value) => {
     if (typeof value === "undefined" || value === "...") {
 
         value = 0;
+
+    }
+
+    if (typeof value === "string"){
+
+        value = parseFloat(value);
 
     }
 

@@ -186,6 +186,11 @@ var getPercentageFormat = exports.getPercentageFormat = function getPercentageFo
         value = 0;
     }
 
+    if (typeof value === "string") {
+
+        value = parseFloat(value);
+    }
+
     return value.toFixed(2) + " %";
 };
 
