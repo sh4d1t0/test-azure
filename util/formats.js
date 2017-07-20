@@ -180,7 +180,7 @@ var getLinkFormat = exports.getLinkFormat = function getLinkFormat(value) {
 
 var getPercentageFormat = exports.getPercentageFormat = function getPercentageFormat(value) {
 
-    return value + " %";
+    return value.toFixed(2) + " %";
 };
 
 var getRenderBoolean = exports.getRenderBoolean = function getRenderBoolean() {
@@ -220,7 +220,7 @@ var getFormat = exports.getFormat = function getFormat(data) {
                 value = 0;
             }
 
-            return value + " %";
+            return getPercentageFormat(value);
         case "boolean":
 
             if (value) {

@@ -21,8 +21,8 @@ var _materialUi = require("material-ui");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ProgressBackground = function ProgressBackground(props) {
-    var _props$open = props.open,
-        open = _props$open === undefined ? false : _props$open,
+    var open = props.open,
+        message = props.message,
         style = { "display": "none" };
 
 
@@ -45,14 +45,20 @@ var ProgressBackground = function ProgressBackground(props) {
             _react2.default.createElement(
                 "h1",
                 null,
-                "Procesando solicitud. Espere un momento"
+                message
             )
         )
     );
 };
 
 ProgressBackground.propTypes = {
-    "open": _propTypes2.default.bool
+    "open": _propTypes2.default.bool,
+    "message": _propTypes2.default.string
+};
+
+ProgressBackground.defaultProps = {
+    "message": "Procesando solicitud. Espere un momento",
+    "open": false
 };
 
 exports.default = ProgressBackground;

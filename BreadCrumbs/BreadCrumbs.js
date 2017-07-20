@@ -25,11 +25,12 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
 
 
     return _react2.default.createElement(
-        "nav",
-        null,
+        "div",
+        { className: "row" },
         items.map(function (item, index) {
 
             if (item === null) {
+
                 return;
             }
 
@@ -43,18 +44,24 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
                 styleItem.color = "#FFFFFF";
             }
 
-            return _react2.default.createElement(_FlatButton2.default, {
-                key: "bread-crumb-" + index,
-                label: label,
-                onTouchTap: function onTouchTap() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                " >",
+                _react2.default.createElement(_FlatButton2.default, {
+                    key: "bread-crumb-" + index,
+                    label: label,
+                    onTouchTap: function onTouchTap() {
 
-                    _onTouchTap(item);
-                },
-                disabled: typeof link === "undefined",
-                style: styleItem });
+                        _onTouchTap(item);
+                    },
+                    disabled: typeof link === "undefined",
+                    style: styleItem })
+            );
         })
     );
 };
+
 
 BreadCrumbs.propTypes = {
     "onTouchTap": _propTypes2.default.func.isRequired,

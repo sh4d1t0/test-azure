@@ -16,8 +16,6 @@ var _moment = require("moment");
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _List = require("material-ui/List");
-
 var _TextField = require("material-ui/TextField");
 
 var _TextField2 = _interopRequireDefault(_TextField);

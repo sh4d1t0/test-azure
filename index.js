@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.util = exports.HeaderInfo = exports.BreadCrumbs = exports.LabelValue = exports.List = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
+exports.Authorization = exports.util = exports.HeaderInfo = exports.BreadCrumbs = exports.LabelValue = exports.List = exports.Tabs = exports.ThemeFinanciera = exports.Spinner = exports.ProgressBackground = exports.Modal = exports.IconMenu = exports.Header = exports.Form = exports.FloatingActionButton = exports.Drawer = exports.DataTable = exports.Container = undefined;
 
 var _Container2 = require("./Container/Container");
 
@@ -73,6 +73,10 @@ var _index = require("./util/index");
 
 var _index2 = _interopRequireDefault(_index);
 
+var _Authorizacion = require("./Authorization/Authorizacion");
+
+var _Authorizacion2 = _interopRequireDefault(_Authorizacion);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Container = _Container3.default; /* eslint object-curly-spacing: 0 */
@@ -93,3 +97,4 @@ exports.LabelValue = _LabelValue3.default;
 exports.BreadCrumbs = _BreadCrumbs3.default;
 exports.HeaderInfo = _HeaderInfo3.default;
 exports.util = _index2.default;
+exports.Authorization = _Authorizacion2.default;
