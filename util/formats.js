@@ -181,6 +181,11 @@ var getLinkFormat = exports.getLinkFormat = function getLinkFormat(value) {
 
 var getPercentageFormat = exports.getPercentageFormat = function getPercentageFormat(value) {
 
+    if (typeof value === "undefined" || value === "...") {
+
+        value = 0;
+    }
+
     return value.toFixed(2) + " %";
 };
 

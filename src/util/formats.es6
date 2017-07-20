@@ -164,6 +164,12 @@ export const getLinkFormat = (value, labelBtn = "Descargar", target = "_blank") 
 
 export const getPercentageFormat = (value) => {
 
+    if (typeof value === "undefined" || value === "...") {
+
+        value = 0;
+
+    }
+
     return `${value.toFixed(2)} %`;
 
 };
