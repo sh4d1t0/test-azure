@@ -3,6 +3,25 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = undefined;
+
+var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _class, _temp, _initialiseProps;
 
 var _react = require("react");
 
@@ -22,21 +41,13 @@ var _dataTableUtil = require("./dataTableUtil");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DataTable = function (_Component) {
-    _inherits(DataTable, _Component);
+var DataTable = (_temp = _class = function (_Component) {
+    (0, _inherits3.default)(DataTable, _Component);
 
     function DataTable(props, context) {
-        _classCallCheck(this, DataTable);
+        (0, _classCallCheck3.default)(this, DataTable);
 
-        var _this = _possibleConstructorReturn(this, (DataTable.__proto__ || Object.getPrototypeOf(DataTable)).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (DataTable.__proto__ || Object.getPrototypeOf(DataTable)).call(this, props, context));
 
         _initialiseProps.call(_this);
 
@@ -73,9 +84,7 @@ var DataTable = function (_Component) {
     }
 
     return DataTable;
-}(_react.Component);
-
-DataTable.propTypes = {
+}(_react.Component), _class.propTypes = {
     "onRowSelection": _propTypes2.default.func,
     "selectable": _propTypes2.default.bool,
     "selectableManually": _propTypes2.default.bool,
@@ -91,8 +100,7 @@ DataTable.propTypes = {
     "title": _propTypes2.default.string,
     "data": _propTypes2.default.array.isRequired,
     "headers": _propTypes2.default.array.isRequired
-};
-DataTable.defaultProps = {
+}, _class.defaultProps = {
     "data": [],
     "selectable": false,
     "rowSize": 5,
@@ -104,9 +112,7 @@ DataTable.defaultProps = {
     "showFooterToolbar": true,
     "enableSelectAll": false,
     "multiSelectable": false
-};
-
-var _initialiseProps = function _initialiseProps() {
+}, _initialiseProps = function _initialiseProps() {
     var _this2 = this;
 
     this.componentWillUpdate = function (nextProps) {
@@ -271,7 +277,7 @@ var _initialiseProps = function _initialiseProps() {
 
         }
 
-        realSelections = [].concat(_toConsumableArray(new Set(realSelections)));
+        realSelections = [].concat((0, _toConsumableArray3.default)(new Set(realSelections)));
 
         if (!responseArray) {
 
@@ -388,6 +394,5 @@ var _initialiseProps = function _initialiseProps() {
             !card && _this2.getTable()
         );
     };
-};
-
+}, _temp);
 exports.default = DataTable;

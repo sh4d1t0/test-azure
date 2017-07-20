@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getFormat = exports.getRenderBoolean = exports.getPercentageFormat = exports.getLinkFormat = exports.getCurrencyFormat = exports.getDateObject = exports.getDateDiff = exports.getDateFormat = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof2 = require("babel-runtime/helpers/typeof");
+
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 var _moment = require("moment");
 
@@ -48,7 +50,7 @@ var getDateFormat = exports.getDateFormat = function getDateFormat(data) {
         return;
     }
 
-    switch (typeof value === "undefined" ? "undefined" : _typeof(value)) {
+    switch (typeof value === "undefined" ? "undefined" : (0, _typeof3.default)(value)) {
 
         case "object":
             value = (0, _moment2.default)(value).format(format);
@@ -94,7 +96,7 @@ var getDateDiff = exports.getDateDiff = function getDateDiff(data) {
         return;
     }
 
-    switch (typeof value === "undefined" ? "undefined" : _typeof(value)) {
+    switch (typeof value === "undefined" ? "undefined" : (0, _typeof3.default)(value)) {
 
         case "object":
             value = (0, _moment2.default)(value).diff((0, _moment2.default)(), time);
@@ -141,7 +143,7 @@ var getDateObject = exports.getDateObject = function getDateObject(value, unix) 
         }
 
         date = _moment2.default.unix(value).toDate();
-    } else if ((typeof value === "undefined" ? "undefined" : _typeof(value)) === "object") {
+    } else if ((typeof value === "undefined" ? "undefined" : (0, _typeof3.default)(value)) === "object") {
 
         date = value;
     }

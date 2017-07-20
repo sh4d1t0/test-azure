@@ -5,6 +5,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.removeNotExist = exports.pushElement = exports.getSelectedRowsOnDT = exports.getSelectedByAttr = exports.getRowsWithFormat = exports.getRowsWithFilterText = exports.getRowsWithCurrentPage = exports.getLimitPage = undefined;
 
+var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _defineProperty2 = require("babel-runtime/helpers/defineProperty");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
 var _formats = require("../util/formats");
 
 var _immutabilityHelper = require("immutability-helper");
@@ -12,10 +20,6 @@ var _immutabilityHelper = require("immutability-helper");
 var _immutabilityHelper2 = _interopRequireDefault(_immutabilityHelper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, rowSize) {
 
@@ -90,7 +94,7 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
 
             if (type === "date" && row[key]) {
 
-                row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
                     "$set": (0, _formats.getDateFormat)({
                         "format": format,
                         "isUnix": unix,
@@ -101,21 +105,21 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
 
             if (type === "boolean") {
 
-                row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
                     "$set": row[key] ? renderTrueAs : renderFalseAs
                 }));
             }
 
             if (type === "currency") {
 
-                row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
                     "$set": (0, _formats.getCurrencyFormat)(row[key])
                 }));
             }
 
             if (type === "link") {
 
-                row = (0, _immutabilityHelper2.default)(row, _defineProperty({}, key, {
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
                     "$set": (0, _formats.getLinkFormat)(row[key], labelBtn)
                 }));
             }
@@ -161,7 +165,7 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
         return row === data[data.length - 1];
     })) {
 
-        rows = [data[data.length - 1]].concat(_toConsumableArray(rows));
+        rows = [data[data.length - 1]].concat((0, _toConsumableArray3.default)(rows));
         rows.pop();
     }
 
