@@ -35,7 +35,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//asdasddsadsa
 var getDateFormat = exports.getDateFormat = function getDateFormat(data) {
     var _data$isUnix = data.isUnix,
         isUnix = _data$isUnix === undefined ? true : _data$isUnix,
@@ -217,7 +216,7 @@ var getFormat = exports.getFormat = function getFormat(data) {
             return getDateDiff({ value: value });
         case "percentage":
 
-            if (typeof value === "undefined") {
+            if (typeof value === "undefined" || value === "...") {
 
                 value = 0;
             }

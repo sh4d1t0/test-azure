@@ -4,7 +4,7 @@ import FlatButton from "material-ui/FlatButton";
 import {green500, red500} from "material-ui/styles/colors";
 import Checkbox from "material-ui/svg-icons/toggle/check-box";
 import Indeterminate from "material-ui/svg-icons/toggle/indeterminate-check-box";
-//asdasddsadsa
+
 export const getDateFormat = (data) => {
 
     const {isUnix = true, format = "DD/MM/YYYY"} = data; /// 15/15/15 //Date()
@@ -195,7 +195,8 @@ export const getFormat = (data) => {
             return getDateDiff({value});
         case "percentage":
 
-            if (typeof value === "undefined") {
+            if (typeof value === "undefined" ||
+                value === "...") {
 
                 value = 0;
 

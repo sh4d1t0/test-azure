@@ -46,10 +46,9 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
 
             return _react2.default.createElement(
                 "div",
-                null,
+                { key: "bread-crumb-" + index },
                 " >",
                 _react2.default.createElement(_FlatButton2.default, {
-                    key: "bread-crumb-" + index,
                     label: label,
                     onTouchTap: function onTouchTap() {
 

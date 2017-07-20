@@ -24,10 +24,9 @@ const BreadCrumbs = ({items = [], onTouchTap}) => {
 
                 }
 
-                return <div> >
+                return <div key={`bread-crumb-${index}`}> >
 
                     <FlatButton
-                        key={`bread-crumb-${index}`}
                         label={label}
                         onTouchTap={() => {
 
