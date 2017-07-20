@@ -47,7 +47,7 @@ var _Container = require("../Container/Container");
 
 var _Container2 = _interopRequireDefault(_Container);
 
-var _AutorizacionUtil = require("./AutorizacionUtil");
+var _AutorizacionUtil = require("./util/AutorizacionUtil");
 
 var _RequestProgress = require("../RequestProgress/RequestProgress");
 

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import GoogleLogin from "react-google-login";
 import AutorizacionApi from "./AutorizacionApi";
 import Container from "../Container/Container";
-import {saveToken} from "./AutorizacionUtil";
+import {saveToken} from "./util/AutorizacionUtil";
 import ProgressBackground from "../RequestProgress/RequestProgress";
 
 const GOOGLE_ID = "40613802827-p776g33c1hgr7i1i52kd58sn14afqrck.apps.googleusercontent.com";
