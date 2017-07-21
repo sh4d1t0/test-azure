@@ -3,7 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var getCSV = exports.getCSV = function getCSV(list, headers) {
+exports.getCSV = undefined;
+
+var _formats = require("./formats");
+
+var getCSV = exports.getCSV = function getCSV() {
+    var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var headers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     var title = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "reporte";
 
 
@@ -14,7 +20,10 @@ var getCSV = exports.getCSV = function getCSV(list, headers) {
 
     headers.map(function (h) {
 
-        line.push(h.label);
+        if (!h.ignore) {
+
+            line.push(h.label);
+        }
     });
 
     str += line.join(",");
@@ -23,14 +32,32 @@ var getCSV = exports.getCSV = function getCSV(list, headers) {
     list.map(function (l) {
 
         line = [];
+        headers.map(function (header) {
 
-        for (var index in l) {
+            if (!header.ignore) {
 
-            if (l.hasOwnProperty(index)) {
+                var text = l[header.key];
 
-                line.push(l[index]);
+                if (typeof l[header.key] !== "undefined") {
+
+                    if (typeof header.type !== "undefined") {
+
+                        text = (0, _formats.getFormat)({ "type": header.type, "value": text });
+
+                        if (header.type === "currency") {
+
+                            text = text.replace(",", "");
+                            text = text.replace("$", "");
+                        }
+                    }
+                } else {
+
+                    text = "";
+                }
+
+                line.push(text);
             }
-        }
+        });
 
         str += line.join(",");
         str += "\r\n";

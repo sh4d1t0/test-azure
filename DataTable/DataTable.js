@@ -37,7 +37,17 @@ var _materialUiDatatables2 = _interopRequireDefault(_materialUiDatatables);
 
 var _Card = require("material-ui/Card");
 
+var _IconButton = require("material-ui/IconButton");
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
+var _fileDownload = require("material-ui/svg-icons/file/file-download");
+
+var _fileDownload2 = _interopRequireDefault(_fileDownload);
+
 var _dataTableUtil = require("./dataTableUtil");
+
+var _files = require("../util/files");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -98,11 +108,13 @@ var DataTable = (_temp = _class = function (_Component) {
     "showFooterToolbar": _propTypes2.default.bool,
     "multiSelectable": _propTypes2.default.bool,
     "title": _propTypes2.default.string,
+    "titleFileCSV": _propTypes2.default.string,
     "data": _propTypes2.default.array.isRequired,
     "headers": _propTypes2.default.array.isRequired
 }, _class.defaultProps = {
     "data": [],
     "selectable": false,
+    "titleFileCSV": "reporte",
     "rowSize": 5,
     "card": true,
     "showCheckboxes": false,
@@ -304,6 +316,7 @@ var DataTable = (_temp = _class = function (_Component) {
             showCheckboxes = _props3.showCheckboxes,
             selectableManually = _props3.selectableManually,
             enableSelectAll = _props3.enableSelectAll,
+            titleFileCSV = _props3.titleFileCSV,
             multiSelectable = _props3.multiSelectable,
             showFooterToolbar = _props3.showFooterToolbar,
             showHeaderToolbar = _props3.showHeaderToolbar,
@@ -379,6 +392,16 @@ var DataTable = (_temp = _class = function (_Component) {
             onSortOrderChange: _this2.handleSortOrderChange,
             onNextPageClick: _this2.handleNextPage,
             onPreviousPageClick: _this2.handlePrevPage,
+            toolbarIconRight: _react2.default.createElement(
+                _IconButton2.default,
+                {
+                    tooltip: "Descargar excel",
+                    onTouchTap: function onTouchTap() {
+
+                        (0, _files.getCSV)(data, headers, titleFileCSV);
+                    } },
+                _react2.default.createElement(_fileDownload2.default, null)
+            ),
             title: title && title });
     };
 

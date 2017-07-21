@@ -24,6 +24,14 @@ var _fileUpload = require("material-ui/svg-icons/file/file-upload");
 
 var _fileUpload2 = _interopRequireDefault(_fileUpload);
 
+var _SelectField = require("material-ui/SelectField");
+
+var _SelectField2 = _interopRequireDefault(_SelectField);
+
+var _MenuItem = require("material-ui/MenuItem");
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
 var _FloatingActionButton = require("material-ui/FloatingActionButton");
 
 var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
@@ -54,6 +62,8 @@ var _events = require("../util/events");
 
 var _events2 = _interopRequireDefault(_events);
 
+var _FormUtil = require("./FormUtil");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var DateTimeFormat = void 0,
@@ -67,6 +77,7 @@ var DateTimeFormat = void 0,
 
     _emitter.EE.emit(_events2.default.FORM_CHANGE_VALUE, { value: value, name: name, form: form, epic: epic, module: module });
 };
+
 
 if ((0, _intlLocalesSupported2.default)(["es", "es-MX"])) {
 
@@ -82,7 +93,7 @@ var Form = function Form(props) {
         useIndex = _props$useIndex === undefined ? false : _props$useIndex,
         epic = props.epic,
         module = props.module,
-        onChange = function onChange(id, event, value) {
+        handleOnChange = function handleOnChange(id, value) {
 
         if (typeof onChangeInputs === "undefined") {
 
@@ -98,58 +109,7 @@ var Form = function Form(props) {
             onChangeInputs(value, id);
         }
     },
-        onChangeFile = function onChangeFile(id, e) {
-
-        var formData = new FormData();
-        formData.append("upfile", e.target.files[0]);
-
-        if (typeof onChangeInputs === "undefined") {
-
-            onChangeValueEvent({
-                "value": formData,
-                "name": id,
-                "form": formName,
-                epic: epic,
-                module: module
-            });
-        } else {
-
-            onChangeInputs(e.target.files, id);
-        }
-    },
-        onChangeRadio = function onChangeRadio(id, event, value) {
-
-        if (typeof onChangeInputs === "undefined") {
-
-            onChangeValueEvent({
-                "value": value,
-                "name": id,
-                "form": formName,
-                epic: epic,
-                module: module
-            });
-        } else {
-
-            onChangeInputs(value, id);
-        }
-    },
-        onChangeSelect = function onChangeSelect(id, value) {
-
-        if (typeof onChangeInputs === "undefined") {
-
-            onChangeValueEvent({
-                "value": value,
-                "name": id,
-                "form": formName,
-                epic: epic,
-                module: module
-            });
-        } else {
-
-            onChangeInputs(value, id);
-        }
-    },
-        onUpdateInput = function onUpdateInput(id, searchText, dataSource, params) {
+        handleFilterSelect = function handleFilterSelect(id, searchText, dataSource, params) {
 
         if (searchText.length > 0) {
 
@@ -170,43 +130,6 @@ var Form = function Form(props) {
             onChangeInputs(undefined, id);
         }
     },
-        onCheck = function onCheck(id, event, isInputChecked) {
-
-        if (typeof onChangeInputs === "undefined") {
-
-            onChangeValueEvent({
-                "value": isInputChecked,
-                "name": id,
-                "form": formName,
-                epic: epic,
-                module: module
-            });
-        } else {
-
-            onChangeInputs(isInputChecked, id);
-        }
-    },
-        getTextError = function getTextError(property) {
-        var value = property.value,
-            _property$errorText = property.errorText,
-            errorText = _property$errorText === undefined ? "Campo requerido *" : _property$errorText,
-            _property$type = property.type,
-            type = _property$type === undefined ? "textfield" : _property$type,
-            pattern = property.pattern,
-            _property$required = property.required,
-            required = _property$required === undefined ? true : _property$required;
-
-
-        if (required && typeof value === "undefined") {
-
-            return errorText;
-        }
-
-        if (pattern && type !== "select" && type !== "checkbox" && type !== "date" && !pattern.test(value)) {
-
-            return errorText;
-        }
-    },
         getForm = function getForm() {
 
         return inputs && inputs.length && inputs.map(function (property, i) {
@@ -216,13 +139,15 @@ var Form = function Form(props) {
                 collection = _property$collection === undefined ? [] : _property$collection,
                 _property$options = property.options,
                 options = _property$options === undefined ? [] : _property$options,
-                _property$type2 = property.type,
-                type = _property$type2 === undefined ? "textfield" : _property$type2,
+                _property$type = property.type,
+                type = _property$type === undefined ? "textfield" : _property$type,
                 label = property.label,
                 _property$multiLine = property.multiLine,
                 multiLine = _property$multiLine === undefined ? false : _property$multiLine,
                 rows = property.rows,
                 unix = property.unix,
+                _property$autoComplet = property.autoComplete,
+                autoComplete = _property$autoComplet === undefined ? true : _property$autoComplet,
                 _property$disabled = property.disabled,
                 disabled = _property$disabled === undefined ? false : _property$disabled,
                 _property$multiple = property.multiple,
@@ -232,7 +157,7 @@ var Form = function Form(props) {
                 min = property.min,
                 max = property.max,
                 name = property.name,
-                errorText = getTextError(property),
+                errorText = (0, _FormUtil.getTextError)(property),
                 inputId = i;
 
 
@@ -254,7 +179,10 @@ var Form = function Form(props) {
                         key: "form-checkbox-" + i,
                         label: label,
                         name: name,
-                        onCheck: onCheck.bind(undefined, inputId),
+                        onCheck: function onCheck(event, isInputChecked) {
+
+                            handleOnChange(inputId, isInputChecked);
+                        },
                         style: { "marginTop": "20px" },
                         checked: value,
                         labelPosition: "left" });
@@ -271,6 +199,31 @@ var Form = function Form(props) {
                             name: name,
                             fullWidth: true });
                     }
+                    if (!autoComplete) {
+
+                        return _react2.default.createElement(
+                            _SelectField2.default,
+                            {
+                                key: "form-selectfield-" + i,
+                                floatingLabelText: label,
+                                value: value,
+                                errorText: errorText,
+                                disabled: disabled,
+                                fullWidth: true,
+                                onChange: function onChange(event, index, value) {
+
+                                    handleOnChange(inputId, value);
+                                } },
+                            _react2.default.createElement(_MenuItem2.default, { value: null, primaryText: "Selecciona una opci\xF3n" }),
+                            collection.map(function (item, indexMenu) {
+
+                                return _react2.default.createElement(_MenuItem2.default, {
+                                    key: "form-selectfield-item-" + name + "-" + indexMenu,
+                                    value: item,
+                                    primaryText: item.text });
+                            })
+                        );
+                    }
 
                     return _react2.default.createElement(_AutoComplete2.default, {
                         searchText: value.text,
@@ -286,8 +239,11 @@ var Form = function Form(props) {
                                 "overflowY": "auto"
                             }
                         },
-                        onUpdateInput: onUpdateInput.bind(undefined, inputId),
-                        onNewRequest: onChangeSelect.bind(undefined, inputId) });
+                        onUpdateInput: handleFilterSelect.bind(undefined, inputId),
+                        onNewRequest: function onNewRequest(selected) {
+
+                            handleOnChange(inputId, selected);
+                        } });
 
                 case "date":
                     value = (0, _formats.getDateObject)(value, unix);
@@ -317,7 +273,10 @@ var Form = function Form(props) {
                         locale: "es-MX",
                         errorText: errorText,
                         DateTimeFormat: DateTimeFormat,
-                        onChange: onChange.bind(undefined, inputId) });
+                        onChange: function onChange(event, newDate) {
+
+                            handleOnChange(inputId, newDate);
+                        } });
 
                 case "file":
 
@@ -334,10 +293,16 @@ var Form = function Form(props) {
                             accept: accept.join(),
                             type: "file",
                             style: { "display": "none" },
-                            onClick: function onClick(event) {
-                                event.target.value = null;
+                            onClick: function onClick(e) {
+
+                                e.target.value = null;
                             },
-                            onChange: onChangeFile.bind(undefined, inputId) })
+                            onChange: function onChange(e) {
+
+                                var formData = new FormData();
+                                formData.append("upfile", e.target.files[0]);
+                                handleOnChange(inputId, formData);
+                            } })
                     );
 
                 case "radioButton":
@@ -348,7 +313,10 @@ var Form = function Form(props) {
                             key: "form-radio-group-" + i,
                             name: "shipSpeed",
                             style: { "display": "flex" },
-                            onChange: onChangeRadio.bind(undefined, inputId),
+                            onChange: function onChange(event, selected) {
+
+                                handleOnChange(inputId, selected);
+                            },
                             defaultSelected: value },
                         options.map(function (option, index) {
 
@@ -375,7 +343,10 @@ var Form = function Form(props) {
                         value: value,
                         rows: rows,
                         multiLine: multiLine,
-                        onChange: onChange.bind(undefined, inputId),
+                        onChange: function onChange(event, newValue) {
+
+                            handleOnChange(inputId, newValue);
+                        },
                         name: name,
                         fullWidth: true });
 
