@@ -3,6 +3,8 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import DataTables from "material-ui-datatables";
 import {Card} from "material-ui/Card";
+import IconButton from "material-ui/IconButton";
+import DownloadIcon from "material-ui/svg-icons/file/file-download";
 import {
     getLimitPage,
     getRowsWithCurrentPage,
@@ -13,6 +15,7 @@ import {
     pushElement,
     removeNotExist
 } from "./dataTableUtil";
+import {getCSV} from "../util/files";
 
 export default class DataTable extends Component {
 
@@ -41,12 +44,14 @@ export default class DataTable extends Component {
         "showFooterToolbar": PropTypes.bool,
         "multiSelectable": PropTypes.bool,
         "title": PropTypes.string,
+        "titleFileCSV": PropTypes.string,
         "data": PropTypes.array.isRequired,
         "headers": PropTypes.array.isRequired
     };
     static defaultProps = {
         "data": [],
         "selectable": false,
+        "titleFileCSV": "reporte",
         "rowSize": 5,
         "card": true,
         "showCheckboxes": false,
@@ -290,6 +295,7 @@ export default class DataTable extends Component {
                 showCheckboxes,
                 selectableManually,
                 enableSelectAll,
+                titleFileCSV,
                 multiSelectable,
                 showFooterToolbar,
                 showHeaderToolbar
@@ -371,6 +377,17 @@ export default class DataTable extends Component {
             onSortOrderChange={this.handleSortOrderChange}
             onNextPageClick={this.handleNextPage}
             onPreviousPageClick={this.handlePrevPage}
+            toolbarIconRight={
+                <IconButton
+                    tooltip="Descargar excel"
+                    onTouchTap={() => {
+
+                        getCSV(data, headers, titleFileCSV);
+
+                    }}>
+                    <DownloadIcon />
+                </IconButton>
+            }
             title={title && title}/>;
 
     };

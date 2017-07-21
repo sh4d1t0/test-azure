@@ -1,4 +1,6 @@
-export const getCSV = (list, headers, title = "reporte") => {
+import {getFormat} from "./formats";
+
+export const getCSV = (list = [], headers = [], title = "reporte") => {
 
     let downloadLink,
         line = [],
@@ -7,7 +9,11 @@ export const getCSV = (list, headers, title = "reporte") => {
 
     headers.map(h => {
 
-        line.push(h.label);
+        if (!h.ignore) {
+
+            line.push(h.label);
+
+        }
 
     });
 
@@ -17,16 +23,38 @@ export const getCSV = (list, headers, title = "reporte") => {
     list.map(l => {
 
         line = [];
+        headers.map(header => {
 
-        for (let index in l) {
+            if (!header.ignore) {
 
-            if (l.hasOwnProperty(index)) {
+                let text = l[header.key];
 
-                line.push(l[index]);
+                if (typeof l[header.key] !== "undefined") {
+
+                    if (typeof header.type !== "undefined") {
+
+                        text = getFormat({"type": header.type, "value": text});
+
+                        if (header.type === "currency"){
+
+                            text = text.replace(",", "");
+                            text = text.replace("$", "");
+
+                        }
+
+                    }
+
+                } else {
+
+                    text = "";
+
+                }
+
+                line.push(text);
 
             }
 
-        }
+        });
 
         str += line.join(",");
         str += "\r\n";

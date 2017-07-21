@@ -1,8 +1,11 @@
+// @flow
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import TextField from "material-ui/TextField";
 import FileIcon from "material-ui/svg-icons/file/file-upload";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import Checkbox from "material-ui/Checkbox";
 import {RadioButton, RadioButtonGroup} from "material-ui/RadioButton";
@@ -12,6 +15,7 @@ import areIntlLocalesSupported from "intl-locales-supported";
 import {getDateObject} from "../util/formats";
 import {EE} from "../util/emitter";
 import event from "../util/events";
+import {getTextError} from "./FormUtil";
 
 let DateTimeFormat,
     onChangeValueEvent = (data) => {
@@ -39,7 +43,7 @@ const Form = (props) => {
             epic,
             module
         } = props,
-        onChange = (id, event, value) => {
+        handleOnChange = (id, value) => {
 
             if (typeof onChangeInputs === "undefined") {
 
@@ -58,67 +62,8 @@ const Form = (props) => {
             }
 
         },
-        onChangeFile = (id, e) => {
 
-            const formData = new FormData();
-            formData.append("upfile", e.target.files[0]);
-
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": formData,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
-
-                onChangeInputs(e.target.files, id);
-
-            }
-
-        },
-        onChangeRadio = (id, event, value) => {
-
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": value,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
-
-                onChangeInputs(value, id);
-
-            }
-
-        },
-        onChangeSelect = (id, value) => {
-
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": value,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
-
-                onChangeInputs(value, id);
-
-            }
-
-        },
-        onUpdateInput = (id, searchText, dataSource, params) => {
+        handleFilterSelect = (id, searchText, dataSource, params) => {
 
             if (searchText.length > 0) {
 
@@ -143,52 +88,7 @@ const Form = (props) => {
             }
 
         },
-        onCheck = (id, event, isInputChecked) => {
 
-            if (typeof onChangeInputs === "undefined") {
-
-                onChangeValueEvent({
-                    "value": isInputChecked,
-                    "name": id,
-                    "form": formName,
-                    epic,
-                    module
-                });
-
-            } else {
-
-                onChangeInputs(isInputChecked, id);
-
-            }
-
-        },
-        getTextError = (property) => {
-
-            const {
-                value,
-                errorText = "Campo requerido *",
-                type = "textfield",
-                pattern,
-                required = true
-            } = property;
-
-            if (required && typeof value === "undefined") {
-
-                return errorText;
-
-            }
-
-            if (pattern &&
-                type !== "select" &&
-                type !== "checkbox" &&
-                type !== "date" &&
-                !pattern.test(value)) {
-
-                return errorText;
-
-            }
-
-        },
         getForm = () => {
 
             return inputs &&
@@ -204,6 +104,7 @@ const Form = (props) => {
                             multiLine = false,
                             rows,
                             unix,
+                            autoComplete = true,
                             disabled = false,
                             multiple = false,
                             accept = [],
@@ -234,7 +135,11 @@ const Form = (props) => {
                                 key={`form-checkbox-${i}`}
                                 label={label}
                                 name={name}
-                                onCheck={onCheck.bind(this, inputId)}
+                                onCheck={(event, isInputChecked) => {
+
+                                    handleOnChange(inputId, isInputChecked);
+
+                                }}
                                 style={{"marginTop": "20px"}}
                                 checked={value}
                                 labelPosition="left"/>;
@@ -252,6 +157,34 @@ const Form = (props) => {
                                     fullWidth={true}/>;
 
                             }
+                            if (!autoComplete) {
+
+                                return <SelectField
+                                    key={`form-selectfield-${i}`}
+                                    floatingLabelText={label}
+                                    value={value}
+                                    errorText={errorText}
+                                    disabled={disabled}
+                                    fullWidth={true}
+                                    onChange={(event, index, value) => {
+
+                                        handleOnChange(inputId, value);
+
+                                    }}>
+                                    <MenuItem value={null} primaryText="Selecciona una opción"/>
+                                    {
+                                        collection.map((item, indexMenu) => {
+
+                                            return <MenuItem
+                                                key={`form-selectfield-item-${name}-${indexMenu}`}
+                                                value={item}
+                                                primaryText={item.text}/>;
+
+                                        })
+                                    }
+                                </SelectField>;
+
+                            }
 
                             return <AutoComplete
                                 searchText={value.text}
@@ -267,8 +200,12 @@ const Form = (props) => {
                                         "overflowY": "auto"
                                     }
                                 }}
-                                onUpdateInput={onUpdateInput.bind(this, inputId)}
-                                onNewRequest={onChangeSelect.bind(this, inputId)}/>;
+                                onUpdateInput={handleFilterSelect.bind(this, inputId)}
+                                onNewRequest={(selected) => {
+
+                                    handleOnChange(inputId, selected);
+
+                                }}/>;
 
                         case "date":
                             value = getDateObject(value, unix);
@@ -299,7 +236,11 @@ const Form = (props) => {
                                 locale="es-MX"
                                 errorText={errorText}
                                 DateTimeFormat={DateTimeFormat}
-                                onChange={onChange.bind(this, inputId)}/>;
+                                onChange={(event, newDate) => {
+
+                                    handleOnChange(inputId, newDate);
+
+                                }}/>;
 
                         case "file":
 
@@ -316,10 +257,18 @@ const Form = (props) => {
                                        accept={accept.join()}
                                        type="file"
                                        style={{"display": "none"}}
-                                       onClick={(event) => {
-                                           event.target.value = null
+                                       onClick={(e) => {
+
+                                           e.target.value = null;
+
                                        }}
-                                       onChange={onChangeFile.bind(this, inputId)}/>
+                                       onChange={(e) => {
+
+                                           const formData = new FormData();
+                                           formData.append("upfile", e.target.files[0]);
+                                           handleOnChange(inputId, formData);
+
+                                       }}/>
 
                             </FloatingActionButton>;
 
@@ -329,7 +278,11 @@ const Form = (props) => {
                                 key={`form-radio-group-${i}`}
                                 name="shipSpeed"
                                 style={{"display": "flex"}}
-                                onChange={onChangeRadio.bind(this, inputId)}
+                                onChange={(event, selected) => {
+
+                                    handleOnChange(inputId, selected);
+
+                                }}
                                 defaultSelected={value}>
                                 {
                                     options.map((option, index) => {
@@ -359,7 +312,11 @@ const Form = (props) => {
                                 value={value}
                                 rows={rows}
                                 multiLine={multiLine}
-                                onChange={onChange.bind(this, inputId)}
+                                onChange={(event, newValue) => {
+
+                                    handleOnChange(inputId, newValue);
+
+                                }}
                                 name={name}
                                 fullWidth={true}/>;
 
