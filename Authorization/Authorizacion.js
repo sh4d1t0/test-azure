@@ -82,11 +82,7 @@ var Authorization = (_temp = _class = function (_Component) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 accessToken = response.accessToken, profileObj = response.profileObj, _this$props = _this.props, onSuccess = _this$props.onSuccess, isDevelopment = _this$props.isDevelopment, onFailure = _this$props.onFailure;
-
-
-                                (0, _AutorizacionUtil.saveToken)(accessToken);
-
-                                _context.prev = 2;
+                                _context.prev = 1;
                                 capabilities = void 0, email = profileObj.email;
 
 
@@ -95,31 +91,41 @@ var Authorization = (_temp = _class = function (_Component) {
                                     email = "alopezavil@independencia.com.mx";
                                 }
                                 _this.setState({ "loading": true });
-                                _context.next = 8;
+
+                                _context.next = 7;
                                 return new _AutorizacionApi2.default().validar(email);
 
-                            case 8:
+                            case 7:
                                 capabilities = _context.sent;
 
-                                _this.setState({ "loading": false });
+
+                                (0, _AutorizacionUtil.saveToken)(accessToken);
                                 onSuccess(capabilities);
 
-                                _context.next = 16;
+                                _context.next = 15;
                                 break;
 
-                            case 13:
-                                _context.prev = 13;
-                                _context.t0 = _context["catch"](2);
+                            case 12:
+                                _context.prev = 12;
+                                _context.t0 = _context["catch"](1);
 
 
                                 onFailure(_context.t0);
 
-                            case 16:
+                            case 15:
+                                _context.prev = 15;
+
+
+                                _this.setState({ "loading": false });
+
+                                return _context.finish(15);
+
+                            case 18:
                             case "end":
                                 return _context.stop();
                         }
                     }
-                }, _callee, _this2, [[2, 13]]);
+                }, _callee, _this2, [[1, 12, 15, 18]]);
             }));
 
             return function (_x) {

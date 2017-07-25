@@ -9,7 +9,7 @@ export const getTextError = (property) => {
         required = true
     } = property;
 
-    if (required && typeof value === "undefined") {
+    if (required && ( typeof value === "undefined")) {
 
         return errorText;
 

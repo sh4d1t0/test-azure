@@ -46,8 +46,6 @@ export default class Authorization extends Component {
         const {accessToken, profileObj} = response,
             {onSuccess, isDevelopment, onFailure} = this.props;
 
-        saveToken(accessToken);
-
         try {
 
             let capabilities, email = profileObj.email;
@@ -58,14 +56,20 @@ export default class Authorization extends Component {
 
             }
             this.setState({"loading": true});
+
             capabilities = await new AutorizacionApi()
                 .validar(email);
-            this.setState({"loading": false});
+
+            saveToken(accessToken);
             onSuccess(capabilities);
 
         } catch (err) {
 
             onFailure(err);
+
+        } finally {
+
+            this.setState({"loading": false});
 
         }
 

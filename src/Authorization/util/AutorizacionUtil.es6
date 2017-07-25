@@ -6,7 +6,8 @@ export const isThereATokenValid = async () => {
 
         try {
 
-            let emailVerified = false,
+            let emailVerified,
+                response,
                 token: string = sessionStorage.getItem("token");
 
             if (token === null) {
@@ -14,16 +15,19 @@ export const isThereATokenValid = async () => {
                 return false;
 
             }
+            const instance = axios.create();
 
-            await axios.get("https://www.googleapis.com/oauth2/v3/tokeninfo", {
+            response = await instance.request({
+                "url": "/oauth2/v3/tokeninfo",
+                "method": "get",
+                "baseURL": "https://www.googleapis.com/",
                 "params": {
                     "access_token": token
-                }
-            }).then(response => {
-
-                emailVerified = response.data["email_verified"] === "true";
-
+                },
+                "timeout": 100000
             });
+
+            emailVerified = response.data["email_verified"] === "true";
 
             return emailVerified;
 
