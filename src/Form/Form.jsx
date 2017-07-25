@@ -166,9 +166,18 @@ const Form = (props) => {
                                     errorText={errorText}
                                     disabled={disabled}
                                     fullWidth={true}
+                                    multiple={multiple}
                                     onChange={(event, index, value) => {
 
-                                        handleOnChange(inputId, value);
+                                        if (value === null) {
+
+                                            handleOnChange(inputId, undefined);
+
+                                        } else {
+
+                                            handleOnChange(inputId, value);
+
+                                        }
 
                                     }}>
                                     <MenuItem value={null} primaryText="Selecciona una opción"/>
@@ -177,6 +186,7 @@ const Form = (props) => {
 
                                             return <MenuItem
                                                 key={`form-selectfield-item-${name}-${indexMenu}`}
+                                                checked={Array.isArray(value) && value.findIndex(a => item.value === a.value) !== -1}
                                                 value={item}
                                                 primaryText={item.text}/>;
 

@@ -210,15 +210,25 @@ var Form = function Form(props) {
                                 errorText: errorText,
                                 disabled: disabled,
                                 fullWidth: true,
+                                multiple: multiple,
                                 onChange: function onChange(event, index, value) {
 
-                                    handleOnChange(inputId, value);
+                                    if (value === null) {
+
+                                        handleOnChange(inputId, undefined);
+                                    } else {
+
+                                        handleOnChange(inputId, value);
+                                    }
                                 } },
                             _react2.default.createElement(_MenuItem2.default, { value: null, primaryText: "Selecciona una opci\xF3n" }),
                             collection.map(function (item, indexMenu) {
 
                                 return _react2.default.createElement(_MenuItem2.default, {
                                     key: "form-selectfield-item-" + name + "-" + indexMenu,
+                                    checked: Array.isArray(value) && value.findIndex(function (a) {
+                                        return item.value === a.value;
+                                    }) !== -1,
                                     value: item,
                                     primaryText: item.text });
                             })

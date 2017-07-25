@@ -35,7 +35,7 @@ export const getCSV = (list = [], headers = [], title = "reporte") => {
 
                         text = getFormat({"type": header.type, "value": text});
 
-                        if (header.type === "currency"){
+                        if (header.type === "currency") {
 
                             text = text.replace(",", "");
                             text = text.replace("$", "");
