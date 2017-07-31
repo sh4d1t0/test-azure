@@ -3,9 +3,15 @@ import PropTypes from "prop-types";
 import {Card, CardHeader} from "material-ui";
 import {Cell, Legend, Pie, PieChart, Tooltip} from "recharts";
 
-const Chart = ({data, title = ""}) => {
+const Chart = ({data, labels, title = ""}) => {
 
-    const colors = ["#FFBB33", "#F44336", "#99CC00", "#49CEFF", "#AA66CC"];
+    const colors = ["#FFBB33", "#F44336", "#99CC00", "#49CEFF", "#AA66CC"],
+        payload = labels.map((l, index) => {
+
+            let color = {"color": colors[index]};
+            return {...l, ...color};
+
+        });
 
     return <Card>
 
@@ -22,18 +28,18 @@ const Chart = ({data, title = ""}) => {
                      nameKey={"name"}
                      cx={250}
                      cy={175}
-                     outerRadius={120}>
+                     outerRadius={100}>
                     {
                         data.map((entry, index) => <Cell
                             key={`cell-${index}`}
-                            fill={colors[index % colors.length]}/>
+                            fill={colors[index]}/>
                         )
                     }
                 </Pie>
 
                 <Tooltip label={"name"}/>
 
-                <Legend />
+                <Legend payload={payload}/>
 
             </PieChart>
 
@@ -45,7 +51,12 @@ const Chart = ({data, title = ""}) => {
 
 Chart.propTypes = {
     "title": PropTypes.string.isRequired,
-    "data": PropTypes.array.isRequired
+    "data": PropTypes.array.isRequired,
+    "labels": PropTypes.array.isRequired
+};
+Chart.defaulProps = {
+    "data": [],
+    "labels": []
 };
 
 export default Chart;

@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends2 = require("babel-runtime/helpers/extends");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -20,11 +24,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Chart = function Chart(_ref) {
     var data = _ref.data,
+        labels = _ref.labels,
         _ref$title = _ref.title,
         title = _ref$title === undefined ? "" : _ref$title;
 
 
-    var colors = ["#FFBB33", "#F44336", "#99CC00", "#49CEFF", "#AA66CC"];
+    var colors = ["#FFBB33", "#F44336", "#99CC00", "#49CEFF", "#AA66CC"],
+        payload = labels.map(function (l, index) {
+
+        var color = { "color": colors[index] };
+        return (0, _extends3.default)({}, l, color);
+    });
 
     return _react2.default.createElement(
         _materialUi.Card,
@@ -45,15 +55,15 @@ var Chart = function Chart(_ref) {
                         nameKey: "name",
                         cx: 250,
                         cy: 175,
-                        outerRadius: 120 },
+                        outerRadius: 100 },
                     data.map(function (entry, index) {
                         return _react2.default.createElement(_recharts.Cell, {
                             key: "cell-" + index,
-                            fill: colors[index % colors.length] });
+                            fill: colors[index] });
                     })
                 ),
                 _react2.default.createElement(_recharts.Tooltip, { label: "name" }),
-                _react2.default.createElement(_recharts.Legend, null)
+                _react2.default.createElement(_recharts.Legend, { payload: payload })
             )
         )
     );
@@ -61,7 +71,12 @@ var Chart = function Chart(_ref) {
 
 Chart.propTypes = {
     "title": _propTypes2.default.string.isRequired,
-    "data": _propTypes2.default.array.isRequired
+    "data": _propTypes2.default.array.isRequired,
+    "labels": _propTypes2.default.array.isRequired
+};
+Chart.defaulProps = {
+    "data": [],
+    "labels": []
 };
 
 exports.default = Chart;
