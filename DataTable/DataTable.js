@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _extends2 = require("babel-runtime/helpers/extends");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
@@ -70,7 +74,8 @@ var DataTable = (_temp = _class = function (_Component) {
         _this.oneElementAdded = false;
         _this.rows = [];
 
-        var rowSizeList = [5, 10, 15, 20];
+        var rowSizeList = _this.props.rowSizeList;
+
 
         var size = rowSizeList.find(function (i) {
             return i === _this.props.rowSize;
@@ -84,8 +89,9 @@ var DataTable = (_temp = _class = function (_Component) {
         _this.state = {
             "currentPage": 1,
             "rowSize": size,
-            "rowSizeList": rowSizeList,
             "filterText": "",
+            "sortName": "",
+            "sortType": "",
             "limitPage": (0, _dataTableUtil.getLimitPage)(_this.props.data.length, size),
             "realSelections": _this.getInitialSelected()
         };
@@ -101,21 +107,29 @@ var DataTable = (_temp = _class = function (_Component) {
     "resetSelected": _propTypes2.default.bool,
     "attrSelectable": _propTypes2.default.string,
     "card": _propTypes2.default.bool,
+    "scrollbar": _propTypes2.default.bool,
+    "exportCSV": _propTypes2.default.bool,
     "rowSize": _propTypes2.default.number,
     "showHeaderToolbar": _propTypes2.default.bool,
     "enableSelectAll": _propTypes2.default.bool,
+    "pagination": _propTypes2.default.bool,
     "showCheckboxes": _propTypes2.default.bool,
     "showFooterToolbar": _propTypes2.default.bool,
     "multiSelectable": _propTypes2.default.bool,
     "title": _propTypes2.default.string,
     "titleFileCSV": _propTypes2.default.string,
     "data": _propTypes2.default.array.isRequired,
+    "rowSizeList": _propTypes2.default.arrayOf(_propTypes2.default.number),
     "headers": _propTypes2.default.array.isRequired
 }, _class.defaultProps = {
     "data": [],
     "selectable": false,
+    "scrollbar": true,
+    "pagination": true,
+    "exportCSV": true,
     "titleFileCSV": "reporte",
     "rowSize": 5,
+    "rowSizeList": [5, 10, 15, 20],
     "card": true,
     "showCheckboxes": false,
     "resetSelected": false,
@@ -227,10 +241,10 @@ var DataTable = (_temp = _class = function (_Component) {
     };
 
     this.handleChangeRowSize = function (index) {
-        var _state2 = _this2.state,
-            rowSizeList = _state2.rowSizeList,
-            currentPage = _state2.currentPage,
-            data = _this2.props.data;
+        var currentPage = _this2.state.currentPage,
+            _props2 = _this2.props,
+            data = _props2.data,
+            rowSizeList = _props2.rowSizeList;
 
 
         var limit = (0, _dataTableUtil.getLimitPage)(data.length, rowSizeList[index]),
@@ -247,16 +261,18 @@ var DataTable = (_temp = _class = function (_Component) {
         _this2.setState(obj);
     };
 
-    this.handleSortOrderChange = function () {};
+    this.handleSortOrderChange = function (a, b) {
+        return _this2.setState({ "sortName": a, "sortType": b });
+    };
 
     this.handleRowSelect = function (selection) {
-        var _props2 = _this2.props,
-            onRowSelection = _props2.onRowSelection,
-            data = _props2.data,
-            selectableManually = _props2.selectableManually;
-        var _state3 = _this2.state,
-            realSelections = _state3.realSelections,
-            rowSize = _state3.rowSize,
+        var _props3 = _this2.props,
+            onRowSelection = _props3.onRowSelection,
+            data = _props3.data,
+            selectableManually = _props3.selectableManually;
+        var _state2 = _this2.state,
+            realSelections = _state2.realSelections,
+            rowSize = _state2.rowSize,
             responseArray = false;
 
 
@@ -307,28 +323,34 @@ var DataTable = (_temp = _class = function (_Component) {
     };
 
     this.getTable = function () {
-        var _props3 = _this2.props,
-            title = _props3.title,
-            selectable = _props3.selectable,
-            headers = _props3.headers,
-            data = _props3.data,
-            attrSelectable = _props3.attrSelectable,
-            showCheckboxes = _props3.showCheckboxes,
-            selectableManually = _props3.selectableManually,
-            enableSelectAll = _props3.enableSelectAll,
-            titleFileCSV = _props3.titleFileCSV,
-            multiSelectable = _props3.multiSelectable,
-            showFooterToolbar = _props3.showFooterToolbar,
-            showHeaderToolbar = _props3.showHeaderToolbar,
-            _state4 = _this2.state,
-            currentPage = _state4.currentPage,
-            rowSize = _state4.rowSize,
-            filterText = _state4.filterText,
-            realSelections = _state4.realSelections,
-            rowSizeList = _state4.rowSizeList;
+        var _props4 = _this2.props,
+            title = _props4.title,
+            selectable = _props4.selectable,
+            headers = _props4.headers,
+            data = _props4.data,
+            attrSelectable = _props4.attrSelectable,
+            showCheckboxes = _props4.showCheckboxes,
+            selectableManually = _props4.selectableManually,
+            pagination = _props4.pagination,
+            enableSelectAll = _props4.enableSelectAll,
+            titleFileCSV = _props4.titleFileCSV,
+            multiSelectable = _props4.multiSelectable,
+            rowSizeList = _props4.rowSizeList,
+            exportCSV = _props4.exportCSV,
+            scrollbar = _props4.scrollbar,
+            showFooterToolbar = _props4.showFooterToolbar,
+            showHeaderToolbar = _props4.showHeaderToolbar,
+            _state3 = _this2.state,
+            currentPage = _state3.currentPage,
+            rowSize = _state3.rowSize,
+            filterText = _state3.filterText,
+            sortName = _state3.sortName,
+            sortType = _state3.sortType,
+            realSelections = _state3.realSelections;
 
 
-        var selectedRows = [];
+        var scrollbarCSS = { "overflowX": "auto" },
+            selectedRows = [];
 
         if (data instanceof Array) {
 
@@ -340,12 +362,20 @@ var DataTable = (_temp = _class = function (_Component) {
             _this2.rows = [];
         }
 
+        if (sortName.length !== 0) {
+
+            _this2.rows = (0, _dataTableUtil.getRowsWithSort)(sortName, sortType, data);
+        }
+
         if (filterText.length > 0) {
 
             _this2.rows = (0, _dataTableUtil.getRowsWithFilterText)(_this2.rows, headers, filterText);
         }
 
-        _this2.rows = (0, _dataTableUtil.getRowsWithCurrentPage)(_this2.rows, currentPage, rowSize);
+        if (pagination) {
+
+            _this2.rows = (0, _dataTableUtil.getRowsWithCurrentPage)(_this2.rows, currentPage, rowSize);
+        }
 
         if (_this2.oneElementAdded) {
 
@@ -365,13 +395,23 @@ var DataTable = (_temp = _class = function (_Component) {
             }
         }
 
+        if (scrollbar) {
+
+            scrollbarCSS.maxHeight = "350px";
+            scrollbarCSS.overflowY = "auto";
+        }
+
         return _react2.default.createElement(_materialUiDatatables2.default, {
             height: "auto",
             selectable: selectable,
             showRowHover: true,
-            columns: headers,
+            columns: headers.map(function (h) {
+
+                var w = { "width": 250 };
+                return (0, _extends3.default)({}, h, w);
+            }),
             data: _this2.rows,
-            tableBodyStyle: { "overflowX": "auto", "maxHeight": "350px", "overflowY": "auto" },
+            tableBodyStyle: scrollbarCSS,
             showCheckboxes: showCheckboxes,
             enableSelectAll: enableSelectAll,
             multiSelectable: multiSelectable,
@@ -387,12 +427,12 @@ var DataTable = (_temp = _class = function (_Component) {
             rowSizeLabel: "Registros por página",
             rowSizeList: rowSizeList,
             showRowSizeControls: true,
-            showFooterToolbar: showFooterToolbar,
+            showFooterToolbar: pagination && showFooterToolbar,
             onRowSizeChange: _this2.handleChangeRowSize,
             onSortOrderChange: _this2.handleSortOrderChange,
             onNextPageClick: _this2.handleNextPage,
             onPreviousPageClick: _this2.handlePrevPage,
-            toolbarIconRight: _react2.default.createElement(
+            toolbarIconRight: exportCSV && _react2.default.createElement(
                 _IconButton2.default,
                 {
                     tooltip: "Descargar excel",

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.removeNotExist = exports.pushElement = exports.getSelectedRowsOnDT = exports.getSelectedByAttr = exports.getRowsWithFormat = exports.getRowsWithFilterText = exports.getRowsWithCurrentPage = exports.getLimitPage = undefined;
+exports.removeNotExist = exports.pushElement = exports.getSelectedRowsOnDT = exports.getSelectedByAttr = exports.getRowsWithSort = exports.getRowsWithFormat = exports.getRowsWithFilterText = exports.getRowsWithCurrentPage = exports.getLimitPage = undefined;
 
 var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
 
@@ -14,6 +14,10 @@ var _defineProperty2 = require("babel-runtime/helpers/defineProperty");
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _formats = require("../util/formats");
+
+var _underscore = require("underscore");
+
+var _underscore2 = _interopRequireDefault(_underscore);
 
 var _immutabilityHelper = require("immutability-helper");
 
@@ -127,6 +131,17 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
 
         return row;
     });
+},
+    getRowsWithSort = exports.getRowsWithSort = function getRowsWithSort(sortName, sortType, rows) {
+
+    var rowsSorted = _underscore2.default.sortBy(rows, sortName);
+
+    if (sortType === "desc") {
+
+        rowsSorted = rowsSorted.reverse();
+    }
+
+    return rowsSorted;
 },
     getSelectedByAttr = exports.getSelectedByAttr = function getSelectedByAttr(rows, attrSelectable) {
 
