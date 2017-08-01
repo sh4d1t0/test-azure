@@ -1,5 +1,6 @@
 // @flow
 import {getCurrencyFormat, getDateFormat, getLinkFormat, getRenderBoolean} from "../util/formats";
+import _ from "underscore";
 import update from "immutability-helper";
 
 export const
@@ -134,6 +135,19 @@ export const
             return row;
 
         });
+
+    },
+    getRowsWithSort = (sortName: string, sortType: string, rows: []): [] => {
+
+        let rowsSorted = _.sortBy(rows, sortName);
+
+        if (sortType === "desc") {
+
+            rowsSorted = rowsSorted.reverse();
+
+        }
+
+        return rowsSorted;
 
     },
     getSelectedByAttr = (rows: [], attrSelectable: string): [] => {

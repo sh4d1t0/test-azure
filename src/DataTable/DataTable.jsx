@@ -10,6 +10,7 @@ import {
     getRowsWithCurrentPage,
     getRowsWithFilterText,
     getRowsWithFormat,
+    getRowsWithSort,
     getSelectedByAttr,
     getSelectedRowsOnDT,
     pushElement,
@@ -23,8 +24,10 @@ export default class DataTable extends Component {
     oneElementAdded: boolean;
     state: {
         realSelections: [],
-        rowSizeList: [],
         rowSize: number,
+        currentPage: number,
+        sortName: string,
+        sortType: string,
         currentPage: number,
         limitPage: number,
         filterText: string
@@ -37,22 +40,30 @@ export default class DataTable extends Component {
         "resetSelected": PropTypes.bool,
         "attrSelectable": PropTypes.string,
         "card": PropTypes.bool,
+        "scrollbar": PropTypes.bool,
+        "exportCSV": PropTypes.bool,
         "rowSize": PropTypes.number,
         "showHeaderToolbar": PropTypes.bool,
         "enableSelectAll": PropTypes.bool,
+        "pagination": PropTypes.bool,
         "showCheckboxes": PropTypes.bool,
         "showFooterToolbar": PropTypes.bool,
         "multiSelectable": PropTypes.bool,
         "title": PropTypes.string,
         "titleFileCSV": PropTypes.string,
         "data": PropTypes.array.isRequired,
+        "rowSizeList": PropTypes.arrayOf(PropTypes.number),
         "headers": PropTypes.array.isRequired
     };
     static defaultProps = {
         "data": [],
         "selectable": false,
+        "scrollbar": true,
+        "pagination": true,
+        "exportCSV": true,
         "titleFileCSV": "reporte",
         "rowSize": 5,
+        "rowSizeList": [5, 10, 15, 20],
         "card": true,
         "showCheckboxes": false,
         "resetSelected": false,
@@ -75,7 +86,7 @@ export default class DataTable extends Component {
         this.oneElementAdded = false;
         this.rows = [];
 
-        let rowSizeList = [5, 10, 15, 20];
+        let {rowSizeList} = this.props;
 
         let size = rowSizeList.find(i => i === this.props.rowSize);
 
@@ -88,8 +99,9 @@ export default class DataTable extends Component {
         this.state = {
             "currentPage": 1,
             "rowSize": size,
-            "rowSizeList": rowSizeList,
             "filterText": "",
+            "sortName": "",
+            "sortType": "",
             "limitPage": getLimitPage(this.props.data.length, size),
             "realSelections": this.getInitialSelected()
         };
@@ -201,8 +213,8 @@ export default class DataTable extends Component {
 
     handleChangeRowSize = (index: number) => {
 
-        const {rowSizeList, currentPage} = this.state,
-            {data} = this.props;
+        const {currentPage} = this.state,
+            {data, rowSizeList} = this.props;
 
         let limit = getLimitPage(data.length, rowSizeList[index]),
             obj = {
@@ -220,8 +232,7 @@ export default class DataTable extends Component {
 
     };
 
-    handleSortOrderChange = () => {
-    };
+    handleSortOrderChange = (a: string, b: string) => this.setState({"sortName": a, "sortType": b});
 
     handleRowSelect = (selection) => {
 
@@ -294,9 +305,13 @@ export default class DataTable extends Component {
                 attrSelectable,
                 showCheckboxes,
                 selectableManually,
+                pagination,
                 enableSelectAll,
                 titleFileCSV,
                 multiSelectable,
+                rowSizeList,
+                exportCSV,
+                scrollbar,
                 showFooterToolbar,
                 showHeaderToolbar
             } = this.props,
@@ -304,11 +319,16 @@ export default class DataTable extends Component {
                 currentPage,
                 rowSize,
                 filterText,
-                realSelections,
-                rowSizeList
+                sortName,
+                sortType,
+                realSelections
             } = this.state;
 
-        let selectedRows = [];
+        let scrollbarCSS: {
+            overflowX: string,
+            maxHeight: string,
+            overflowY: string
+        } = {"overflowX": "auto"}, selectedRows = [];
 
         if (data instanceof Array) {
 
@@ -320,13 +340,24 @@ export default class DataTable extends Component {
 
         }
 
+        if (sortName.length !== 0) {
+
+            this.rows = getRowsWithSort(sortName, sortType, data);
+
+        }
+
         if (filterText.length > 0) {
 
             this.rows = getRowsWithFilterText(this.rows, headers, filterText);
 
         }
 
-        this.rows = getRowsWithCurrentPage(this.rows, currentPage, rowSize);
+        if (pagination) {
+
+            this.rows = getRowsWithCurrentPage(this.rows, currentPage, rowSize);
+
+        }
+
 
         if (this.oneElementAdded) {
 
@@ -350,13 +381,25 @@ export default class DataTable extends Component {
 
         }
 
+        if (scrollbar) {
+
+            scrollbarCSS.maxHeight = "350px";
+            scrollbarCSS.overflowY = "auto";
+
+        }
+
         return <DataTables
             height={"auto"}
             selectable={selectable}
             showRowHover={true}
-            columns={headers}
+            columns={headers.map(h => {
+
+                let w = {"width": 250};
+                return {...h, ...w};
+
+            })}
             data={this.rows}
-            tableBodyStyle={{"overflowX": "auto", "maxHeight": "350px", "overflowY": "auto"}}
+            tableBodyStyle={scrollbarCSS}
             showCheckboxes={showCheckboxes}
             enableSelectAll={enableSelectAll}
             multiSelectable={multiSelectable}
@@ -372,13 +415,13 @@ export default class DataTable extends Component {
             rowSizeLabel={"Registros por página"}
             rowSizeList={rowSizeList}
             showRowSizeControls={true}
-            showFooterToolbar={showFooterToolbar}
+            showFooterToolbar={pagination && showFooterToolbar}
             onRowSizeChange={this.handleChangeRowSize}
             onSortOrderChange={this.handleSortOrderChange}
             onNextPageClick={this.handleNextPage}
             onPreviousPageClick={this.handlePrevPage}
             toolbarIconRight={
-                <IconButton
+                exportCSV && <IconButton
                     tooltip="Descargar excel"
                     onTouchTap={() => {
 
