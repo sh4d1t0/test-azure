@@ -37,11 +37,10 @@ var Tabs = function (_Component) {
 
         var _this = (0, _possibleConstructorReturn3.default)(this, (Tabs.__proto__ || Object.getPrototypeOf(Tabs)).call(this, props, context));
 
-        _this.state = { "indexCurrentTab": 0 };
+        _this.state = { indexCurrentTab: 0 };
 
         _this.handleOnChangeTab = function (e) {
-
-            _this.setState({ "indexCurrentTab": e });
+            _this.setState({ indexCurrentTab: e });
         };
 
         _this.buildTabs = function () {
@@ -50,10 +49,7 @@ var Tabs = function (_Component) {
 
 
             return tabs.map(function (tab, i) {
-
-                return _react2.default.createElement(_Tabs.Tab, { key: "tab-tab-" + i,
-                    label: tab.label,
-                    value: i });
+                return _react2.default.createElement(_Tabs.Tab, { key: "tab-tab-" + i, label: tab.label, value: i });
             });
         };
 
@@ -63,7 +59,6 @@ var Tabs = function (_Component) {
 
 
             if (tabs.length > 0) {
-
                 return tabs[indexCurrentTab].body;
             }
 
@@ -81,27 +76,28 @@ var Tabs = function (_Component) {
                 null,
                 _react2.default.createElement(
                     _Tabs.Tabs,
-                    { onChange: _this.handleOnChangeTab,
+                    {
+                        onChange: _this.handleOnChangeTab,
                         value: indexCurrentTab,
                         style: {
-                            "position": "fixed",
-                            "left": "0",
-                            "zIndex": "1100",
-                            "top": "64px",
-                            "width": "100%"
-                        } },
+                            position: "fixed",
+                            left: "0",
+                            zIndex: "1100",
+                            top: "64px",
+                            width: "100%"
+                        }
+                    },
                     tabs
                 ),
                 _react2.default.createElement(
                     "div",
-                    { style: { "position": "relative", "marginTop": "64px" } },
+                    { style: { position: "relative", marginTop: "64px" } },
                     body
                 )
             );
         };
 
         _this.handleOnChangeTab = _this.handleOnChangeTab.bind(_this);
-
         return _this;
     }
 
@@ -112,5 +108,5 @@ exports.default = Tabs;
 
 
 Tabs.propTypes = {
-    "tabs": _propTypes2.default.array.isRequired
+    tabs: _propTypes2.default.array.isRequired
 };

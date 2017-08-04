@@ -87,10 +87,9 @@ var Authorization = (_temp = _class = function (_Component) {
 
 
                                 if (isDevelopment) {
-
                                     email = "alopezavil@independencia.com.mx";
                                 }
-                                _this.setState({ "loading": true });
+                                _this.setState({ loading: true });
 
                                 _context.next = 7;
                                 return new _AutorizacionApi2.default().validar(email);
@@ -101,7 +100,6 @@ var Authorization = (_temp = _class = function (_Component) {
 
                                 (0, _AutorizacionUtil.saveToken)(accessToken);
                                 onSuccess(capabilities);
-
                                 _context.next = 15;
                                 break;
 
@@ -109,15 +107,12 @@ var Authorization = (_temp = _class = function (_Component) {
                                 _context.prev = 12;
                                 _context.t0 = _context["catch"](1);
 
-
                                 onFailure(_context.t0);
 
                             case 15:
                                 _context.prev = 15;
 
-
-                                _this.setState({ "loading": false });
-
+                                _this.setState({ loading: false });
                                 return _context.finish(15);
 
                             case 18:
@@ -143,7 +138,8 @@ var Authorization = (_temp = _class = function (_Component) {
                 { className: "row" },
                 _react2.default.createElement(_RequestProgress2.default, {
                     message: "Validando usuario",
-                    open: loading }),
+                    open: loading
+                }),
                 _react2.default.createElement(
                     "div",
                     { className: "col-xs-12 col-md-4 col-md-offset-4" },
@@ -161,7 +157,7 @@ var Authorization = (_temp = _class = function (_Component) {
                         ),
                         _react2.default.createElement(
                             "div",
-                            { className: "row", style: { "marginTop": "50px" } },
+                            { className: "row", style: { marginTop: "50px" } },
                             _react2.default.createElement(
                                 "div",
                                 { className: "col-xs-12 text-center" },
@@ -169,7 +165,8 @@ var Authorization = (_temp = _class = function (_Component) {
                                     clientId: GOOGLE_ID,
                                     buttonText: "Entrar con correo interno",
                                     onSuccess: _this.handleLoginSuccess,
-                                    onFailure: _this.handleLoginFailure })
+                                    onFailure: _this.handleLoginFailure
+                                })
                             )
                         )
                     )
@@ -181,20 +178,18 @@ var Authorization = (_temp = _class = function (_Component) {
         _this.handleLoginSuccess = _this.handleLoginSuccess.bind(_this);
 
         _this.state = {
-            "loading": false
+            loading: false
         };
-
         return _this;
     }
 
     return Authorization;
 }(_react.Component), _class.propTypes = {
-    "logo": _propTypes2.default.string,
-    "isDevelopment": _propTypes2.default.bool,
-    "onSuccess": _propTypes2.default.func.isRequired,
-    "onFailure": _propTypes2.default.func.isRequired
+    logo: _propTypes2.default.string,
+    isDevelopment: _propTypes2.default.bool,
+    onSuccess: _propTypes2.default.func.isRequired,
+    onFailure: _propTypes2.default.func.isRequired
 }, _class.defaultProps = {
-    "isDevelopment": true
+    isDevelopment: true
 }, _temp);
 exports.default = Authorization;
-;

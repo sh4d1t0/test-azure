@@ -21,11 +21,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var spinner = function spinner(props) {
     var _props$visible = props.visible,
         visible = _props$visible === undefined ? false : _props$visible,
-        style = { "display": "none" };
+        style = { display: "none" };
 
 
     if (visible) {
-
         style.display = "block";
     }
 
@@ -41,7 +40,7 @@ var spinner = function spinner(props) {
 };
 
 spinner.propTypes = {
-    "visible": _propTypes2.default.bool
+    visible: _propTypes2.default.bool
 };
 
 exports.default = spinner;

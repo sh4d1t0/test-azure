@@ -80,7 +80,6 @@ var DateTimeFormat = void 0,
 
 
 if ((0, _intlLocalesSupported2.default)(["es", "es-MX"])) {
-
     DateTimeFormat = global.Intl.DateTimeFormat;
 }
 
@@ -94,44 +93,36 @@ var Form = function Form(props) {
         epic = props.epic,
         module = props.module,
         handleOnChange = function handleOnChange(id, value) {
-
         if (typeof onChangeInputs === "undefined") {
-
             onChangeValueEvent({
-                "value": value,
-                "name": id,
-                "form": formName,
+                value: value,
+                name: id,
+                form: formName,
                 epic: epic,
                 module: module
             });
         } else {
-
             onChangeInputs(value, id);
         }
     },
         handleFilterSelect = function handleFilterSelect(id, searchText, dataSource, params) {
-
         if (searchText.length > 0) {
-
             return;
         }
 
         if (typeof onChangeInputs === "undefined") {
-
             onChangeValueEvent({
-                "value": undefined,
-                "name": id,
-                "form": formName,
+                value: undefined,
+                name: id,
+                form: formName,
                 epic: epic,
                 module: module
             });
         } else {
-
             onChangeInputs(undefined, id);
         }
     },
         getForm = function getForm() {
-
         return inputs && inputs.length && inputs.map(function (property, i) {
             var _property$value = property.value,
                 value = _property$value === undefined ? "" : _property$value,
@@ -162,16 +153,12 @@ var Form = function Form(props) {
 
 
             if (!useIndex) {
-
                 inputId = name;
             }
 
             switch (type) {
-
                 case "checkbox":
-
                     if (typeof value !== "boolean") {
-
                         value = false;
                     }
 
@@ -180,27 +167,25 @@ var Form = function Form(props) {
                         label: label,
                         name: name,
                         onCheck: function onCheck(event, isInputChecked) {
-
                             handleOnChange(inputId, isInputChecked);
                         },
-                        style: { "marginTop": "20px" },
+                        style: { marginTop: "20px" },
                         checked: value,
-                        labelPosition: "left" });
+                        labelPosition: "left"
+                    });
 
                 case "select":
-
                     if (disabled) {
-
                         return _react2.default.createElement(_TextField2.default, {
                             key: "form-textfield-" + i,
                             hintText: label,
                             disabled: disabled,
                             floatingLabelText: label,
                             name: name,
-                            fullWidth: true });
+                            fullWidth: true
+                        });
                     }
                     if (!autoComplete) {
-
                         return _react2.default.createElement(
                             _SelectField2.default,
                             {
@@ -212,25 +197,26 @@ var Form = function Form(props) {
                                 fullWidth: true,
                                 multiple: multiple,
                                 onChange: function onChange(event, index, value) {
-
                                     if (value === null) {
-
                                         handleOnChange(inputId, undefined);
                                     } else {
-
                                         handleOnChange(inputId, value);
                                     }
-                                } },
-                            _react2.default.createElement(_MenuItem2.default, { value: null, primaryText: "Selecciona una opci\xF3n" }),
+                                }
+                            },
+                            _react2.default.createElement(_MenuItem2.default, {
+                                value: null,
+                                primaryText: "Selecciona una opci\xF3n"
+                            }),
                             collection.map(function (item, indexMenu) {
-
                                 return _react2.default.createElement(_MenuItem2.default, {
                                     key: "form-selectfield-item-" + name + "-" + indexMenu,
                                     checked: Array.isArray(value) && value.findIndex(function (a) {
                                         return item.value === a.value;
                                     }) !== -1,
                                     value: item,
-                                    primaryText: item.text });
+                                    primaryText: item.text
+                                });
                             })
                         );
                     }
@@ -245,15 +231,15 @@ var Form = function Form(props) {
                         errorText: errorText,
                         openOnFocus: true,
                         popoverProps: {
-                            "style": {
-                                "overflowY": "auto"
+                            style: {
+                                overflowY: "auto"
                             }
                         },
                         onUpdateInput: handleFilterSelect.bind(undefined, inputId),
                         onNewRequest: function onNewRequest(selected) {
-
                             handleOnChange(inputId, selected);
-                        } });
+                        }
+                    });
 
                 case "date":
                     value = (0, _formats.getDateObject)(value, unix);
@@ -262,12 +248,10 @@ var Form = function Form(props) {
                         minDate = null;
 
                     if (min) {
-
                         minDate = (0, _moment2.default)(min, "DD/MM/YYYY").toDate();
                     }
 
                     if (max) {
-
                         maxDate = (0, _moment2.default)(max, "DD/MM/YYYY").toDate();
                     }
 
@@ -284,12 +268,11 @@ var Form = function Form(props) {
                         errorText: errorText,
                         DateTimeFormat: DateTimeFormat,
                         onChange: function onChange(event, newDate) {
-
                             handleOnChange(inputId, newDate);
-                        } });
+                        }
+                    });
 
                 case "file":
-
                     return _react2.default.createElement(
                         _FloatingActionButton2.default,
                         {
@@ -297,53 +280,52 @@ var Form = function Form(props) {
                             containerElement: "label",
                             secondary: true,
                             className: "mn-float-a-btn",
-                            label: label },
+                            label: label
+                        },
                         _react2.default.createElement(_fileUpload2.default, null),
-                        _react2.default.createElement("input", { multiple: multiple,
+                        _react2.default.createElement("input", {
+                            multiple: multiple,
                             accept: accept.join(),
                             type: "file",
-                            style: { "display": "none" },
+                            style: { display: "none" },
                             onClick: function onClick(e) {
-
                                 e.target.value = null;
                             },
                             onChange: function onChange(e) {
-
                                 var formData = new FormData();
                                 formData.append("upfile", e.target.files[0]);
                                 handleOnChange(inputId, formData);
-                            } })
+                            }
+                        })
                     );
 
                 case "radioButton":
-
                     return _react2.default.createElement(
                         _RadioButton.RadioButtonGroup,
                         {
                             key: "form-radio-group-" + i,
                             name: "shipSpeed",
-                            style: { "display": "flex" },
+                            style: { display: "flex" },
                             onChange: function onChange(event, selected) {
-
                                 handleOnChange(inputId, selected);
                             },
-                            defaultSelected: value },
+                            defaultSelected: value
+                        },
                         options.map(function (option, index) {
-
                             return _react2.default.createElement(_RadioButton.RadioButton, {
                                 key: "form-radio-item-" + index,
                                 value: option.value,
                                 style: {
-                                    "display": "inline-block",
-                                    "minWidth": "210px"
+                                    display: "inline-block",
+                                    minWidth: "210px"
                                 },
-                                label: option.label });
+                                label: option.label
+                            });
                         })
                     );
 
                 case "textfield":
                 default:
-
                     return _react2.default.createElement(_TextField2.default, {
                         key: "form-textfield-" + i,
                         hintText: label,
@@ -354,12 +336,11 @@ var Form = function Form(props) {
                         rows: rows,
                         multiLine: multiLine,
                         onChange: function onChange(event, newValue) {
-
                             handleOnChange(inputId, newValue);
                         },
                         name: name,
-                        fullWidth: true });
-
+                        fullWidth: true
+                    });
             }
         });
     };
@@ -372,13 +353,13 @@ var Form = function Form(props) {
 };
 
 Form.propTypes = {
-    "onChangeInputs": _propTypes2.default.func,
-    "formName": _propTypes2.default.string,
-    "epic": _propTypes2.default.string,
-    "module": _propTypes2.default.string,
-    "useIndex": _propTypes2.default.bool,
-    "styleContainer": _propTypes2.default.object,
-    "inputs": _propTypes2.default.array.isRequired
+    onChangeInputs: _propTypes2.default.func,
+    formName: _propTypes2.default.string,
+    epic: _propTypes2.default.string,
+    module: _propTypes2.default.string,
+    useIndex: _propTypes2.default.bool,
+    styleContainer: _propTypes2.default.object,
+    inputs: _propTypes2.default.array.isRequired
 };
 
 exports.default = Form;

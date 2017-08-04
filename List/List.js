@@ -52,8 +52,7 @@ var ListCard = (_temp = _class = function (_Component) {
 
         var defaultSelected = _this.props.defaultSelected;
 
-        _this.state = { "itemSelected": defaultSelected };
-
+        _this.state = { itemSelected: defaultSelected };
         return _this;
     }
 
@@ -65,7 +64,7 @@ var ListCard = (_temp = _class = function (_Component) {
         var onTouchTap = _this2.props.onTouchTap;
 
 
-        _this2.setState({ "itemSelected": index });
+        _this2.setState({ itemSelected: index });
         onTouchTap(index);
     };
 
@@ -76,36 +75,30 @@ var ListCard = (_temp = _class = function (_Component) {
             selectable = _props.selectable,
             _props$styleContainer = _props.styleContainer,
             styleContainer = _props$styleContainer === undefined ? {
-            "overflowY": "auto",
-            "height": "400px"
+            overflowY: "auto",
+            height: "400px"
         } : _props$styleContainer,
             itemSelected = _this2.state.itemSelected;
 
 
         if (!(collection instanceof Array)) {
-
             collection = [];
         }
 
         var getItems = function getItems() {
-
             return collection.map(function (item, index) {
-
                 var props = {
-                    "key": "list-item-" + index,
-                    "primaryText": item
+                    key: "list-item-" + index,
+                    primaryText: item
                 };
 
                 if (selectable) {
-
                     props.onTouchTap = function () {
-
                         _this2.handleOnChangeSelected(index);
                     };
 
                     if (itemSelected === index) {
-
-                        props.style = { "textTransform": "capitalize" };
+                        props.style = { textTransform: "capitalize" };
                         props.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
                     }
                 }
@@ -116,7 +109,7 @@ var ListCard = (_temp = _class = function (_Component) {
 
         return _react2.default.createElement(
             _Card2.default,
-            { style: { "margin": "12px" } },
+            { style: { margin: "12px" } },
             _react2.default.createElement(
                 _List.List,
                 { style: styleContainer },
@@ -133,17 +126,17 @@ var ListCard = (_temp = _class = function (_Component) {
 
 
 ListCard.propTypes = {
-    "collection": _propTypes2.default.array.isRequired,
-    "onTouchTap": _propTypes2.default.func.isRequired,
-    "styleContainer": _propTypes2.default.object,
-    "selectable": _propTypes2.default.bool,
-    "defaultSelected": _propTypes2.default.number,
-    "title": _propTypes2.default.string.isRequired
+    collection: _propTypes2.default.array.isRequired,
+    onTouchTap: _propTypes2.default.func.isRequired,
+    styleContainer: _propTypes2.default.object,
+    selectable: _propTypes2.default.bool,
+    defaultSelected: _propTypes2.default.number,
+    title: _propTypes2.default.string.isRequired
 };
 
 ListCard.defaultProps = {
-    "selectable": false,
-    "defaultSelected": -1
+    selectable: false,
+    defaultSelected: -1
 };
 
 exports.default = ListCard;

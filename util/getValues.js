@@ -16,16 +16,13 @@ var _moment2 = _interopRequireDefault(_moment);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getUnixDate = exports.getUnixDate = function getUnixDate(value) {
-
     if ((typeof value === "undefined" ? "undefined" : (0, _typeof3.default)(value)) === "object") {
-
         return (0, _moment2.default)(value).unix();
     }
 
     return value;
 },
     getValueFromInput = exports.getValueFromInput = function getValueFromInput(inputs, attr) {
-
     var input = void 0;
 
     input = inputs.find(function (item) {
@@ -33,7 +30,6 @@ var getUnixDate = exports.getUnixDate = function getUnixDate(value) {
     });
 
     if (input) {
-
         return input.value;
     }
 

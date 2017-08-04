@@ -36,15 +36,11 @@ var drawer = function drawer(_ref) {
         logoFooter = _ref.logoFooter,
         listItems = _ref.listItems;
 
-
     var items = void 0;
 
     var buildItems = function buildItems(list) {
-
         return list && list.length && list.map(function (item, i) {
-
             if (item.subheader) {
-
                 return _react2.default.createElement(
                     "div",
                     { key: "div-drawer-li-" + i },
@@ -57,14 +53,15 @@ var drawer = function drawer(_ref) {
                 );
             }
 
-            return _react2.default.createElement(_List.ListItem, { key: "item-drawer-li-" + i,
+            return _react2.default.createElement(_List.ListItem, {
+                key: "item-drawer-li-" + i,
                 primaryText: item.primaryText,
                 leftIcon: item.leftIcon,
                 onTouchTap: function onTouchTap() {
-
                     _onTouchTap(item);
                 },
-                nestedItems: buildItems(item.nestedItems) });
+                nestedItems: buildItems(item.nestedItems)
+            });
         });
     };
 
@@ -76,7 +73,8 @@ var drawer = function drawer(_ref) {
             docked: false,
             open: open,
             width: 380,
-            onRequestChange: onRequestChange },
+            onRequestChange: onRequestChange
+        },
         logoHeader && _react2.default.createElement(
             "div",
             { className: "mn-img-drawer-header" },
@@ -97,12 +95,12 @@ var drawer = function drawer(_ref) {
 };
 
 drawer.propTypes = {
-    "open": _propTypes2.default.bool.isRequired,
-    "onRequestChange": _propTypes2.default.func.isRequired,
-    "onTouchTap": _propTypes2.default.func.isRequired,
-    "logoHeader": _propTypes2.default.string.isRequired,
-    "logoFooter": _propTypes2.default.string.isRequired,
-    "listItems": _propTypes2.default.array.isRequired
+    open: _propTypes2.default.bool.isRequired,
+    onRequestChange: _propTypes2.default.func.isRequired,
+    onTouchTap: _propTypes2.default.func.isRequired,
+    logoHeader: _propTypes2.default.string.isRequired,
+    logoFooter: _propTypes2.default.string.isRequired,
+    listItems: _propTypes2.default.array.isRequired
 };
 
 exports.default = drawer;

@@ -37,9 +37,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 var IconMenu = function IconMenu(props) {
     var _props$anchorOrigin = props.anchorOrigin,
-        anchorOrigin = _props$anchorOrigin === undefined ? { "horizontal": "left", "vertical": "top" } : _props$anchorOrigin,
+        anchorOrigin = _props$anchorOrigin === undefined ? { horizontal: "left", vertical: "top" } : _props$anchorOrigin,
         _props$targetOrigin = props.targetOrigin,
-        targetOrigin = _props$targetOrigin === undefined ? { "horizontal": "left", "vertical": "top" } : _props$targetOrigin,
+        targetOrigin = _props$targetOrigin === undefined ? { horizontal: "left", vertical: "top" } : _props$targetOrigin,
         listOptions = props.listOptions,
         rowId = props.rowId;
 
@@ -47,16 +47,13 @@ var IconMenu = function IconMenu(props) {
     var items = [];
 
     var buildItems = function buildItems(list) {
-
         return list && list.length && list.map(function (item, i) {
-
             return _react2.default.createElement(_MenuItem2.default, {
                 key: "menu-" + rowId + "-" + i,
                 primaryText: item.primaryText,
                 rightIcon: item.rightIcon && item.rightIcon,
                 leftIcon: item.leftIcon && item.leftIcon,
                 onTouchTap: function onTouchTap() {
-
                     item.onTouchTap(rowId);
                 },
                 menuItems: buildItems(item.menuItems)
@@ -75,16 +72,17 @@ var IconMenu = function IconMenu(props) {
                 _react2.default.createElement(_moreVert2.default, null)
             ),
             anchorOrigin: anchorOrigin,
-            targetOrigin: targetOrigin },
+            targetOrigin: targetOrigin
+        },
         items
     );
 };
 
 IconMenu.propTypes = {
-    "listOptions": _propTypes2.default.array.isRequired,
-    "rowId": _propTypes2.default.any.isRequired,
-    "anchorOrigin": _propTypes2.default.object,
-    "targetOrigin": _propTypes2.default.object
+    listOptions: _propTypes2.default.array.isRequired,
+    rowId: _propTypes2.default.any.isRequired,
+    anchorOrigin: _propTypes2.default.object,
+    targetOrigin: _propTypes2.default.object
 };
 
 exports.default = IconMenu;

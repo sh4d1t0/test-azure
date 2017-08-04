@@ -46,17 +46,19 @@ var Modal = function Modal(props) {
         onTouchTapCancel = props.onTouchTapCancel,
         _props$contentStyle = props.contentStyle,
         contentStyle = _props$contentStyle === undefined ? {
-        "width": "95%",
-        "maxWidth": "none"
+        width: "95%",
+        maxWidth: "none"
     } : _props$contentStyle,
         actions = [_react2.default.createElement(_FlatButton2.default, {
         label: labelCancel,
         primary: true,
-        onTouchTap: onTouchTapCancel }), _react2.default.createElement(_FlatButton2.default, {
+        onTouchTap: onTouchTapCancel
+    }), _react2.default.createElement(_FlatButton2.default, {
         label: labelOk,
         disabled: disabledOk,
         primary: true,
-        onTouchTap: onTouchTapOk })];
+        onTouchTap: onTouchTapOk
+    })];
 
 
     return _react2.default.createElement(
@@ -67,23 +69,24 @@ var Modal = function Modal(props) {
             modal: true,
             autoScrollBodyContent: true,
             contentStyle: contentStyle,
-            open: open },
+            open: open
+        },
         props.children,
         showSpinner && _react2.default.createElement(_Spinner2.default, { visible: showSpinner })
     );
 };
 
 Modal.propTypes = {
-    "title": _propTypes2.default.string.isRequired,
-    "labelOk": _propTypes2.default.string,
-    "labelCancel": _propTypes2.default.string,
-    "open": _propTypes2.default.bool.isRequired,
-    "onTouchTapOk": _propTypes2.default.func.isRequired,
-    "onTouchTapCancel": _propTypes2.default.func.isRequired,
-    "showSpinner": _propTypes2.default.bool,
-    "disabledOk": _propTypes2.default.bool,
-    "contentStyle": _propTypes2.default.object,
-    "children": _propTypes2.default.node
+    title: _propTypes2.default.string.isRequired,
+    labelOk: _propTypes2.default.string,
+    labelCancel: _propTypes2.default.string,
+    open: _propTypes2.default.bool.isRequired,
+    onTouchTapOk: _propTypes2.default.func.isRequired,
+    onTouchTapCancel: _propTypes2.default.func.isRequired,
+    showSpinner: _propTypes2.default.bool,
+    disabledOk: _propTypes2.default.bool,
+    contentStyle: _propTypes2.default.object,
+    children: _propTypes2.default.node
 };
 
 exports.default = Modal;

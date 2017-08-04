@@ -39,28 +39,25 @@ var Request = function Request() {
 
 
                             if (typeof url !== "undefined") {
-
                                 _this.url = url;
                             }
                             if (typeof data !== "undefined") {
-
                                 _this.data = data;
                             }
                             if (typeof baseUrl !== "undefined") {
-
                                 _this.baseUrl = baseUrl;
                             }
 
                             _context.prev = 4;
                             _context.next = 7;
                             return that.instance.request({
-                                "url": that.url,
-                                "method": that.method,
-                                "baseURL": that.baseUrl,
-                                "headers": that.headers,
-                                "params": that.params,
-                                "data": that.data,
-                                "timeout": 100000
+                                url: that.url,
+                                method: that.method,
+                                baseURL: that.baseUrl,
+                                headers: that.headers,
+                                params: that.params,
+                                data: that.data,
+                                timeout: 100000
                             });
 
                         case 7:

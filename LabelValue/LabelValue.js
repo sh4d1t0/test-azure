@@ -27,12 +27,10 @@ var LabelValue = function LabelValue(props) {
 
 
     if (typeof defaultValue !== "undefined" && typeof value !== "undefined") {
-
         value = defaultValue;
     }
 
     if (typeof type !== "undefined") {
-
         value = (0, _formats.getFormat)({ type: type, value: value, renderFalseAs: renderFalseAs, renderTrueAs: renderTrueAs });
     }
 
@@ -50,7 +48,9 @@ var LabelValue = function LabelValue(props) {
         ),
         _react2.default.createElement(
             "div",
-            { className: "col-xs-12 col-md-7  text-uppercase mn-clave-valor-v " + type },
+            {
+                className: "col-xs-12 col-md-7  text-uppercase mn-clave-valor-v " + type
+            },
             _react2.default.createElement(
                 "span",
                 null,
@@ -61,19 +61,19 @@ var LabelValue = function LabelValue(props) {
 };
 
 LabelValue.propTypes = {
-    "type": _propTypes2.default.oneOf(["currency", "date", "dateDiff", "percentage", "boolean", "none"]),
-    "label": _propTypes2.default.node,
-    "defaultValue": _propTypes2.default.any,
-    "styleContainer": _propTypes2.default.object,
-    "renderFalseAs": _propTypes2.default.string,
-    "renderTrueAs": _propTypes2.default.string,
-    "value": _propTypes2.default.any
+    type: _propTypes2.default.oneOf(["currency", "date", "dateDiff", "percentage", "boolean", "none"]),
+    label: _propTypes2.default.node,
+    defaultValue: _propTypes2.default.any,
+    styleContainer: _propTypes2.default.object,
+    renderFalseAs: _propTypes2.default.string,
+    renderTrueAs: _propTypes2.default.string,
+    value: _propTypes2.default.any
 };
 
 LabelValue.defaultProps = {
-    "type": "none",
-    "label": "...",
-    "value": "..."
+    type: "none",
+    label: "...",
+    value: "..."
 };
 
 exports.default = LabelValue;

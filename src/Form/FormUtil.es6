@@ -1,6 +1,5 @@
 // @flow
-export const getTextError = (property) => {
-
+export const getTextError = property => {
     const {
         value,
         errorText = "Campo requerido *",
@@ -9,22 +8,19 @@ export const getTextError = (property) => {
         required = true
     } = property;
 
-    if (required && ( typeof value === "undefined")) {
-
+    if (required && typeof value === "undefined") {
         return errorText;
-
     }
 
-    if (pattern &&
+    if (
+        pattern &&
         type !== "select" &&
         type !== "checkbox" &&
         type !== "date" &&
-        !pattern.test(value)) {
-
+        !pattern.test(value)
+    ) {
         return errorText;
-
     }
 
     return null;
-
 };

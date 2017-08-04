@@ -33,7 +33,7 @@ var Body = function Body(props) {
 
     return _react2.default.createElement(
         _Paper2.default,
-        { zDepth: 1, style: { "margin": 12 } },
+        { zDepth: 1, style: { margin: 12 } },
         title && _react2.default.createElement(
             "div",
             null,
@@ -54,9 +54,9 @@ var Body = function Body(props) {
 };
 
 Body.propTypes = {
-    "title": _propTypes2.default.string,
-    "showSpinner": _propTypes2.default.bool,
-    "children": _propTypes2.default.node
+    title: _propTypes2.default.string,
+    showSpinner: _propTypes2.default.bool,
+    children: _propTypes2.default.node
 };
 
 exports.default = Body;

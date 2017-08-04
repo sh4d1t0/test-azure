@@ -25,7 +25,6 @@ var HeaderInfo = function HeaderInfo(props) {
         _financieraUi.Container,
         null,
         data.map(function (item) {
-
             return _react2.default.createElement(
                 "div",
                 { className: "mn-header-info-column" },
@@ -45,7 +44,7 @@ var HeaderInfo = function HeaderInfo(props) {
 };
 
 HeaderInfo.propTypes = {
-    "data": _propTypes2.default.array.isRequired
+    data: _propTypes2.default.array.isRequired
 };
 
 exports.default = HeaderInfo;

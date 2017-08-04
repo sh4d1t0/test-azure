@@ -25,18 +25,20 @@ var Header = function Header(props) {
         zDepth = props.zDepth;
 
 
-    return _react2.default.createElement(_AppBar2.default, { title: title,
+    return _react2.default.createElement(_AppBar2.default, {
+        title: title,
         zDepth: zDepth,
-        style: { "position": "fixed" },
+        style: { position: "fixed" },
         onLeftIconButtonTouchTap: onLeftIconButtonTouchTap,
-        iconElementRight: iconElementRight });
+        iconElementRight: iconElementRight
+    });
 };
 
 Header.propTypes = {
-    "onLeftIconButtonTouchTap": _propTypes2.default.func.isRequired,
-    "title": _propTypes2.default.node.isRequired,
-    "iconElementRight": _propTypes2.default.element,
-    "zDepth": _propTypes2.default.number
+    onLeftIconButtonTouchTap: _propTypes2.default.func.isRequired,
+    title: _propTypes2.default.node.isRequired,
+    iconElementRight: _propTypes2.default.element,
+    zDepth: _propTypes2.default.number
 };
 
 exports.default = Header;

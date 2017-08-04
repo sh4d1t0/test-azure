@@ -51,9 +51,9 @@ var AutorizacionApi = function (_Request) {
                                 _context.prev = 0;
                                 _context.next = 3;
                                 return _this.fetch({
-                                    "url": "cxf/seguridad/autorizacion/consultarUsuarioEmail",
-                                    "baseUrl": "http://10.1.44.86:8182/",
-                                    "data": {
+                                    url: "cxf/seguridad/autorizacion/consultarUsuarioEmail",
+                                    baseUrl: "http://10.1.44.86:8182/",
+                                    data: {
                                         email: email
                                     }
                                 });
@@ -72,9 +72,9 @@ var AutorizacionApi = function (_Request) {
                             case 7:
                                 _context.next = 9;
                                 return _this.fetch({
-                                    "url": "cxf/empleados/rest/buscarActivos",
-                                    "data": {
-                                        "usuario": username
+                                    url: "cxf/empleados/rest/buscarActivos",
+                                    data: {
+                                        usuario: username
                                     }
                                 });
 
@@ -91,11 +91,11 @@ var AutorizacionApi = function (_Request) {
                             case 12:
                                 _context.next = 14;
                                 return _this.fetch({
-                                    "url": "cxf/seguridad/autorizacion/consultarUsuarios",
-                                    "data": {
-                                        "claveUsuario": username,
-                                        "facultades": [{}],
-                                        "perfiles": [{}]
+                                    url: "cxf/seguridad/autorizacion/consultarUsuarios",
+                                    data: {
+                                        claveUsuario: username,
+                                        facultades: [{}],
+                                        perfiles: [{}]
                                     }
                                 });
 
@@ -111,8 +111,8 @@ var AutorizacionApi = function (_Request) {
 
                             case 17:
                                 return _context.abrupt("return", {
-                                    "perfiles": response[0].perfiles,
-                                    "facultades": response[0].facultades
+                                    perfiles: response[0].perfiles,
+                                    facultades: response[0].facultades
                                 });
 
                             case 20:

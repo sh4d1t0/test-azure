@@ -15,12 +15,10 @@ var getTextError = exports.getTextError = function getTextError(property) {
 
 
     if (required && typeof value === "undefined") {
-
         return errorText;
     }
 
     if (pattern && type !== "select" && type !== "checkbox" && type !== "date" && !pattern.test(value)) {
-
         return errorText;
     }
 

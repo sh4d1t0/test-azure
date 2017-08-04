@@ -45,36 +45,28 @@ var getDateFormat = exports.getDateFormat = function getDateFormat(data) {
 
 
     if (!value) {
-
         return;
     }
 
     switch (typeof value === "undefined" ? "undefined" : (0, _typeof3.default)(value)) {
-
         case "object":
             value = (0, _moment2.default)(value).format(format);
             break;
 
         default:
-
             if (isUnix) {
-
                 if (value.toString().length >= 12) {
-
                     value /= 1000;
                 }
 
                 value = _moment2.default.unix(value).format(format);
             } else {
-
                 value = (0, _moment2.default)("15/15/15").format("DD/MM/YYYY");
             }
             break;
-
     }
 
     if (value === "Invalid date") {
-
         value = "Fecha no válida";
     }
 
@@ -90,60 +82,49 @@ var getDateDiff = exports.getDateDiff = function getDateDiff(data) {
         value = data.value,
         now = void 0;
 
-    if (!value) {
 
+    if (!value) {
         return;
     }
 
     switch (typeof value === "undefined" ? "undefined" : (0, _typeof3.default)(value)) {
-
         case "object":
             value = (0, _moment2.default)(value).diff((0, _moment2.default)(), time);
             break;
 
         default:
             if (value.toString().length >= 12) {
-
                 value /= 1000;
             }
             if (isUnix) {
-
                 date = _moment2.default.unix(value);
                 now = (0, _moment2.default)();
                 diff = _moment2.default.duration(now.diff(date));
 
                 if (isNaN(diff.years()) || isNaN(diff.months()) || isNaN(diff.days())) {
-
                     value = "Fecha no válida";
                 } else {
-
                     value = diff.years() + " a\xF1os, " + diff.months() + " meses y " + diff.days() + " d\xEDas";
                 }
             }
             break;
-
     }
 
     return value;
 };
 
 var getDateObject = exports.getDateObject = function getDateObject(value, unix) {
-
     var date = {};
 
     if (typeof value === "undefined" || value === null || value.toString().length === 0) {
-
         return null;
     } else if ((typeof value === "number" || typeof value === "string") && unix) {
-
         if (value.toString().length === 13) {
-
             value /= 1000;
         }
 
         date = _moment2.default.unix(value).toDate();
     } else if ((typeof value === "undefined" ? "undefined" : (0, _typeof3.default)(value)) === "object") {
-
         date = value;
     }
 
@@ -153,15 +134,13 @@ var getDateObject = exports.getDateObject = function getDateObject(value, unix) 
 var getCurrencyFormat = exports.getCurrencyFormat = function getCurrencyFormat() {
     var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-
     var formatter = new Intl.NumberFormat("es-MX", {
-        "style": "currency",
-        "currency": "MXN",
-        "minimumFractionDigits": 2
+        style: "currency",
+        currency: "MXN",
+        minimumFractionDigits: 2
     });
 
     if (isNaN(value)) {
-
         value = 0;
     }
 
@@ -172,22 +151,20 @@ var getLinkFormat = exports.getLinkFormat = function getLinkFormat(value) {
     var labelBtn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Descargar";
     var target = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "_blank";
 
-
-    return React.createElement(_FlatButton2.default, { label: labelBtn,
+    return React.createElement(_FlatButton2.default, {
+        label: labelBtn,
         secondary: true,
         target: target,
-        href: value });
+        href: value
+    });
 };
 
 var getPercentageFormat = exports.getPercentageFormat = function getPercentageFormat(value) {
-
     if (typeof value === "undefined" || value === "...") {
-
         value = 0;
     }
 
     if (typeof value === "string") {
-
         value = parseFloat(value);
     }
 
@@ -199,9 +176,7 @@ var getRenderBoolean = exports.getRenderBoolean = function getRenderBoolean() {
     var colorTrue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _colors.green500;
     var colorFalse = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _colors.red500;
 
-
     if (flag) {
-
         return React.createElement(_checkBox2.default, { color: colorTrue });
     }
 
@@ -225,17 +200,13 @@ var getFormat = exports.getFormat = function getFormat(data) {
         case "dateDiff":
             return getDateDiff({ value: value });
         case "percentage":
-
             if (typeof value === "undefined" || value === "...") {
-
                 value = 0;
             }
 
             return getPercentageFormat(value);
         case "boolean":
-
             if (value) {
-
                 return renderTrueAs;
             }
 

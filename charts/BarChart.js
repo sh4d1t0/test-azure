@@ -28,7 +28,6 @@ var Chart = function Chart(props) {
 
 
     var getBars = function getBars() {
-
         return bars.map(function (bar, i) {
             var dataKey = bar.dataKey,
                 fill = bar.fill;
@@ -36,9 +35,7 @@ var Chart = function Chart(props) {
 
             return _react2.default.createElement(
                 _recharts.Bar,
-                { key: "mn-bar-chart-" + i,
-                    dataKey: dataKey,
-                    fill: fill },
+                { key: "mn-bar-chart-" + i, dataKey: dataKey, fill: fill },
                 data.map(function (entry, index) {
                     return _react2.default.createElement(_recharts.Cell, { fill: entry.fill, key: "cell-" + index });
                 })
@@ -52,11 +49,15 @@ var Chart = function Chart(props) {
         _react2.default.createElement(_materialUi.CardHeader, { title: title }),
         _react2.default.createElement(
             "div",
-            { style: { "overflowX": "auto", "overflowY": "hidden" } },
+            { style: { overflowX: "auto", overflowY: "hidden" } },
             _react2.default.createElement(
                 _recharts.BarChart,
-                { width: 580, height: 350, data: data,
-                    margin: { "left": 0 } },
+                {
+                    width: 580,
+                    height: 350,
+                    data: data,
+                    margin: { left: 0 }
+                },
                 _react2.default.createElement(_recharts.XAxis, { dataKey: "name" }),
                 _react2.default.createElement(_recharts.YAxis, null),
                 _react2.default.createElement(_recharts.CartesianGrid, { strokeDasharray: "3 3" }),
@@ -69,9 +70,9 @@ var Chart = function Chart(props) {
 };
 
 Chart.propTypes = {
-    "title": _propTypes2.default.string.isRequired,
-    "bars": _propTypes2.default.array.isRequired,
-    "data": _propTypes2.default.array.isRequired
+    title: _propTypes2.default.string.isRequired,
+    bars: _propTypes2.default.array.isRequired,
+    data: _propTypes2.default.array.isRequired
 };
 
 exports.default = Chart;

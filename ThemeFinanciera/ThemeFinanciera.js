@@ -32,12 +32,10 @@ var ThemeFinanciera = function ThemeFinanciera(props) {
         _props$accent1Color = props.accent1Color,
         accent1Color = _props$accent1Color === undefined ? _config2.default.palette.accent1Color : _props$accent1Color,
         muiTheme = (0, _getMuiTheme2.default)({
-
-        "palette": {
-            "primary1Color": primary1Color,
-            "accent1Color": accent1Color
+        palette: {
+            primary1Color: primary1Color,
+            accent1Color: accent1Color
         }
-
     });
 
 
@@ -49,9 +47,9 @@ var ThemeFinanciera = function ThemeFinanciera(props) {
 };
 
 ThemeFinanciera.propTypes = {
-    "children": _propTypes2.default.node,
-    "primary1Color": _propTypes2.default.string,
-    "accent1Color": _propTypes2.default.string
+    children: _propTypes2.default.node,
+    primary1Color: _propTypes2.default.string,
+    accent1Color: _propTypes2.default.string
 };
 
 exports.default = ThemeFinanciera;

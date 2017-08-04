@@ -40,13 +40,13 @@ var isThereATokenValid = exports.isThereATokenValid = function () {
                         instance = _axios2.default.create();
                         _context.next = 7;
                         return instance.request({
-                            "url": "/oauth2/v3/tokeninfo",
-                            "method": "get",
-                            "baseURL": "https://www.googleapis.com/",
-                            "params": {
-                                "access_token": token
+                            url: "/oauth2/v3/tokeninfo",
+                            method: "get",
+                            baseURL: "https://www.googleapis.com/",
+                            params: {
+                                access_token: token
                             },
-                            "timeout": 100000
+                            timeout: 100000
                         });
 
                     case 7:
@@ -75,6 +75,5 @@ var isThereATokenValid = exports.isThereATokenValid = function () {
     };
 }(),
     saveToken = exports.saveToken = function saveToken(token) {
-
     sessionStorage.setItem("token", token);
 };

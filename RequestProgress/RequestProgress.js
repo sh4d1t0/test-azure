@@ -23,11 +23,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ProgressBackground = function ProgressBackground(props) {
     var open = props.open,
         message = props.message,
-        style = { "display": "none" };
+        style = { display: "none" };
 
 
     if (open) {
-
         style.display = "block";
     }
 
@@ -52,13 +51,13 @@ var ProgressBackground = function ProgressBackground(props) {
 };
 
 ProgressBackground.propTypes = {
-    "open": _propTypes2.default.bool,
-    "message": _propTypes2.default.string
+    open: _propTypes2.default.bool,
+    message: _propTypes2.default.string
 };
 
 ProgressBackground.defaultProps = {
-    "message": "Procesando solicitud. Espere un momento",
-    "open": false
+    message: "Procesando solicitud. Espere un momento",
+    open: false
 };
 
 exports.default = ProgressBackground;

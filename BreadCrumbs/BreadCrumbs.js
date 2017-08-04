@@ -23,39 +23,36 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
         items = _ref$items === undefined ? [] : _ref$items,
         _onTouchTap = _ref.onTouchTap;
 
-
     return _react2.default.createElement(
         "div",
         { className: "row" },
         items.map(function (item, index) {
-
             if (item === null) {
-
                 return;
             }
 
             var label = item.label,
                 link = item.link;
 
-            var styleItem = { "color": "rgba(255,255,255,0.7)" };
+            var styleItem = { color: "rgba(255,255,255,0.7)" };
 
             if (index === items.length - 1) {
-
                 styleItem.color = "#FFFFFF";
             }
 
             return _react2.default.createElement(
                 "div",
                 { key: "bread-crumb-" + index },
-                " >",
+                " ",
+                ">",
                 _react2.default.createElement(_FlatButton2.default, {
                     label: label,
                     onTouchTap: function onTouchTap() {
-
                         _onTouchTap(item);
                     },
                     disabled: typeof link === "undefined",
-                    style: styleItem })
+                    style: styleItem
+                })
             );
         })
     );
@@ -63,8 +60,8 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
 
 
 BreadCrumbs.propTypes = {
-    "onTouchTap": _propTypes2.default.func.isRequired,
-    "items": _propTypes2.default.array.isRequired
+    onTouchTap: _propTypes2.default.func.isRequired,
+    items: _propTypes2.default.array.isRequired
 };
 
 exports.default = BreadCrumbs;

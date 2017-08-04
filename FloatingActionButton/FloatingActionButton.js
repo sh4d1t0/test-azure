@@ -31,13 +31,14 @@ var FloatingButton = function FloatingButton(props) {
         {
             secondary: true,
             className: "mn-float-a-btn",
-            onTouchTap: onTouchTap },
+            onTouchTap: onTouchTap
+        },
         _react2.default.createElement(_add2.default, null)
     );
 };
 
 FloatingButton.propTypes = {
-    "onTouchTap": _propTypes2.default.func.isRequired
+    onTouchTap: _propTypes2.default.func.isRequired
 };
 
 exports.default = FloatingButton;

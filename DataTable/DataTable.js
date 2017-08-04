@@ -82,62 +82,60 @@ var DataTable = (_temp = _class = function (_Component) {
         });
 
         if (typeof size === "undefined") {
-
             size = rowSizeList[0];
         }
 
         _this.state = {
-            "currentPage": 1,
-            "rowSize": size,
-            "filterText": "",
-            "sortName": "",
-            "sortType": "",
-            "limitPage": (0, _dataTableUtil.getLimitPage)(_this.props.data.length, size),
-            "realSelections": _this.getInitialSelected()
+            currentPage: 1,
+            rowSize: size,
+            filterText: "",
+            sortName: "",
+            sortType: "",
+            limitPage: (0, _dataTableUtil.getLimitPage)(_this.props.data.length, size),
+            realSelections: _this.getInitialSelected()
         };
-
         return _this;
     }
 
     return DataTable;
 }(_react.Component), _class.propTypes = {
-    "onRowSelection": _propTypes2.default.func,
-    "selectable": _propTypes2.default.bool,
-    "selectableManually": _propTypes2.default.bool,
-    "resetSelected": _propTypes2.default.bool,
-    "attrSelectable": _propTypes2.default.string,
-    "card": _propTypes2.default.bool,
-    "scrollbar": _propTypes2.default.bool,
-    "exportCSV": _propTypes2.default.bool,
-    "rowSize": _propTypes2.default.number,
-    "showHeaderToolbar": _propTypes2.default.bool,
-    "enableSelectAll": _propTypes2.default.bool,
-    "pagination": _propTypes2.default.bool,
-    "showCheckboxes": _propTypes2.default.bool,
-    "showFooterToolbar": _propTypes2.default.bool,
-    "multiSelectable": _propTypes2.default.bool,
-    "title": _propTypes2.default.string,
-    "titleFileCSV": _propTypes2.default.string,
-    "data": _propTypes2.default.array.isRequired,
-    "rowSizeList": _propTypes2.default.arrayOf(_propTypes2.default.number),
-    "headers": _propTypes2.default.array.isRequired
+    onRowSelection: _propTypes2.default.func,
+    selectable: _propTypes2.default.bool,
+    selectableManually: _propTypes2.default.bool,
+    resetSelected: _propTypes2.default.bool,
+    attrSelectable: _propTypes2.default.string,
+    card: _propTypes2.default.bool,
+    scrollbar: _propTypes2.default.bool,
+    exportCSV: _propTypes2.default.bool,
+    rowSize: _propTypes2.default.number,
+    showHeaderToolbar: _propTypes2.default.bool,
+    enableSelectAll: _propTypes2.default.bool,
+    pagination: _propTypes2.default.bool,
+    showCheckboxes: _propTypes2.default.bool,
+    showFooterToolbar: _propTypes2.default.bool,
+    multiSelectable: _propTypes2.default.bool,
+    title: _propTypes2.default.string,
+    titleFileCSV: _propTypes2.default.string,
+    data: _propTypes2.default.array.isRequired,
+    rowSizeList: _propTypes2.default.arrayOf(_propTypes2.default.number),
+    headers: _propTypes2.default.array.isRequired
 }, _class.defaultProps = {
-    "data": [],
-    "selectable": false,
-    "scrollbar": true,
-    "pagination": true,
-    "exportCSV": true,
-    "titleFileCSV": "reporte",
-    "rowSize": 5,
-    "rowSizeList": [5, 10, 15, 20],
-    "card": true,
-    "showCheckboxes": false,
-    "resetSelected": false,
-    "selectableManually": false,
-    "showHeaderToolbar": true,
-    "showFooterToolbar": true,
-    "enableSelectAll": false,
-    "multiSelectable": false
+    data: [],
+    selectable: false,
+    scrollbar: true,
+    pagination: true,
+    exportCSV: true,
+    titleFileCSV: "reporte",
+    rowSize: 5,
+    rowSizeList: [5, 10, 15, 20],
+    card: true,
+    showCheckboxes: false,
+    resetSelected: false,
+    selectableManually: false,
+    showHeaderToolbar: true,
+    showFooterToolbar: true,
+    enableSelectAll: false,
+    multiSelectable: false
 }, _initialiseProps = function _initialiseProps() {
     var _this2 = this;
 
@@ -150,18 +148,15 @@ var DataTable = (_temp = _class = function (_Component) {
 
 
         if (resetSelected !== _this2.props.resetSelected) {
-
             _this2.setState({
-                "realSelections": []
+                realSelections: []
             });
         }
 
         if (lengthNextData !== lengthCurrentData) {
-
             var page = void 0;
 
             switch (lengthNextData - lengthCurrentData) {
-
                 case 1:
                     page = _this2.state.currentPage;
                     _this2.oneElementAdded = true;
@@ -176,14 +171,13 @@ var DataTable = (_temp = _class = function (_Component) {
                     page = 1;
                     _this2.oneElementAdded = false;
                     break;
-
             }
 
             _this2.setState({
-                "limitPage": (0, _dataTableUtil.getLimitPage)(data.length, rowSize),
-                "currentPage": page,
-                "filterText": "",
-                "realSelections": _this2.getInitialSelected()
+                limitPage: (0, _dataTableUtil.getLimitPage)(data.length, rowSize),
+                currentPage: page,
+                filterText: "",
+                realSelections: _this2.getInitialSelected()
             });
         }
     };
@@ -198,7 +192,6 @@ var DataTable = (_temp = _class = function (_Component) {
         var selections = [];
 
         if (selectableManually) {
-
             selections = (0, _dataTableUtil.getSelectedByAttr)(data, attrSelectable);
         }
 
@@ -212,11 +205,10 @@ var DataTable = (_temp = _class = function (_Component) {
 
 
         if (currentPage + 1 > limitPage) {
-
             return;
         }
         _this2.oneElementAdded = false;
-        _this2.setState({ "currentPage": currentPage + 1 });
+        _this2.setState({ currentPage: currentPage + 1 });
     };
 
     this.handlePrevPage = function () {
@@ -224,19 +216,17 @@ var DataTable = (_temp = _class = function (_Component) {
 
 
         if (currentPage - 1 <= 0) {
-
             return;
         }
         _this2.oneElementAdded = false;
-        _this2.setState({ "currentPage": currentPage - 1 });
+        _this2.setState({ currentPage: currentPage - 1 });
     };
 
     this.handleChangeValueFilter = function (value) {
-
         _this2.oneElementAdded = false;
         _this2.setState({
-            "currentPage": 1,
-            "filterText": value.trim().toLowerCase()
+            currentPage: 1,
+            filterText: value.trim().toLowerCase()
         });
     };
 
@@ -249,12 +239,11 @@ var DataTable = (_temp = _class = function (_Component) {
 
         var limit = (0, _dataTableUtil.getLimitPage)(data.length, rowSizeList[index]),
             obj = {
-            "rowSize": rowSizeList[index],
-            "limitPage": limit
+            rowSize: rowSizeList[index],
+            limitPage: limit
         };
 
         if (currentPage > limit) {
-
             obj.currentPage = limit;
         }
 
@@ -262,7 +251,7 @@ var DataTable = (_temp = _class = function (_Component) {
     };
 
     this.handleSortOrderChange = function (a, b) {
-        return _this2.setState({ "sortName": a, "sortType": b });
+        return _this2.setState({ sortName: a, sortType: b });
     };
 
     this.handleRowSelect = function (selection) {
@@ -277,10 +266,8 @@ var DataTable = (_temp = _class = function (_Component) {
 
 
         switch (selection) {
-
             case "all":
                 data.map(function (d, index) {
-
                     realSelections.push(index);
                 });
                 break;
@@ -292,32 +279,25 @@ var DataTable = (_temp = _class = function (_Component) {
             default:
                 responseArray = true;
                 selection.map(function (item) {
-
                     data.map(function (d, index) {
-
                         if (_this2.rows[item].index === index) {
-
                             realSelections.push(index);
                         }
                     });
                 });
                 break;
-
         }
 
         realSelections = [].concat((0, _toConsumableArray3.default)(new Set(realSelections)));
 
         if (!responseArray) {
-
             onRowSelection(selection);
         } else {
-
             realSelections = (0, _dataTableUtil.removeNotExist)(_this2.rows, realSelections, selection, rowSize);
             onRowSelection(realSelections);
         }
 
         if (!selectableManually) {
-
             _this2.setState({ realSelections: realSelections });
         }
     };
@@ -349,54 +329,44 @@ var DataTable = (_temp = _class = function (_Component) {
             realSelections = _state3.realSelections;
 
 
-        var scrollbarCSS = { "overflowX": "auto" },
+        var scrollbarCSS = { overflowX: "auto" },
             selectedRows = [];
 
         if (data instanceof Array) {
-
             _this2.rows = data.map(function (d, index) {
                 return Object.assign({}, d, { index: index });
             });
         } else {
-
             _this2.rows = [];
         }
 
         if (sortName.length !== 0) {
-
             _this2.rows = (0, _dataTableUtil.getRowsWithSort)(sortName, sortType, data);
         }
 
         if (filterText.length > 0) {
-
             _this2.rows = (0, _dataTableUtil.getRowsWithFilterText)(_this2.rows, headers, filterText);
         }
 
         if (pagination) {
-
             _this2.rows = (0, _dataTableUtil.getRowsWithCurrentPage)(_this2.rows, currentPage, rowSize);
         }
 
         if (_this2.oneElementAdded) {
-
             _this2.rows = (0, _dataTableUtil.pushElement)(_this2.rows, data);
         }
 
         _this2.rows = (0, _dataTableUtil.getRowsWithFormat)(_this2.rows, headers);
 
         if (selectable) {
-
             if (selectableManually) {
-
                 selectedRows = (0, _dataTableUtil.getSelectedByAttr)(_this2.rows, attrSelectable);
             } else {
-
                 selectedRows = (0, _dataTableUtil.getSelectedRowsOnDT)(_this2.rows, realSelections);
             }
         }
 
         if (scrollbar) {
-
             scrollbarCSS.maxHeight = "350px";
             scrollbarCSS.overflowY = "auto";
         }
@@ -406,8 +376,7 @@ var DataTable = (_temp = _class = function (_Component) {
             selectable: selectable,
             showRowHover: true,
             columns: headers.map(function (h) {
-
-                var w = { "width": 250 };
+                var w = { width: 250 };
                 return (0, _extends3.default)({}, h, w);
             }),
             data: _this2.rows,
@@ -417,7 +386,7 @@ var DataTable = (_temp = _class = function (_Component) {
             multiSelectable: multiSelectable,
             showHeaderToolbar: showHeaderToolbar,
             onRowSelection: _this2.handleRowSelect,
-            tableStyle: { "tableLayout": "auto" },
+            tableStyle: { tableLayout: "auto" },
             onFilterValueChange: _this2.handleChangeValueFilter,
             page: currentPage,
             filterHintText: "Buscar en la tabla",
@@ -437,12 +406,13 @@ var DataTable = (_temp = _class = function (_Component) {
                 {
                     tooltip: "Descargar excel",
                     onTouchTap: function onTouchTap() {
-
                         (0, _files.getCSV)(data, headers, titleFileCSV);
-                    } },
+                    }
+                },
                 _react2.default.createElement(_fileDownload2.default, null)
             ),
-            title: title && title });
+            title: title && title
+        });
     };
 
     this.render = function () {
@@ -452,8 +422,7 @@ var DataTable = (_temp = _class = function (_Component) {
         return _react2.default.createElement(
             "div",
             null,
-            card && _react2.default.createElement(_Card.Card, { style: { "margin": 12 },
-                children: _this2.getTable() }),
+            card && _react2.default.createElement(_Card.Card, { style: { margin: 12 }, children: _this2.getTable() }),
             !card && _this2.getTable()
         );
     };

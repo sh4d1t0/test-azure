@@ -12,16 +12,13 @@ var getCSV = exports.getCSV = function getCSV() {
     var headers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     var title = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "reporte";
 
-
     var downloadLink = void 0,
         line = [],
         str = "",
         uri = void 0;
 
     headers.map(function (h) {
-
         if (!h.ignore) {
-
             line.push(h.label);
         }
     });
@@ -30,28 +27,21 @@ var getCSV = exports.getCSV = function getCSV() {
     str += "\r\n";
 
     list.map(function (l) {
-
         line = [];
         headers.map(function (header) {
-
             if (!header.ignore) {
-
                 var text = l[header.key];
 
                 if (typeof l[header.key] !== "undefined") {
-
                     if (typeof header.type !== "undefined") {
-
-                        text = (0, _formats.getFormat)({ "type": header.type, "value": text });
+                        text = (0, _formats.getFormat)({ type: header.type, value: text });
 
                         if (header.type === "currency") {
-
                             text = text.replace(",", "");
                             text = text.replace("$", "");
                         }
                     }
                 } else {
-
                     text = "";
                 }
 

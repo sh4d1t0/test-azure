@@ -4,33 +4,32 @@ import Paper from "material-ui/Paper";
 import Divider from "material-ui/Divider";
 import Spinner from "../Spinner/Spinner";
 
-const Body = (props) => {
+const Body = props => {
+    const { title, showSpinner } = props;
 
-    const {title, showSpinner} = props;
+    return (
+        <Paper zDepth={1} style={{ margin: 12 }}>
+            {title &&
+                <div>
+                    <h1>
+                        {title}
+                    </h1>
+                    <Divider />
+                </div>}
 
-    return <Paper zDepth={1} style={{"margin": 12}}>
-        {
-            title && <div>
-                <h1>{title}</h1>
-                <Divider />
+            <div className="mn-pd-30">
+                {props.children}
             </div>
-        }
 
-        <div className="mn-pd-30">
-            {props.children}
-        </div>
-
-        {
-            showSpinner && <Spinner visible={showSpinner}/>
-        }
-    </Paper>;
-
+            {showSpinner && <Spinner visible={showSpinner} />}
+        </Paper>
+    );
 };
 
 Body.propTypes = {
-    "title": PropTypes.string,
-    "showSpinner": PropTypes.bool,
-    "children": PropTypes.node
+    title: PropTypes.string,
+    showSpinner: PropTypes.bool,
+    children: PropTypes.node
 };
 
 export default Body;

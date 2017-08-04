@@ -9,8 +9,7 @@ import Spinner from "../Spinner/Spinner";
  * @return {XML} : knoofdnkl
  * @constructor
  */
-const Modal = (props) => {
-
+const Modal = props => {
     const {
             title,
             open,
@@ -21,20 +20,22 @@ const Modal = (props) => {
             onTouchTapOk,
             onTouchTapCancel,
             contentStyle = {
-                "width": "95%",
-                "maxWidth": "none"
+                width: "95%",
+                maxWidth: "none"
             }
         } = props,
         actions = [
             <FlatButton
                 label={labelCancel}
                 primary={true}
-                onTouchTap={onTouchTapCancel}/>,
+                onTouchTap={onTouchTapCancel}
+            />,
             <FlatButton
                 label={labelOk}
                 disabled={disabledOk}
                 primary={true}
-                onTouchTap={onTouchTapOk}/>
+                onTouchTap={onTouchTapOk}
+            />
         ];
 
     return (
@@ -43,28 +44,26 @@ const Modal = (props) => {
             actions={actions}
             modal={true}
             autoScrollBodyContent={true}
-            contentStyle={ contentStyle}
-            open={open}>
+            contentStyle={contentStyle}
+            open={open}
+        >
             {props.children}
-            {
-                showSpinner && <Spinner visible={showSpinner}/>
-            }
+            {showSpinner && <Spinner visible={showSpinner} />}
         </Dialog>
     );
-
 };
 
 Modal.propTypes = {
-    "title": PropTypes.string.isRequired,
-    "labelOk": PropTypes.string,
-    "labelCancel": PropTypes.string,
-    "open": PropTypes.bool.isRequired,
-    "onTouchTapOk": PropTypes.func.isRequired,
-    "onTouchTapCancel": PropTypes.func.isRequired,
-    "showSpinner": PropTypes.bool,
-    "disabledOk": PropTypes.bool,
-    "contentStyle": PropTypes.object,
-    "children": PropTypes.node
+    title: PropTypes.string.isRequired,
+    labelOk: PropTypes.string,
+    labelCancel: PropTypes.string,
+    open: PropTypes.bool.isRequired,
+    onTouchTapOk: PropTypes.func.isRequired,
+    onTouchTapCancel: PropTypes.func.isRequired,
+    showSpinner: PropTypes.bool,
+    disabledOk: PropTypes.bool,
+    contentStyle: PropTypes.object,
+    children: PropTypes.node
 };
 
 export default Modal;
