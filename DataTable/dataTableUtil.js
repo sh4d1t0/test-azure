@@ -56,7 +56,7 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
                 sortable = _headers$i.sortable;
 
 
-            if (typeof row[key] !== "undefined" && sortable) {
+            if (typeof row[key] !== "undefined" && row[key] !== null && sortable) {
                 var stringValue = row[key].toString();
                 stringValue = stringValue.toLowerCase();
 
@@ -109,6 +109,12 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
             if (type === "link") {
                 row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
                     $set: (0, _formats.getLinkFormat)(row[key], labelBtn)
+                }));
+            }
+
+            if (type === "percentage") {
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
+                    $set: (0, _formats.getPercentageFormat)(row[key])
                 }));
             }
         }

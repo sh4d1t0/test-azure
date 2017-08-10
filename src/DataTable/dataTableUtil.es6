@@ -3,6 +3,7 @@ import {
     getCurrencyFormat,
     getDateFormat,
     getLinkFormat,
+    getPercentageFormat,
     getRenderBoolean
 } from "../util/formats";
 import _ from "underscore";
@@ -43,7 +44,11 @@ export const getLimitPage = (
             for (let i = 0; i < headers.length; i += 1) {
                 const { key, sortable } = headers[i];
 
-                if (typeof row[key] !== "undefined" && sortable) {
+                if (
+                    typeof row[key] !== "undefined" &&
+                    row[key] !== null &&
+                    sortable
+                ) {
                     let stringValue = row[key].toString();
                     stringValue = stringValue.toLowerCase();
 
@@ -101,6 +106,14 @@ export const getLimitPage = (
                     row = update(row, {
                         [key]: {
                             $set: getLinkFormat(row[key], labelBtn)
+                        }
+                    });
+                }
+
+                if (type === "percentage") {
+                    row = update(row, {
+                        [key]: {
+                            $set: getPercentageFormat(row[key])
                         }
                     });
                 }
