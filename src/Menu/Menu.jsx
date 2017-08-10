@@ -11,39 +11,51 @@ const drawer = ({
     onTouchTap,
     logoHeader,
     logoFooter,
+    showAllItems,
     listItems
 }) => {
     let items;
 
-    const buildItems = list => {
-        return (
-            list &&
-            list.length &&
-            list.map((item, i) => {
-                if (item.subheader) {
-                    return (
-                        <div key={`div-drawer-li-${i}`}>
-                            <Divider />
-                            <Subheader>
-                                {item.subheader}
-                            </Subheader>
-                        </div>
-                    );
-                }
+    const buildItems = (list: [] = []) => {
+        return list.map((item, i) => {
+            let styleListItem = { display: "none" };
 
+            if (showAllItems) {
+                styleListItem.display = "block";
+            } else {
+                styleListItem.display = "none";
+            }
+
+            if (item.subheader) {
+                if (item.show) {
+                    delete styleListItem.display;
+                }
                 return (
-                    <ListItem
-                        key={`item-drawer-li-${i}`}
-                        primaryText={item.primaryText}
-                        leftIcon={item.leftIcon}
-                        onTouchTap={() => {
-                            onTouchTap(item);
-                        }}
-                        nestedItems={buildItems(item.nestedItems)}
-                    />
+                    <div key={`div-drawer-li-${i}`} style={styleListItem}>
+                        <Divider />
+                        <Subheader>
+                            {item.subheader}
+                        </Subheader>
+                    </div>
                 );
-            })
-        );
+            }
+
+            if (item.show || (item.link && item.link.show)) {
+                delete styleListItem.display;
+            }
+            return (
+                <ListItem
+                    key={`item-drawer-li-${i}`}
+                    primaryText={item.primaryText}
+                    style={styleListItem}
+                    leftIcon={item.leftIcon}
+                    onTouchTap={() => {
+                        onTouchTap(item);
+                    }}
+                    nestedItems={buildItems(item.nestedItems)}
+                />
+            );
+        });
     };
 
     items = buildItems(listItems);
@@ -80,7 +92,12 @@ drawer.propTypes = {
     onTouchTap: PropTypes.func.isRequired,
     logoHeader: PropTypes.string.isRequired,
     logoFooter: PropTypes.string.isRequired,
-    listItems: PropTypes.array.isRequired
+    listItems: PropTypes.array.isRequired,
+    showAllItems: PropTypes.bool
+};
+
+drawer.defaultProps = {
+    showAllItems: false
 };
 
 export default drawer;

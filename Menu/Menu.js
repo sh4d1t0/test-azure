@@ -34,16 +34,30 @@ var drawer = function drawer(_ref) {
         _onTouchTap = _ref.onTouchTap,
         logoHeader = _ref.logoHeader,
         logoFooter = _ref.logoFooter,
+        showAllItems = _ref.showAllItems,
         listItems = _ref.listItems;
 
     var items = void 0;
 
-    var buildItems = function buildItems(list) {
-        return list && list.length && list.map(function (item, i) {
+    var buildItems = function buildItems() {
+        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+        return list.map(function (item, i) {
+            var styleListItem = { display: "none" };
+
+            if (showAllItems) {
+                styleListItem.display = "block";
+            } else {
+                styleListItem.display = "none";
+            }
+
             if (item.subheader) {
+                if (item.show) {
+                    delete styleListItem.display;
+                }
                 return _react2.default.createElement(
                     "div",
-                    { key: "div-drawer-li-" + i },
+                    { key: "div-drawer-li-" + i, style: styleListItem },
                     _react2.default.createElement(_Divider2.default, null),
                     _react2.default.createElement(
                         _Subheader2.default,
@@ -53,9 +67,13 @@ var drawer = function drawer(_ref) {
                 );
             }
 
+            if (item.show || item.link && item.link.show) {
+                delete styleListItem.display;
+            }
             return _react2.default.createElement(_List.ListItem, {
                 key: "item-drawer-li-" + i,
                 primaryText: item.primaryText,
+                style: styleListItem,
                 leftIcon: item.leftIcon,
                 onTouchTap: function onTouchTap() {
                     _onTouchTap(item);
@@ -100,7 +118,12 @@ drawer.propTypes = {
     onTouchTap: _propTypes2.default.func.isRequired,
     logoHeader: _propTypes2.default.string.isRequired,
     logoFooter: _propTypes2.default.string.isRequired,
-    listItems: _propTypes2.default.array.isRequired
+    listItems: _propTypes2.default.array.isRequired,
+    showAllItems: _propTypes2.default.bool
+};
+
+drawer.defaultProps = {
+    showAllItems: false
 };
 
 exports.default = drawer;

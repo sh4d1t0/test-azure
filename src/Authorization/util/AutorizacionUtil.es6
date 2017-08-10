@@ -1,18 +1,18 @@
 // @flow
 
 import axios from "axios";
+import AutorizacionApi from "../AutorizacionApi";
 
-export const isThereATokenValid = async () => {
+export const isThereATokenValid = async (email: string) => {
         try {
-            let emailVerified,
-                response,
-                token: string = sessionStorage.getItem("token");
+            let response,
+                token: string = sessionStorage.getItem("token"),
+                userValid;
 
             if (token === null) {
                 return false;
             }
             const instance = axios.create();
-
             response = await instance.request({
                 url: "/oauth2/v3/tokeninfo",
                 method: "get",
@@ -22,12 +22,19 @@ export const isThereATokenValid = async () => {
                 },
                 timeout: 100000
             });
-
-            emailVerified = response.data["email_verified"] === "true";
-
-            return emailVerified;
+            userValid = response.data["email_verified"] === "true";
+            response = await new AutorizacionApi().validar(
+                email ? email : response.data.email
+            );
+            return {
+                userValid,
+                ...response
+            };
         } catch (err) {
-            return false;
+            return {
+                userValid: false,
+                perfiles: []
+            };
         }
     },
     saveToken = (token: string) => {

@@ -30,12 +30,12 @@ var Request = function Request() {
 
     this.fetch = function () {
         var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(configFetch) {
-            var that, url, data, baseUrl, response;
+            var that, url, data, baseUrl, headers, response;
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            that = _this, url = configFetch.url, data = configFetch.data, baseUrl = configFetch.baseUrl;
+                            that = _this, url = configFetch.url, data = configFetch.data, baseUrl = configFetch.baseUrl, headers = configFetch.headers;
 
 
                             if (typeof url !== "undefined") {
@@ -47,9 +47,12 @@ var Request = function Request() {
                             if (typeof baseUrl !== "undefined") {
                                 _this.baseUrl = baseUrl;
                             }
+                            if (typeof headers !== "undefined") {
+                                _this.headers = headers;
+                            }
 
-                            _context.prev = 4;
-                            _context.next = 7;
+                            _context.prev = 5;
+                            _context.next = 8;
                             return that.instance.request({
                                 url: that.url,
                                 method: that.method,
@@ -60,30 +63,30 @@ var Request = function Request() {
                                 timeout: 100000
                             });
 
-                        case 7:
+                        case 8:
                             response = _context.sent;
 
                             if (!(response === null || response.data.payload === null)) {
-                                _context.next = 10;
+                                _context.next = 11;
                                 break;
                             }
 
                             throw new Error("Respuesta o payload nulo");
 
-                        case 10:
+                        case 11:
                             return _context.abrupt("return", response.data.payload);
 
-                        case 13:
-                            _context.prev = 13;
-                            _context.t0 = _context["catch"](4);
+                        case 14:
+                            _context.prev = 14;
+                            _context.t0 = _context["catch"](5);
                             throw new Error(_context.t0);
 
-                        case 16:
+                        case 17:
                         case "end":
                             return _context.stop();
                     }
                 }
-            }, _callee, _this, [[4, 13]]);
+            }, _callee, _this, [[5, 14]]);
         }));
 
         return function (_x) {

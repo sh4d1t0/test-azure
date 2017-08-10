@@ -26,10 +26,11 @@ export default class Request {
         url: string,
         data?: {},
         baseUrl?: string,
+        headers?: {},
         showNotification?: boolean
     }) => {
         const that = this,
-            { url, data, baseUrl } = configFetch;
+            { url, data, baseUrl, headers } = configFetch;
 
         if (typeof url !== "undefined") {
             this.url = url;
@@ -39,6 +40,9 @@ export default class Request {
         }
         if (typeof baseUrl !== "undefined") {
             this.baseUrl = baseUrl;
+        }
+        if (typeof headers !== "undefined") {
+            this.headers = headers;
         }
 
         try {

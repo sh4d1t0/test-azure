@@ -10,10 +10,11 @@ const ProgressBackground = (props: { open: boolean, message: string }) => {
 
     if (open) {
         style.display = "block";
+    } else {
+        return <div />;
     }
 
     return (
-        open &&
         <div className="mn-loading-container" style={style}>
             <div className="mn-folding-cube">
                 <CircularProgress color={config.palette.accent1Color} />

@@ -28,9 +28,11 @@ var ProgressBackground = function ProgressBackground(props) {
 
     if (open) {
         style.display = "block";
+    } else {
+        return _react2.default.createElement("div", null);
     }
 
-    return open && _react2.default.createElement(
+    return _react2.default.createElement(
         "div",
         { className: "mn-loading-container", style: style },
         _react2.default.createElement(

@@ -11,15 +11,21 @@ const GOOGLE_ID =
     "40613802827-p776g33c1hgr7i1i52kd58sn14afqrck.apps.googleusercontent.com";
 
 export default class Authorization extends Component {
+    state: {
+        loading: boolean
+    };
+
     static propTypes = {
         logo: PropTypes.string,
-        isDevelopment: PropTypes.bool,
+        isSandbox: PropTypes.bool,
+        email: PropTypes.string,
         onSuccess: PropTypes.func.isRequired,
         onFailure: PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        isDevelopment: true
+        isSandbox: true,
+        email: "juan.crisostomo@sngular.team"
     };
 
     constructor(props: {}, context: {}) {
@@ -30,27 +36,35 @@ export default class Authorization extends Component {
         this.state = {
             loading: false
         };
+        const { email, isSandbox } = this.props;
+
+        if ((isSandbox && email === null) || typeof email === "undefined") {
+            console.error("Email de prueba no válido");
+        }
     }
 
-    handleLoginFailure = response => {
+    handleLoginFailure = (response: {}) => {
         const { onFailure } = this.props;
         onFailure(response);
     };
 
-    handleLoginSuccess = async response => {
+    handleLoginSuccess = async (response: {
+        accessToken: string,
+        profileObj: { email: string }
+    }) => {
         const { accessToken, profileObj } = response,
-            { onSuccess, isDevelopment, onFailure } = this.props;
+            { onSuccess, isSandbox, onFailure, email } = this.props;
 
         try {
             let capabilities,
-                email = profileObj.email;
+                correo = profileObj.email;
 
-            if (isDevelopment) {
-                email = "alopezavil@independencia.com.mx";
+            if (isSandbox) {
+                correo = email;
             }
             this.setState({ loading: true });
 
-            capabilities = await new AutorizacionApi().validar(email);
+            capabilities = await new AutorizacionApi().validar(correo);
 
             saveToken(accessToken);
             onSuccess(capabilities);
