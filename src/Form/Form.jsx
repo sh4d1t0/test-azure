@@ -301,7 +301,7 @@ const Form = props => {
                                     errorText={errorText}
                                     disabled={disabled && disabled}
                                     floatingLabelText={label}
-                                    value={value}
+                                    value={typeof value !== "undefined" && value}
                                     rows={rows}
                                     multiLine={multiLine}
                                     onChange={(event, newValue) => {
