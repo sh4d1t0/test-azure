@@ -10,6 +10,33 @@ const Chart = ({ data, labels, title = "" }) => {
             return { ...l, ...color };
         });
 
+    const RADIAN = Math.PI / 180;
+
+    const renderCustomizedLabel = ({
+        cx,
+        cy,
+        midAngle,
+        innerRadius,
+        outerRadius,
+        percent
+    }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5,
+            x = cx + radius * Math.cos(-midAngle * RADIAN),
+            y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+            <text
+                x={x}
+                y={y}
+                fill="white"
+                textAnchor={x > cx ? "start" : "end"}
+                dominantBaseline="central"
+            >
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
+
     return (
         <Card>
             <CardHeader title={title} />
@@ -20,17 +47,16 @@ const Chart = ({ data, labels, title = "" }) => {
                         dataKey={"solicitudes"}
                         data={data}
                         nameKey={"name"}
-                        cx={250}
+                        cx={280}
                         cy={175}
+                        label
                         outerRadius={100}
                     >
                         {data.map((entry, index) =>
                             <Cell key={`cell-${index}`} fill={colors[index]} />
                         )}
                     </Pie>
-
-                    <Tooltip label={"name"} />
-
+                    <Tooltip />
                     <Legend payload={payload} />
                 </PieChart>
             </div>

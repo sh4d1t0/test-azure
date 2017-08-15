@@ -52,12 +52,12 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
     return rows.filter(function (row) {
         for (var i = 0; i < headers.length; i += 1) {
             var _headers$i = headers[i],
-                key = _headers$i.key,
-                sortable = _headers$i.sortable;
+                _key = _headers$i.key,
+                _sortable = _headers$i.sortable;
 
 
-            if (typeof row[key] !== "undefined" && row[key] !== null && sortable) {
-                var stringValue = row[key].toString();
+            if (row[_key] && _sortable) {
+                var stringValue = row[_key].toString();
                 stringValue = stringValue.toLowerCase();
 
                 if (stringValue.includes(filterText)) {
@@ -73,7 +73,7 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
     return rows.map(function (row) {
         for (var i = 0; i < headers.length; i += 1) {
             var _headers$i2 = headers[i],
-                key = _headers$i2.key,
+                _key2 = _headers$i2.key,
                 type = _headers$i2.type,
                 labelBtn = _headers$i2.labelBtn,
                 format = _headers$i2.format,
@@ -84,37 +84,37 @@ var getLimitPage = exports.getLimitPage = function getLimitPage(lengthNextData, 
                 renderTrueAs = _headers$i2$renderTru === undefined ? (0, _formats.getRenderBoolean)(true) : _headers$i2$renderTru;
 
 
-            if (type === "date" && row[key]) {
-                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
+            if (type === "date" && row[_key2]) {
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, _key2, {
                     $set: (0, _formats.getDateFormat)({
                         format: format,
                         isUnix: unix,
-                        value: row[key]
+                        value: row[_key2]
                     })
                 }));
             }
 
             if (type === "boolean") {
-                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
-                    $set: row[key] ? renderTrueAs : renderFalseAs
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, _key2, {
+                    $set: row[_key2] ? renderTrueAs : renderFalseAs
                 }));
             }
 
             if (type === "currency") {
-                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
-                    $set: (0, _formats.getCurrencyFormat)(row[key])
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, _key2, {
+                    $set: (0, _formats.getCurrencyFormat)(row[_key2])
                 }));
             }
 
             if (type === "link") {
-                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
-                    $set: (0, _formats.getLinkFormat)(row[key], labelBtn)
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, _key2, {
+                    $set: (0, _formats.getLinkFormat)(row[_key2], labelBtn)
                 }));
             }
 
             if (type === "percentage") {
-                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, key, {
-                    $set: (0, _formats.getPercentageFormat)(row[key])
+                row = (0, _immutabilityHelper2.default)(row, (0, _defineProperty3.default)({}, _key2, {
+                    $set: (0, _formats.getPercentageFormat)(row[_key2])
                 }));
             }
         }

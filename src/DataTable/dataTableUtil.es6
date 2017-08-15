@@ -39,16 +39,12 @@ export const getLimitPage = (
             return index >= indexInitial && index < indexFinal;
         });
     },
-    getRowsWithFilterText = (rows: [], headers: [], filterText: string): [] => {
+    getRowsWithFilterText = (rows: [], headers: Array<{key: string, sortable: string}>, filterText: string): [] => {
         return rows.filter(row => {
             for (let i = 0; i < headers.length; i += 1) {
                 const { key, sortable } = headers[i];
 
-                if (
-                    typeof row[key] !== "undefined" &&
-                    row[key] !== null &&
-                    sortable
-                ) {
+                if (row[key] && sortable) {
                     let stringValue = row[key].toString();
                     stringValue = stringValue.toLowerCase();
 
