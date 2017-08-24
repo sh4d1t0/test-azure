@@ -228,6 +228,8 @@ const Form = props => {
                                     locale="es-MX"
                                     errorText={errorText}
                                     DateTimeFormat={DateTimeFormat}
+                                    container="inline"
+                                    mode="landscape"
                                     onChange={(event, newDate) => {
                                         handleOnChange(inputId, newDate);
                                     }}

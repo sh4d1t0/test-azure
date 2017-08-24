@@ -11,7 +11,7 @@ const BreadCrumbs = ({ items = [], onTouchTap }) => {
                     return;
                 }
 
-                const { label, link } = item;
+                const { primaryText, url } = item;
                 let styleItem = { color: "rgba(255,255,255,0.7)" };
 
                 if (index === items.length - 1) {
@@ -22,11 +22,11 @@ const BreadCrumbs = ({ items = [], onTouchTap }) => {
                     <div key={`bread-crumb-${index}`}>
                         {" "}>
                         <FlatButton
-                            label={label}
+                            label={primaryText}
                             onTouchTap={() => {
                                 onTouchTap(item);
                             }}
-                            disabled={typeof link === "undefined"}
+                            disabled={typeof url === "undefined"}
                             style={styleItem}
                         />
                     </div>

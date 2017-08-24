@@ -17,7 +17,7 @@ const Body = props => {
                     <Divider />
                 </div>}
 
-            <div className="mn-pd-30">
+            <div className="mn-pd-30" style={{overflowX: "auto"}}>
                 {props.children}
             </div>
 

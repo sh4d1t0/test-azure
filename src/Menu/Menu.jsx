@@ -20,15 +20,12 @@ const drawer = ({
         return list.map((item, i) => {
             let styleListItem = { display: "none" };
 
-            if (showAllItems) {
-                styleListItem.display = "block";
-            } else {
-                styleListItem.display = "none";
-            }
-
             if (item.subheader) {
-                if (item.show) {
-                    delete styleListItem.display;
+                if (!showAllItems && item.show) {
+                    styleListItem.display = "block";
+                }
+                if (showAllItems) {
+                    styleListItem.display = "block";
                 }
                 return (
                     <div key={`div-drawer-li-${i}`} style={styleListItem}>
@@ -40,9 +37,17 @@ const drawer = ({
                 );
             }
 
-            if (item.show || (item.link && item.link.show)) {
-                delete styleListItem.display;
+
+            if (!showAllItems && item.show) {
+                styleListItem.display = "block";
             }
+            if (showAllItems) {
+                styleListItem.display = "block";
+            }
+            if (item.type === "button") {
+                styleListItem.display = "none";
+            }
+
             return (
                 <ListItem
                     key={`item-drawer-li-${i}`}

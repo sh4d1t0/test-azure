@@ -45,15 +45,12 @@ var drawer = function drawer(_ref) {
         return list.map(function (item, i) {
             var styleListItem = { display: "none" };
 
-            if (showAllItems) {
-                styleListItem.display = "block";
-            } else {
-                styleListItem.display = "none";
-            }
-
             if (item.subheader) {
-                if (item.show) {
-                    delete styleListItem.display;
+                if (!showAllItems && item.show) {
+                    styleListItem.display = "block";
+                }
+                if (showAllItems) {
+                    styleListItem.display = "block";
                 }
                 return _react2.default.createElement(
                     "div",
@@ -67,9 +64,16 @@ var drawer = function drawer(_ref) {
                 );
             }
 
-            if (item.show || item.link && item.link.show) {
-                delete styleListItem.display;
+            if (!showAllItems && item.show) {
+                styleListItem.display = "block";
             }
+            if (showAllItems) {
+                styleListItem.display = "block";
+            }
+            if (item.type === "button") {
+                styleListItem.display = "none";
+            }
+
             return _react2.default.createElement(_List.ListItem, {
                 key: "item-drawer-li-" + i,
                 primaryText: item.primaryText,

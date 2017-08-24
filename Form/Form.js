@@ -267,6 +267,8 @@ var Form = function Form(props) {
                         locale: "es-MX",
                         errorText: errorText,
                         DateTimeFormat: DateTimeFormat,
+                        container: "inline",
+                        mode: "landscape",
                         onChange: function onChange(event, newDate) {
                             handleOnChange(inputId, newDate);
                         }

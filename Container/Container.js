@@ -46,7 +46,7 @@ var Body = function Body(props) {
         ),
         _react2.default.createElement(
             "div",
-            { className: "mn-pd-30" },
+            { className: "mn-pd-30", style: { overflowX: "auto" } },
             props.children
         ),
         showSpinner && _react2.default.createElement(_Spinner2.default, { visible: showSpinner })

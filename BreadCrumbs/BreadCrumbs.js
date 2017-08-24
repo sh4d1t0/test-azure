@@ -31,8 +31,8 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
                 return;
             }
 
-            var label = item.label,
-                link = item.link;
+            var primaryText = item.primaryText,
+                url = item.url;
 
             var styleItem = { color: "rgba(255,255,255,0.7)" };
 
@@ -46,11 +46,11 @@ var BreadCrumbs = function BreadCrumbs(_ref) {
                 " ",
                 ">",
                 _react2.default.createElement(_FlatButton2.default, {
-                    label: label,
+                    label: primaryText,
                     onTouchTap: function onTouchTap() {
                         _onTouchTap(item);
                     },
-                    disabled: typeof link === "undefined",
+                    disabled: typeof url === "undefined",
                     style: styleItem
                 })
             );
