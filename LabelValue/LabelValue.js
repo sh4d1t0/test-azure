@@ -39,7 +39,7 @@ var LabelValue = function LabelValue(props) {
         { className: "row static-info", style: styleContainer },
         _react2.default.createElement(
             "div",
-            { className: "col-xs-12 col-md-5 mn-clave-valor-l" },
+            { className: "col-xs-12 col-md-3 mn-clave-valor-l" },
             _react2.default.createElement(
                 "span",
                 null,
@@ -49,7 +49,7 @@ var LabelValue = function LabelValue(props) {
         _react2.default.createElement(
             "div",
             {
-                className: "col-xs-12 col-md-7  text-uppercase mn-clave-valor-v " + type
+                className: "col-xs-12 col-md text-uppercase mn-clave-valor-v " + type
             },
             _react2.default.createElement(
                 "span",
